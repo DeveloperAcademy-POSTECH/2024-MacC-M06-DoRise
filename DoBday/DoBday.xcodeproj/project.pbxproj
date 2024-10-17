@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		93ED0E922CC10185003250A9 /* MockupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED0E912CC10185003250A9 /* MockupData.swift */; };
+		9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */; };
 		F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FA02CC0F83700C38E73 /* DoBdayApp.swift */; };
 		F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */; };
 		F7386FA52CC0F83900C38E73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7386FA42CC0F83900C38E73 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		93ED0E912CC10185003250A9 /* MockupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockupData.swift; sourceTree = "<group>"; };
+		9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Color.swift"; sourceTree = "<group>"; };
 		F7386F9D2CC0F83700C38E73 /* DoBday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoBday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7386FA02CC0F83700C38E73 /* DoBdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoBdayApp.swift; sourceTree = "<group>"; };
 		F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingBdayView.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				F7386FBB2CC0F91F00C38E73 /* Helper+Fonts.swift */,
+				9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				F7386FB62CC0F8F900C38E73 /* Model.swift in Sources */,
 				F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */,
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
+				9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */,
 				F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */,
 				F7386FC02CC100AC00C38E73 /* CreateBdayView.swift in Sources */,
 				F7386FC22CC100BD00C38E73 /* EditBdayView.swift in Sources */,
