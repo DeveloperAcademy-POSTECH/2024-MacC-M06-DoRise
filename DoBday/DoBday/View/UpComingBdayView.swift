@@ -20,5 +20,5 @@ struct UpComingBdayView: View {
 }
 
 #Preview {
-    ContentView()
+    UpComingBdayView()
 }
