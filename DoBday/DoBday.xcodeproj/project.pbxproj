@@ -8,25 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FA02CC0F83700C38E73 /* DoBdayApp.swift */; };
-		F7386FA32CC0F83700C38E73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FA22CC0F83700C38E73 /* ContentView.swift */; };
+		F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */; };
 		F7386FA52CC0F83900C38E73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7386FA42CC0F83900C38E73 /* Assets.xcassets */; };
 		F7386FA82CC0F83900C38E73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7386FA72CC0F83900C38E73 /* Preview Assets.xcassets */; };
 		F7386FB62CC0F8F900C38E73 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FB52CC0F8F900C38E73 /* Model.swift */; };
 		F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FB72CC0F90000C38E73 /* ViewModel.swift */; };
 		F7386FBA2CC0F90C00C38E73 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FB92CC0F90C00C38E73 /* Component.swift */; };
 		F7386FBC2CC0F91F00C38E73 /* Helper+Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBB2CC0F91F00C38E73 /* Helper+Fonts.swift */; };
+		F7386FBE2CC1009D00C38E73 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBD2CC1009D00C38E73 /* CalendarView.swift */; };
+		F7386FC02CC100AC00C38E73 /* CreateBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBF2CC100AC00C38E73 /* CreateBdayView.swift */; };
+		F7386FC22CC100BD00C38E73 /* EditBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FC12CC100BD00C38E73 /* EditBdayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F7386F9D2CC0F83700C38E73 /* DoBday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoBday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7386FA02CC0F83700C38E73 /* DoBdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoBdayApp.swift; sourceTree = "<group>"; };
-		F7386FA22CC0F83700C38E73 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingBdayView.swift; sourceTree = "<group>"; };
 		F7386FA42CC0F83900C38E73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7386FA72CC0F83900C38E73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F7386FB52CC0F8F900C38E73 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		F7386FB72CC0F90000C38E73 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		F7386FB92CC0F90C00C38E73 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		F7386FBB2CC0F91F00C38E73 /* Helper+Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Fonts.swift"; sourceTree = "<group>"; };
+		F7386FBD2CC1009D00C38E73 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		F7386FBF2CC100AC00C38E73 /* CreateBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBdayView.swift; sourceTree = "<group>"; };
+		F7386FC12CC100BD00C38E73 /* EditBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBdayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +103,10 @@
 		F7386FB02CC0F87100C38E73 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F7386FA22CC0F83700C38E73 /* ContentView.swift */,
+				F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */,
+				F7386FBD2CC1009D00C38E73 /* CalendarView.swift */,
+				F7386FBF2CC100AC00C38E73 /* CreateBdayView.swift */,
+				F7386FC12CC100BD00C38E73 /* EditBdayView.swift */,
 				F7386FB32CC0F89600C38E73 /* Component */,
 			);
 			path = View;
@@ -206,10 +215,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7386FBC2CC0F91F00C38E73 /* Helper+Fonts.swift in Sources */,
+				F7386FBE2CC1009D00C38E73 /* CalendarView.swift in Sources */,
 				F7386FB62CC0F8F900C38E73 /* Model.swift in Sources */,
-				F7386FA32CC0F83700C38E73 /* ContentView.swift in Sources */,
+				F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */,
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
 				F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */,
+				F7386FC02CC100AC00C38E73 /* CreateBdayView.swift in Sources */,
+				F7386FC22CC100BD00C38E73 /* EditBdayView.swift in Sources */,
 				F7386FBA2CC0F90C00C38E73 /* Component.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
