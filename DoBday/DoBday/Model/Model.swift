@@ -7,18 +7,17 @@
 
 import Foundation
 import SwiftData
-import SwiftUI
 
 @Model
 final class Bday: Identifiable {
     var id: UUID
     var name: String
-    var profileImage: Image?
+    var profileImage: String?
     var dateOfBday: Date?
     var isLunar: Bool
     var notiFrequency: String
 
-    init(id: UUID, name: String, profileImage: Image? = nil, dateOfBday: Date? = nil, isLunar: Bool, notiFrequency: String) {
+    init(id: UUID, name: String, profileImage: String? = nil, dateOfBday: Date? = nil, isLunar: Bool, notiFrequency: String) {
         self.id = id
         self.name = name
         self.profileImage = profileImage

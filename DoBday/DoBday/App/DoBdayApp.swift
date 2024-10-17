@@ -11,7 +11,7 @@ import SwiftUI
 struct DoBdayApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            UpComingBdayView()
         }
     }
 }
