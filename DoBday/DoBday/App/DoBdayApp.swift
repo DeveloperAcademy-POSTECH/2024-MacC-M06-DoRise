@@ -13,5 +13,6 @@ struct DoBdayApp: App {
         WindowGroup {
             UpComingBdayView()
         }
+        .modelContainer(for: Bday.self)
     }
 }

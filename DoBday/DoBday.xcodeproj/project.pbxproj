@@ -22,7 +22,7 @@
 		F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */; };
 		F7386FA52CC0F83900C38E73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7386FA42CC0F83900C38E73 /* Assets.xcassets */; };
 		F7386FA82CC0F83900C38E73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7386FA72CC0F83900C38E73 /* Preview Assets.xcassets */; };
-		F7386FB62CC0F8F900C38E73 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FB52CC0F8F900C38E73 /* Model.swift */; };
+		F7386FB62CC0F8F900C38E73 /* Bday.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FB52CC0F8F900C38E73 /* Bday.swift */; };
 		F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FB72CC0F90000C38E73 /* ViewModel.swift */; };
 		F7386FBA2CC0F90C00C38E73 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FB92CC0F90C00C38E73 /* Component.swift */; };
 		F7386FBC2CC0F91F00C38E73 /* Helper+Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBB2CC0F91F00C38E73 /* Helper+Fonts.swift */; };
@@ -49,7 +49,7 @@
 		F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingBdayView.swift; sourceTree = "<group>"; };
 		F7386FA42CC0F83900C38E73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7386FA72CC0F83900C38E73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F7386FB52CC0F8F900C38E73 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		F7386FB52CC0F8F900C38E73 /* Bday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bday.swift; sourceTree = "<group>"; };
 		F7386FB72CC0F90000C38E73 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		F7386FB92CC0F90C00C38E73 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		F7386FBB2CC0F91F00C38E73 /* Helper+Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Fonts.swift"; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		F7386FAF2CC0F86800C38E73 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F7386FB52CC0F8F900C38E73 /* Model.swift */,
+				F7386FB52CC0F8F900C38E73 /* Bday.swift */,
 				93ED0E912CC10185003250A9 /* MockupData.swift */,
 			);
 			path = Model;
@@ -269,7 +269,7 @@
 				93ED0E922CC10185003250A9 /* MockupData.swift in Sources */,
 				F7386FBC2CC0F91F00C38E73 /* Helper+Fonts.swift in Sources */,
 				F7386FBE2CC1009D00C38E73 /* CalendarView.swift in Sources */,
-				F7386FB62CC0F8F900C38E73 /* Model.swift in Sources */,
+				F7386FB62CC0F8F900C38E73 /* Bday.swift in Sources */,
 				F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */,
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
 				9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */,
