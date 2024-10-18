@@ -13,5 +13,6 @@ struct DoBdayApp: App {
         WindowGroup {
             LocalNotificationManager()
         }
+        .modelContainer(for: Bday.self)
     }
 }
