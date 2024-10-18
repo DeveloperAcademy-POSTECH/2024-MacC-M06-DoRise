@@ -12,6 +12,8 @@ struct CalendarView: View {
     @Environment(\.modelContext) var context
     @Query var bdays: [Bday]
 
+    let relationshipDictionary: [String : Color] = ["#가족": .red, "#친구": .blue, "#지인": .yellow, "#비지니스": .green]
+
     var body: some View {
         NavigationView {
             VStack {
