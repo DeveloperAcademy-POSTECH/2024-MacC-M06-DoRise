@@ -21,13 +21,16 @@ struct CreateBdayView: View {
     @State private var dateOfBday: Date = Date()
     @State private var isLunar = true
     @State private var notiFrequency = ""
+    @State private var relationshipTag = ""
+
+    let relationshipDictionary: [String : Color] = ["#가족": .red, "#친구": .blue, "#지인": .yellow, "#비지니스": .green]
 
     var body: some View {
         NavigationView {
             VStack {
                 //추가 버튼
                 Button {
-                    let newBday = Bday(id: UUID(), name: name, profileImage: profileImage, dateOfBday: dateOfBday, isLunar: isLunar, notiFrequency: notiFrequency)
+                    let newBday = Bday(id: UUID(), name: name, profileImage: profileImage, dateOfBday: dateOfBday, isLunar: isLunar, notiFrequency: notiFrequency, relationshipTag: relationshipTag)
                     context.insert(newBday)
                 } label: {
                     Text("추가")
