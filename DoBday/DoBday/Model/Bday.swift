@@ -24,7 +24,8 @@ final class Bday: Identifiable {
         self.profileImage = profileImage
         self.dateOfBday = dateOfBday
         self.isLunar = isLunar
-        self.notiFrequency = [ ]
+        self.notiFrequency = notiFrequency
         self.relationshipTag = relationshipTag
     }
-}
+    }
+
