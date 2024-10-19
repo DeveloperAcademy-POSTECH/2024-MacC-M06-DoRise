@@ -32,7 +32,7 @@ struct CalendarView: View {
 
                                 VStack {
                                     Text("\(bday.name)의 생일")
-                                    Text(bday.notiFrequency)
+//                                    Text(bday.notiFrequency)
                                 }
                                 Spacer()
                             }

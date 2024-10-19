@@ -30,7 +30,7 @@ struct CreateBdayView: View {
             VStack {
                 //추가 버튼
                 Button {
-                    let newBday = Bday(id: UUID(), name: name, profileImage: profileImage, dateOfBday: dateOfBday, isLunar: isLunar, notiFrequency: notiFrequency, relationshipTag: relationshipTag)
+                    let newBday = Bday(id: UUID(), name: name, profileImage: profileImage, dateOfBday: dateOfBday, isLunar: isLunar, notiFrequency: [notiFrequency], relationshipTag: relationshipTag)
                     context.insert(newBday)
                 } label: {
                     Text("추가")
