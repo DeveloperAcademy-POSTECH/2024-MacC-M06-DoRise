@@ -9,7 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Query var bdays: [Bday]
+//    @Query var bdays: [Bday]
+    var bdays: [Bday]
     
     var body: some View {
         CalendarView(month: Date(), bdays: bdays)
@@ -118,20 +119,25 @@ private struct CellView: View {
         self.day = day
         self.clicked = clicked
         self.cellDate = cellDate
-        self.bday = bday
+//        self.bday = bday
+        self.bday = mockBdayData.first
     }
     
     var body: some View {
         ZStack {
-            if let bday {
+//            if bday != nil {
+//                Circle()
+//                    .fill(Color.red)
+//            }
+            if cellDate.isSameDate(date: bday?.dateOfBday ?? Date()) {
                 Circle()
-                    .fill(Color.red)
+                    .fill(Color.blue)
             }
             
             // cellDate와 Date()가 같은 날이면 Circle 표시
-            if cellDate.isSameDate(date: Date()) {
-                Circle()
-            }
+//            if cellDate.isSameDate(date: Date()) {
+//                Circle()
+//            }
             
             RoundedRectangle(cornerRadius: 5)
                 .opacity(0)
@@ -222,6 +228,7 @@ extension Date {
 }
 
 
-//#Preview {
-//    CalendarView()
-//}
+#Preview {
+
+    ContentView(bdays: mockBdayData)
+}

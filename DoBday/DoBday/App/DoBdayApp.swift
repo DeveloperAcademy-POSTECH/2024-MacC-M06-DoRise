@@ -12,7 +12,7 @@ struct DoBdayApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(bdays: mockBdayData)
         }
         .modelContainer(for: Bday.self)
     }
