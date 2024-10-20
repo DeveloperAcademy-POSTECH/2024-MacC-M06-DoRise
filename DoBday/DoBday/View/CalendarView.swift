@@ -21,21 +21,23 @@ struct CalendarView: View {
                 
                 List{
                     ForEach(bdays) { bday in
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 20)
-                                .frame(width: 358, height: 104)
-                                .foregroundColor(.gray)
+//                        NavigationLink(destination: CreateBdayView(bday: bday)) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .frame(width: 358, height: 104)
+                                    .foregroundColor(.gray)
 
-                            HStack {
-                                Circle()
-                                    .frame(width: 72)
+                                HStack {
+                                    Circle()
+                                        .frame(width: 72)
 
-                                VStack {
-                                    Text("\(bday.name)의 생일")
-//                                    Text(bday.notiFrequency)
+                                    VStack {
+                                        Text("\(bday.name)의 생일")
+                                        //                                    Text(bday.notiFrequency)
+                                    }
+                                    Spacer()
                                 }
-                                Spacer()
-                            }
+//                            }
                         }
                     }.onDelete { indexSet in
                         indexSet.forEach({index in
