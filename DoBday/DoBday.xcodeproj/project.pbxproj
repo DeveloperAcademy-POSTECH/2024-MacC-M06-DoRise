@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		892F42352CC4E088001BB045 /* BdayTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892F42342CC4E088001BB045 /* BdayTextView.swift */; };
 		93ED0E922CC10185003250A9 /* MockupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED0E912CC10185003250A9 /* MockupData.swift */; };
 		9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */; };
 		9E66AF5A2CC13B08001323D9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF572CC13B08001323D9 /* Pretendard-SemiBold.otf */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		892F42342CC4E088001BB045 /* BdayTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BdayTextView.swift; sourceTree = "<group>"; };
 		93ED0E912CC10185003250A9 /* MockupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockupData.swift; sourceTree = "<group>"; };
 		9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Color.swift"; sourceTree = "<group>"; };
 		9E66AF4F2CC13A93001323D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			children = (
 				9EF7D56C2CC146D4003A3B79 /* LocalNotificationManager.swift */,
 				F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */,
+				892F42342CC4E088001BB045 /* BdayTextView.swift */,
 				F7386FBD2CC1009D00C38E73 /* CalendarView.swift */,
 				F7386FBF2CC100AC00C38E73 /* CreateBdayView.swift */,
 				F7386FC12CC100BD00C38E73 /* EditBdayView.swift */,
@@ -277,6 +280,7 @@
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
 				9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */,
 				F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */,
+				892F42352CC4E088001BB045 /* BdayTextView.swift in Sources */,
 				9EF7D56D2CC146D4003A3B79 /* LocalNotificationManager.swift in Sources */,
 				F7386FC02CC100AC00C38E73 /* CreateBdayView.swift in Sources */,
 				F7386FC22CC100BD00C38E73 /* EditBdayView.swift in Sources */,
@@ -414,7 +418,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DoBday/Preview Content\"";
-				DEVELOPMENT_TEAM = 56D5DRN4CX;
+				DEVELOPMENT_TEAM = 43LM67V46K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DoBday/Info.plist;
@@ -445,7 +449,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DoBday/Preview Content\"";
-				DEVELOPMENT_TEAM = 56D5DRN4CX;
+				DEVELOPMENT_TEAM = 43LM67V46K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DoBday/Info.plist;
