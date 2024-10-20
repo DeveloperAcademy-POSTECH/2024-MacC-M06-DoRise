@@ -27,7 +27,7 @@ struct CalendarView: View {
     @State var clickedDates: Set<Date> = []
     @State var selectedDate: Date? = nil
     @State private var clickedDate: Date? = nil
-    @State private var clickedBday: Bday? = nil
+    @State private var clickedBdays: [Bday] = []
     
     
     var bdays: [Bday]
@@ -39,12 +39,17 @@ struct CalendarView: View {
             headerView
             calendarGridView
             
-            if let bday = clickedBday {
+            if !clickedBdays.isEmpty {
                 VStack {
-                    CardView(bday: bday)
+                    ForEach(clickedBdays, id: \.id) { bday in
+                        CardView(bday: bday)
+                    }
+                    
                 }
             }
+            
         }
+        
     }
     
     // MARK: - headerView
@@ -99,18 +104,18 @@ struct CalendarView: View {
                         let date = getDate(for: index - firstWeekday)
                         let day = index - firstWeekday + 1
                         let clicked = clickedDates.contains(date)
-                        let bday = bdays.first(where: { $0.dateOfBday?.startOfDay() == date.startOfDay() })
+                        let bdaysOnData = bdays.filter { $0.dateOfBday?.startOfDay() == date.startOfDay() }
                         
-                        CellView(day: day, clicked: clicked, cellDate: date, bday: bday)
+                        CellView(day: day, clicked: clicked, cellDate: date, bday: bdaysOnData)
                             .onTapGesture {
                                 if clicked {
                                     clickedDates.remove(date)
-                                    clickedBday = nil
+                                    clickedBdays = []
                                 } else {
                                     clickedDates.insert(date)
                                     selectedDate = date
                                     clickedDate = date
-                                    clickedBday = bday
+                                    clickedBdays = bdaysOnData
                                 }
                             }
                         
@@ -127,21 +132,21 @@ private struct CellView: View {
     var day: Int
     var clicked: Bool = false
     var cellDate: Date
-    var bday: Bday?
+    var bday: [Bday]
     
-    init(day: Int, clicked: Bool, cellDate: Date, bday: Bday?) {
-        self.day = day
-        self.clicked = clicked
-        self.cellDate = cellDate
-        //        self.bday = bday
-        self.bday = mockBdayData.first
-    }
+//    init(day: Int, clicked: Bool, cellDate: Date, bday: Bday?) {
+//        self.day = day
+//        self.clicked = clicked
+//        self.cellDate = cellDate
+//        //        self.bday = bday
+//        self.bday = mockBdayData
+//    }
     
     var body: some View {
         ZStack {
             
             // 데이터 상 생일과 일자가 동일할 때 Circle이 나타남
-            if cellDate.isSameDate(date: bday?.dateOfBday ?? Date()) {
+            if !bday.isEmpty {
                 Circle()
                     .fill(Color.purple)
             }
