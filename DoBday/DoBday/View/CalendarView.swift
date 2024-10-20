@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+
 struct ContentView: View {
 //    @Query var bdays: [Bday]
     var bdays: [Bday]
@@ -18,12 +19,9 @@ struct ContentView: View {
     }
 }
 
-
+// MARK: - CalendarView
 struct CalendarView: View {
     // Property
-    // month: 현재 달력의 월 정보
-    // offset: 드래그 제스쳐로 월을 변경
-    // clickedDates: 특정 일자 클릭시 뷰 추가
     @State var month: Date
     @State var offset: CGSize = CGSize()
     @State var clickedDates: Set<Date> = []
@@ -31,15 +29,18 @@ struct CalendarView: View {
     
     
     @Environment(\.modelContext) var context
-
-    
-    let relationshipDictionary: [String : Color] = ["#가족": .red, "#친구": .blue, "#지인": .yellow, "#비지니스": .green]
     
     
     var body: some View {
         VStack {
             headerView
             calendarGridView
+            
+            if !bdays.isEmpty {
+                VStack {
+                    CardView(bday: bdays.first!)
+                }
+            }
         }
         .gesture(
             DragGesture()
@@ -125,19 +126,12 @@ private struct CellView: View {
     
     var body: some View {
         ZStack {
-//            if bday != nil {
-//                Circle()
-//                    .fill(Color.red)
-//            }
+            
+            // 데이터 상 생일과 일자가 동일할 때 Circle이 나타남
             if cellDate.isSameDate(date: bday?.dateOfBday ?? Date()) {
                 Circle()
-                    .fill(Color.blue)
+                    .fill(Color.red)
             }
-            
-            // cellDate와 Date()가 같은 날이면 Circle 표시
-//            if cellDate.isSameDate(date: Date()) {
-//                Circle()
-//            }
             
             RoundedRectangle(cornerRadius: 5)
                 .opacity(0)
@@ -149,8 +143,74 @@ private struct CellView: View {
 }
 
 
+// MARK: - CardView
+private struct CardView: View {
+    var bday: Bday
+    let relationshipDictionary: [String : Color] = ["#가족": .red, "#친구": .blue, "#지인": .yellow, "#비지니스": .green]
 
-// MARK: - CustomCalendarView Method
+    
+    var body: some View {
+        VStack {
+            RoundedRectangle(cornerRadius: 12)
+                .foregroundStyle(
+                    relationshipDictionary[bday.relationshipTag] ?? .gray
+                )
+                .frame(maxWidth: .infinity)
+                .frame(height: 120)
+                .overlay {
+                    HStack {
+                        Image(bday.profileImage!)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                            .background(.white)
+                            .clipShape(Circle())
+                            
+                        
+                        Spacer()
+                        
+                        VStack(alignment: .leading) {
+                            Text(bday.name)
+                                .font(.title)
+                            Spacer(minLength: 20)
+                            HStack {
+                                Text(bday.relationshipTag)
+                                Spacer()
+                                Text("D-\(daysUntilBday(from: bday.dateOfBday!))")
+                            }
+                        }
+                        .padding()
+
+                    }
+                    .padding()
+                }
+        }
+    }
+    
+    // MARK: - CardView method
+    /// 오늘 날짜로부터 생일이 며칠 남았는지 계산하여 반환합니다.
+    func daysUntilBday(from date: Date) -> Int {
+        let calendar = Calendar.current
+        let today = Date()
+        
+        let components = calendar.dateComponents([.month, .day], from: date)
+        
+        // 내년 생일 계산
+        var nextBday = calendar.nextDate(after: today, matching: components, matchingPolicy: .nextTime)
+        
+        if nextBday == nil || nextBday! < today {
+            var nextYearComponents = components
+                    nextYearComponents.year = calendar.component(.year, from: today) + 1
+            nextBday = calendar.date(from: nextYearComponents)
+        }
+        
+        return calendar.dateComponents([.day], from: today, to: nextBday!).day!
+    }
+}
+
+
+
+// MARK: - CalendarView Method
 private extension CalendarView {
     /// 특정 해당 일자를 반환합니다.
     private func getDate(for day: Int) -> Date {
@@ -229,6 +289,9 @@ extension Date {
 
 
 #Preview {
-
     ContentView(bdays: mockBdayData)
+}
+
+#Preview {
+    CardView(bday: mockBdayData.first!)
 }
