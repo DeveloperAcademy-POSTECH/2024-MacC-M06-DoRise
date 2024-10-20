@@ -10,7 +10,7 @@ import SwiftData
 
 
 struct ContentView: View {
-    //    @Query var bdays: [Bday]
+    //        @Query var bdays: [Bday]
     var bdays: [Bday]
     
     var body: some View {
@@ -33,43 +33,76 @@ struct CalendarView: View {
     var bdays: [Bday]
     
     @Environment(\.modelContext) var context
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     var body: some View {
-        VStack {
-            headerView
-            calendarGridView
-            
-            if !clickedBdays.isEmpty {
+        NavigationView {
+            ScrollView {
                 VStack {
-                    ForEach(clickedBdays, id: \.id) { bday in
-                        CardView(bday: bday)
+                    headerView
+                    calendarGridView
+                        .padding(.bottom)
+                    
+                    if !clickedBdays.isEmpty {
+                        LazyVStack {
+                            ForEach(clickedBdays, id: \.id) { bday in
+                                CardView(bday: bday)
+                            }
+                        }
+                        
                     }
                     
+                    Spacer()
                 }
+                .padding()
             }
-            
         }
-        
     }
     
     // MARK: - headerView
     private var headerView: some View {
         VStack {
             HStack {
-                VStack {
-                    Text("\(selectedDate ?? Date(), formatter: Self.dateFormatter)")
-                        .font(.title)
-                        .padding(.bottom)
+                NavigationLink {
+                    UpComingBdayView()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .font(.custom("Pretendard-Bold", size: 20))
+                        .foregroundStyle(colorScheme == .dark ? .white : .black)
                     
                 }
                 
+                Text("\(selectedDate ?? Date(), formatter: Self.dateFormatter)")
+                    .font(.custom("Pretendard-Bold", size: 24))
+                
+                
+                
                 Spacer()
                 
+                NavigationLink {
+                    CreateBdayView()
+                } label: {
+                    Image(systemName: "plus")
+                        .foregroundStyle(colorScheme == .dark ? .white : .black)
+                        .font(.custom("Pretendard-Bold", size: 20))
+                    
+                    
+                }
+                
+            }
+            .padding(.bottom, 30)
+            
+            HStack {
+                Spacer()
                 Button {
                     changeMonth(by: -1)
                 } label: {
                     Image(systemName: "chevron.left")
                 }
+                
+                Rectangle()
+                    .frame(width: 20, height: 1)
+                    .foregroundStyle(.clear)
                 
                 Button {
                     changeMonth(by: 1)
@@ -78,6 +111,10 @@ struct CalendarView: View {
                 }
                 
             }
+            .padding(.bottom)
+            .foregroundStyle(colorScheme == .dark ? .white : .black)
+            
+            
             
             HStack {
                 ForEach(Self.weekdaySymbols, id: \.self) { symbol in
@@ -87,6 +124,7 @@ struct CalendarView: View {
             }
             .padding(.bottom, 5)
         }
+        
     }
     
     // MARK: - calendarGridView
@@ -118,8 +156,6 @@ struct CalendarView: View {
                                     clickedBdays = bdaysOnData
                                 }
                             }
-                        
-                        
                     }
                 }
             }
@@ -134,13 +170,13 @@ private struct CellView: View {
     var cellDate: Date
     var bday: [Bday]
     
-//    init(day: Int, clicked: Bool, cellDate: Date, bday: Bday?) {
-//        self.day = day
-//        self.clicked = clicked
-//        self.cellDate = cellDate
-//        //        self.bday = bday
-//        self.bday = mockBdayData
-//    }
+    //    init(day: Int, clicked: Bool, cellDate: Date, bday: Bday?) {
+    //        self.day = day
+    //        self.clicked = clicked
+    //        self.cellDate = cellDate
+    //        //        self.bday = bday
+    //        self.bday = mockBdayData
+    //    }
     
     var body: some View {
         ZStack {
@@ -148,17 +184,22 @@ private struct CellView: View {
             // 데이터 상 생일과 일자가 동일할 때 Circle이 나타남
             if !bday.isEmpty {
                 Circle()
-                    .fill(Color.purple)
+                    .fill(Color.init(hex: "FF8080"))
+                    .frame(width: 10, height: 10)
+                    .offset(x: 0, y: 20)
+                
             }
             
             if cellDate.isSameDate(date: Date()) {
                 Circle()
+                    .foregroundStyle(.primary)
+                    .opacity(0.2)
             }
             
             RoundedRectangle(cornerRadius: 5)
                 .opacity(0)
                 .overlay(Text(String(day)))
-                .foregroundStyle(.blue)
+                .foregroundStyle(.primary)
         }
         .scaledToFit()
     }
@@ -168,45 +209,69 @@ private struct CellView: View {
 // MARK: - CardView
 private struct CardView: View {
     var bday: Bday
-    let relationshipDictionary: [String : Color] = ["#가족": .red, "#친구": .blue, "#지인": .yellow, "#비지니스": .green]
+    let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1"), "#지인": Color.init(hex: "C9F69C"), "#비지니스": Color.init(hex: "A1ACFF")]
+    
+    @State private var showingAlert = false
     
     
     var body: some View {
-        VStack {
-            RoundedRectangle(cornerRadius: 12)
-                .foregroundStyle(
-                    relationshipDictionary[bday.relationshipTag] ?? .gray
-                )
-                .frame(maxWidth: .infinity)
-                .frame(height: 120)
-                .overlay {
-                    HStack {
-                        Image(bday.profileImage!)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100)
-                            .background(.white)
-                            .clipShape(Circle())
-                        
-                        
-                        Spacer()
-                        
-                        VStack(alignment: .leading) {
-                            Text(bday.name)
-                                .font(.title)
-                            Spacer(minLength: 20)
-                            HStack {
-                                Text(bday.relationshipTag)
-                                Spacer()
-                                Text("D-\(daysUntilBday(from: bday.dateOfBday!))")
-                            }
+        RoundedRectangle(cornerRadius: 16)
+            .foregroundStyle(
+                relationshipDictionary[bday.relationshipTag] ?? .gray.opacity(0.5)
+            )
+            .frame(maxWidth: .infinity)
+            .frame(height: 120)
+            .overlay {
+                HStack {NavigationLink {
+                    EditBdayView()
+                } label: {
+                    
+                    Image(bday.profileImage!)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .background(.white)
+                        .clipShape(Circle())
+                    
+                }
+                    Spacer()
+                    
+                    VStack(alignment: .leading) {
+                        Text(bday.name)
+                            .font(.custom("Pretendard-SemiBold", size: 24))
+                            .foregroundStyle(.black)
+                        Spacer(minLength: 16)
+                        HStack {
+                            Text(bday.relationshipTag)
+                            Spacer()
+                            Text("D-\(daysUntilBday(from: bday.dateOfBday!))")
                         }
-                        .padding()
-                        
+                        .font(.custom("Pretendard-Regular", size: 16))
+                        .foregroundStyle(.black)
                     }
                     .padding()
+                    
                 }
-        }
+                .padding()
+            }
+            .swipeActions {
+                Button(role: .destructive) {
+                    showingAlert = true
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                }
+                .tint(.red)
+            }
+            .alert("생일 기록을 삭제하시겠습니까?", isPresented: $showingAlert) {
+                Button("취소", role: .cancel) {}
+                Button("삭제", role: .destructive) {
+                    // 실제 삭제 기능은 여기에 구현
+                    print("Record deleted")
+                }
+            } message: {
+                Text("\(bday.name)의 생일 기록을 삭제하시겠습니까?")
+            }
+        
     }
     
     // MARK: - CardView method
@@ -312,8 +377,4 @@ extension Date {
 
 #Preview {
     ContentView(bdays: mockBdayData)
-}
-
-#Preview {
-    CardView(bday: mockBdayData.first!)
 }
