@@ -10,7 +10,7 @@ import SwiftData
 
 
 struct ContentView: View {
-//    @Query var bdays: [Bday]
+    //    @Query var bdays: [Bday]
     var bdays: [Bday]
     
     var body: some View {
@@ -25,45 +25,54 @@ struct CalendarView: View {
     @State var month: Date
     @State var offset: CGSize = CGSize()
     @State var clickedDates: Set<Date> = []
+    @State var selectedDate: Date? = nil
+    @State private var clickedDate: Date? = nil
+    @State private var clickedBday: Bday? = nil
+    
+    
     var bdays: [Bday]
     
-    
     @Environment(\.modelContext) var context
-    
     
     var body: some View {
         VStack {
             headerView
             calendarGridView
             
-            if !bdays.isEmpty {
+            if let bday = clickedBday {
                 VStack {
-                    CardView(bday: bdays.first!)
+                    CardView(bday: bday)
                 }
             }
         }
-        .gesture(
-            DragGesture()
-                .onChanged { gesture in
-                    self.offset = gesture.translation
-                }
-                .onEnded { gesture in
-                    if gesture.translation.width < 100 {
-                        changeMonth(by: 1)
-                    } else if gesture.translation.width > 100 {
-                        changeMonth(by: -1)
-                    }
-                    self.offset = CGSize()
-                }
-        )
     }
     
     // MARK: - headerView
     private var headerView: some View {
         VStack {
-            Text(month, formatter: Self.dateFormatter)
-                .font(.title)
-                .padding(.bottom)
+            HStack {
+                VStack {
+                    Text("\(selectedDate ?? Date(), formatter: Self.dateFormatter)")
+                        .font(.title)
+                        .padding(.bottom)
+                    
+                }
+                
+                Spacer()
+                
+                Button {
+                    changeMonth(by: -1)
+                } label: {
+                    Image(systemName: "chevron.left")
+                }
+                
+                Button {
+                    changeMonth(by: 1)
+                } label: {
+                    Image(systemName: "chevron.right")
+                }
+                
+            }
             
             HStack {
                 ForEach(Self.weekdaySymbols, id: \.self) { symbol in
@@ -90,14 +99,18 @@ struct CalendarView: View {
                         let date = getDate(for: index - firstWeekday)
                         let day = index - firstWeekday + 1
                         let clicked = clickedDates.contains(date)
-                        let bday = bdays.first(where: { $0.dateOfBday == date })
+                        let bday = bdays.first(where: { $0.dateOfBday?.startOfDay() == date.startOfDay() })
                         
                         CellView(day: day, clicked: clicked, cellDate: date, bday: bday)
                             .onTapGesture {
                                 if clicked {
                                     clickedDates.remove(date)
+                                    clickedBday = nil
                                 } else {
                                     clickedDates.insert(date)
+                                    selectedDate = date
+                                    clickedDate = date
+                                    clickedBday = bday
                                 }
                             }
                         
@@ -120,7 +133,7 @@ private struct CellView: View {
         self.day = day
         self.clicked = clicked
         self.cellDate = cellDate
-//        self.bday = bday
+        //        self.bday = bday
         self.bday = mockBdayData.first
     }
     
@@ -130,7 +143,11 @@ private struct CellView: View {
             // 데이터 상 생일과 일자가 동일할 때 Circle이 나타남
             if cellDate.isSameDate(date: bday?.dateOfBday ?? Date()) {
                 Circle()
-                    .fill(Color.red)
+                    .fill(Color.purple)
+            }
+            
+            if cellDate.isSameDate(date: Date()) {
+                Circle()
             }
             
             RoundedRectangle(cornerRadius: 5)
@@ -147,7 +164,7 @@ private struct CellView: View {
 private struct CardView: View {
     var bday: Bday
     let relationshipDictionary: [String : Color] = ["#가족": .red, "#친구": .blue, "#지인": .yellow, "#비지니스": .green]
-
+    
     
     var body: some View {
         VStack {
@@ -165,7 +182,7 @@ private struct CardView: View {
                             .frame(width: 100, height: 100)
                             .background(.white)
                             .clipShape(Circle())
-                            
+                        
                         
                         Spacer()
                         
@@ -180,7 +197,7 @@ private struct CardView: View {
                             }
                         }
                         .padding()
-
+                        
                     }
                     .padding()
                 }
@@ -200,7 +217,7 @@ private struct CardView: View {
         
         if nextBday == nil || nextBday! < today {
             var nextYearComponents = components
-                    nextYearComponents.year = calendar.component(.year, from: today) + 1
+            nextYearComponents.year = calendar.component(.year, from: today) + 1
             nextBday = calendar.date(from: nextYearComponents)
         }
         
@@ -267,7 +284,7 @@ private extension CalendarView {
 extension CalendarView {
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM yyyy"
+        formatter.dateFormat = "MMMM dd, yyyy"
         return formatter
     }()
     
@@ -278,7 +295,7 @@ extension CalendarView {
 
 // MARK: - extension Date
 extension Date {
-    private func startOfDay() -> Date {
+    func startOfDay() -> Date {
         Calendar.current.startOfDay(for: self)
     }
     
