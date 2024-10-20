@@ -30,6 +30,7 @@
 		F7386FBE2CC1009D00C38E73 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBD2CC1009D00C38E73 /* CalendarView.swift */; };
 		F7386FC02CC100AC00C38E73 /* CreateBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBF2CC100AC00C38E73 /* CreateBdayView.swift */; };
 		F7386FC22CC100BD00C38E73 /* EditBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FC12CC100BD00C38E73 /* EditBdayView.swift */; };
+		F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		F7386FBD2CC1009D00C38E73 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		F7386FBF2CC100AC00C38E73 /* CreateBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBdayView.swift; sourceTree = "<group>"; };
 		F7386FC12CC100BD00C38E73 /* EditBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBdayView.swift; sourceTree = "<group>"; };
+		F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+ImagePicker.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 		F7386FB22CC0F88600C38E73 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */,
 				F7386FBB2CC0F91F00C38E73 /* Helper+Fonts.swift */,
 				9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */,
 			);
@@ -269,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */,
 				93ED0E922CC10185003250A9 /* MockupData.swift in Sources */,
 				F7386FBC2CC0F91F00C38E73 /* Helper+Fonts.swift in Sources */,
 				F7386FBE2CC1009D00C38E73 /* CalendarView.swift in Sources */,
