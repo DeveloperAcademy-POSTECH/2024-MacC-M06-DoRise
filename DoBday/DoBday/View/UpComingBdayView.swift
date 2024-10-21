@@ -17,7 +17,7 @@ struct UpComingBdayView: View {
             VStack {
                 NavigationLink("+", destination: CreateBdayView())
 
-//                NavigationLink("캘린더 뷰", destination: CalendarView())
+                NavigationLink("캘린더 뷰", destination: ContentView())
 
                 List(bdays) {bday in
                     Text(bday.name)
