@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct DoBdayApp: App {
+    
     var body: some Scene {
         WindowGroup {
             UpComingBdayView()

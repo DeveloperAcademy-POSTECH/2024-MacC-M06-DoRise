@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Pretendard: String {
     case black = "Pretendard-Black"
@@ -18,3 +19,4 @@ enum Pretendard: String {
     case semiBold = "Pretendard-SemiBold"
     case thin = "Pretendard-Thin"
 }
+
