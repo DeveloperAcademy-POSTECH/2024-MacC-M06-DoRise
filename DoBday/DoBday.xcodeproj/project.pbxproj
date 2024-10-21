@@ -18,6 +18,7 @@
 		9E66AF602CC13B08001323D9 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF512CC13B08001323D9 /* Pretendard-Bold.otf */; };
 		9E66AF612CC13B08001323D9 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF552CC13B08001323D9 /* Pretendard-Medium.otf */; };
 		9E66AF622CC13B08001323D9 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF582CC13B08001323D9 /* Pretendard-Thin.otf */; };
+		9EF7D56D2CC146D4003A3B79 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF7D56C2CC146D4003A3B79 /* LocalNotificationManager.swift */; };
 		F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FA02CC0F83700C38E73 /* DoBdayApp.swift */; };
 		F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */; };
 		F7386FA52CC0F83900C38E73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7386FA42CC0F83900C38E73 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		9E66AF562CC13B08001323D9 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		9E66AF572CC13B08001323D9 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		9E66AF582CC13B08001323D9 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		9EF7D56C2CC146D4003A3B79 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		F7386F9D2CC0F83700C38E73 /* DoBday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoBday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7386FA02CC0F83700C38E73 /* DoBdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoBdayApp.swift; sourceTree = "<group>"; };
 		F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingBdayView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		F7386FB02CC0F87100C38E73 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9EF7D56C2CC146D4003A3B79 /* LocalNotificationManager.swift */,
 				F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */,
 				F7386FBD2CC1009D00C38E73 /* CalendarView.swift */,
 				F7386FBF2CC100AC00C38E73 /* CreateBdayView.swift */,
@@ -276,6 +279,7 @@
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
 				9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */,
 				F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */,
+				9EF7D56D2CC146D4003A3B79 /* LocalNotificationManager.swift in Sources */,
 				F7386FC02CC100AC00C38E73 /* CreateBdayView.swift in Sources */,
 				F7386FC22CC100BD00C38E73 /* EditBdayView.swift in Sources */,
 				F7386FBA2CC0F90C00C38E73 /* Component.swift in Sources */,
