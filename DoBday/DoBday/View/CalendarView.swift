@@ -21,7 +21,7 @@ struct CalendarView: View {
                 
                 List{
                     ForEach(bdays) { bday in
-//                        NavigationLink(destination: CreateBdayView(bday: bday)) {
+                        NavigationLink(destination: CreateBdayView(bday: bday)) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 20)
                                     .frame(width: 358, height: 104)
@@ -33,11 +33,11 @@ struct CalendarView: View {
 
                                     VStack {
                                         Text("\(bday.name)의 생일")
-                                        //                                    Text(bday.notiFrequency)
+//                                        Text(bday.notiFrequency)
                                     }
                                     Spacer()
                                 }
-//                            }
+                            }
                         }
                     }.onDelete { indexSet in
                         indexSet.forEach({index in
