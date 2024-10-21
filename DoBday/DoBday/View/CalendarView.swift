@@ -38,7 +38,7 @@ struct CalendarView: View {
     
     
     var body: some View {
-        NavigationView {
+        
             VStack {
                 headerView
                 calendarGridView
@@ -48,7 +48,9 @@ struct CalendarView: View {
                     ScrollView {
                         VStack {
                             ForEach(clickedBdays, id: \.id) { bday in
-                                CardView(bday: bday)
+                                NavigationLink(destination: CreateBdayView(bday: bday)){
+                                    CardView(bday: bday)
+                                }
                                     .padding(.bottom, 5)
                             }
                         }
@@ -59,7 +61,7 @@ struct CalendarView: View {
                 Spacer()
             }
             .padding()
-        }
+
     }
     
     
@@ -376,6 +378,6 @@ extension Date {
 }
 
 
-//#Preview {
-//    ContentView(bdays: mockBdayData)
-//}
+#Preview {
+    ContentView()
+}

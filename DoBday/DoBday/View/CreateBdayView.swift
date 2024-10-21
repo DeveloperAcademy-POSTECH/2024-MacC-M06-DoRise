@@ -23,26 +23,21 @@ struct CreateBdayView: View {
     @State private var notiFrequency = ["알람 없음"]
     @State private var relationshipTag = ""
 
-    //    var bday: Bday?
-    //
-    //    @State private var name = ""
-    //    @State private var profileImage = ""
-    //    @State private var dateOfBday: Date = Date()
-    //    @State private var isLunar = true
-    //    @State private var notiFrequency: [String] = []
-    //    @State private var relationshipTag = ""
-    //
-    //    init(bday: Bday? = nil) {
-    //        self.bday = bday
-    //        if let bday = bday {
-    //            _name = State(initialValue: bday.name)
-    //            _profileImage = State(initialValue: bday.profileImage ?? "")
-    //            _dateOfBday = State(initialValue: bday.dateOfBday ?? Date())
-    //            _isLunar = State(initialValue: bday.isLunar)
-    //            _notiFrequency = State(initialValue: bday.notiFrequency)
-    //            _relationshipTag = State(initialValue: bday.relationshipTag)
-    //        }
-    //    }
+    @Environment(\.dismiss) var dismiss
+
+    var bday: Bday?
+
+    init(bday: Bday? = nil) {
+        self.bday = bday
+        if let bday = bday {
+            _name = State(initialValue: bday.name)
+            _profileImage = State(initialValue: bday.profileImage ?? "")
+            _dateOfBday = State(initialValue: bday.dateOfBday ?? Date())
+            _isLunar = State(initialValue: bday.isLunar)
+            _notiFrequency = State(initialValue: bday.notiFrequency)
+            _relationshipTag = State(initialValue: bday.relationshipTag)
+        }
+    }
 
 
     @State var image: Image?
@@ -67,19 +62,20 @@ struct CreateBdayView: View {
     }()
 
     var body: some View {
-        NavigationView {
+     
             VStack {
                 HStack {
                     Spacer()
+                    
                     //추가 버튼
                     Button {
-//                        let newBday = Bday(id: UUID(), name: name, profileImage: profileImage, dateOfBday: dateOfBday, isLunar: isLunar, notiFrequency: notiFrequency, relationshipTag: relationshipTag)
-//                        context.insert(newBday)
                         print("저장 시도 중")
-                        let newBday = Bday(id: UUID(), name: name, profileImage: profileImage, dateOfBday: dateOfBday, isLunar: isLunar, notiFrequency: notiFrequency, relationshipTag: relationshipTag)
-                        context.insert(newBday)
-    //                    saveBday()
+                        saveBday()
                         print("저장 완료")
+                        //노티생성하는함수실행
+                        NotificationManager.instance.scheduleNotification(for: name, dateOfBday: dateOfBday, notiFrequency: notiFrequency)
+                        dismiss()
+
                     } label: {
                         Text("저장")
                             .font(.system(size: 24, weight: .semibold))
@@ -212,10 +208,6 @@ struct CreateBdayView: View {
                     }
                 }.padding(.init(top: 0, leading: 38, bottom: 0, trailing: 38))
 
-                //                TextField("이미지", text: $profileImage)
-                //                                    .textFieldStyle(.roundedBorder)
-                //                                    .padding()
-
                 //                Button {
                 //                    isLunar.toggle()
                 //                } label: {
@@ -246,36 +238,25 @@ struct CreateBdayView: View {
                            displayedComponents: .date)
                 .datePickerStyle(WheelDatePickerStyle())
                 .labelsHidden()
+            }
 
-                //                TextField("알람 기간", text: $notiFrequency)
-                //                                    .textFieldStyle(.roundedBorder)
-                //                                    .padding()
+    }
+        func saveBday() {
+            if let bday = bday {
+                // 기존 생일 수정
+                print("기존 생일 수정 중")
+                bday.name = name
+                bday.dateOfBday = dateOfBday
+                bday.isLunar = isLunar
+                bday.profileImage = profileImage
+                bday.relationshipTag = relationshipTag
+            } else {
+                // 새로운 생일 추가
+                print("새 생일 추가 중")
+                let newBday = Bday(id: UUID(), name: name, profileImage: profileImage, dateOfBday: dateOfBday, isLunar: isLunar, notiFrequency: notiFrequency, relationshipTag: relationshipTag)
+                context.insert(newBday)
             }
         }
-    }
-    //    func saveBday() {
-    //        if let bday = bday {
-    //            // 기존 생일 수정
-    //            print("기존 생일 수정 중")
-    //            bday.name = name
-    //            bday.dateOfBday = dateOfBday
-    //            bday.isLunar = isLunar
-    //            bday.profileImage = profileImage
-    //            bday.relationshipTag = relationshipTag
-    //        } else {
-    //            // 새로운 생일 추가
-    //            print("새 생일 추가 중")
-    //            let newBday = Bday(id: UUID(), name: name, profileImage: profileImage, dateOfBday: dateOfBday, isLunar: isLunar, notiFrequency: notiFrequency, relationshipTag: relationshipTag)
-    //            context.insert(newBday)
-    //        }
-    //
-    //        do {
-    //            try context.save()  // 변경 사항 저장
-    //            print("저장 완료")
-    //        } catch {
-    //            print("저장 중 오류 발생: \(error)")
-    //        }
-    //    }
 }
 
 #Preview {
