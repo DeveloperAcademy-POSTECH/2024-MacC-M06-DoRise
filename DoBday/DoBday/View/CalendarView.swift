@@ -10,8 +10,8 @@ import SwiftData
 
 
 struct ContentView: View {
-    //        @Query var bdays: [Bday]
-    var bdays: [Bday]
+    @Query var bdays: [Bday]
+//    var bdays: [Bday]
     
     var body: some View {
         CalendarView(month: Date(), bdays: bdays)
@@ -376,6 +376,6 @@ extension Date {
 }
 
 
-#Preview {
-    ContentView(bdays: mockBdayData)
-}
+//#Preview {
+//    ContentView(bdays: mockBdayData)
+//}
