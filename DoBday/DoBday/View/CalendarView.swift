@@ -10,6 +10,7 @@ import SwiftData
 
 
 struct ContentView: View {
+
     @Query var bdays: [Bday]
 //    var bdays: [Bday]
     
@@ -206,6 +207,7 @@ private struct CellView: View {
 
 // MARK: - CardView
 private struct CardView: View {
+    @Environment(\.modelContext) var context
     var bday: Bday
     let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1"), "#지인": Color.init(hex: "C9F69C"), "#비지니스": Color.init(hex: "A1ACFF")]
     
@@ -225,11 +227,12 @@ private struct CardView: View {
                             EditBdayView()
                         } label: {
                             
-                            Image(bday.profileImage!)
+//                            Image(bday.profileImage!)
+                            Image("basicprofile")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 100, height: 100)
-                                .background(.white)
+//                                .background(.white)
                                 .clipShape(Circle())
                             
                         }
@@ -259,14 +262,16 @@ private struct CardView: View {
                     } label: {
                         Label("Delete", systemImage: "trash.fill")
                     }
-                    
+
                 }
                 .alert("생일 기록을 삭제하시겠습니까?", isPresented: $showingAlert) {
                     Button("취소", role: .cancel) {
                         showingAlert = false
                     }
                     Button("삭제", role: .destructive) {
-                        // 실제 삭제 기능은 여기에 구현
+
+                        context.delete(bday)
+
                         print("Record deleted")
                         showingAlert = false
                     }
