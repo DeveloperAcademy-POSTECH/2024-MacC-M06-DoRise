@@ -9,39 +9,34 @@ import SwiftUI
 import SwiftData
 
 
-struct ContentView: View {
-
-    @Query var bdays: [Bday]
-    //    var bdays: [Bday]
-
-    var body: some View {
-        CalendarView(month: Date(), bdays: bdays)
-            .padding()
-    }
-}
-
-
 // MARK: - CalendarView
 
 struct CalendarView: View {
+    
     // Property
-    @State var month: Date
+    @Environment(\.modelContext) var context
+
+    
+    @Query var bdays: [Bday]
+    
+    
     @State var offset: CGSize = CGSize()
     @State var clickedDates: Set<Date> = []
-    @State var selectedDate: Date? = nil
+    
     @State private var clickedDate: Date? = nil
     @State private var clickedBdays: [Bday] = []
     @State private var showingAlert = false
+    
+    @State var selectedDate: Date? = nil
+    @State var month: Date
 
-    var bdays: [Bday]
 
-    @Environment(\.modelContext) var context
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
+
 
     var body: some View {
 
         VStack {
-            headerView
+            HeaderView(month: $month)
             calendarGridView
                 .padding(.bottom)
 
@@ -60,77 +55,18 @@ struct CalendarView: View {
             }
             Spacer()
         }
-        .padding()
-    }
-
-
-    // MARK: - headerView
-
-    private var headerView: some View {
-        VStack {
-            HStack {
-                NavigationLink {
-                    UpComingBdayView()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.custom("Pretendard-Bold", size: 20))
-                        .foregroundStyle(colorScheme == .dark ? .white : .black)
-
-                }
-
-                Text("\(selectedDate ?? Date(), formatter: Self.dateFormatter)")
-                    .font(.custom("Pretendard-Bold", size: 24))
-
-
-
-                Spacer()
-
+        .navigationTitle("캘린더")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
                     SaveBdayView()
                 } label: {
                     Image(systemName: "plus")
-                        .foregroundStyle(colorScheme == .dark ? .white : .black)
-                        .font(.custom("Pretendard-Bold", size: 20))
-
-
-                }
-
-            }
-            .padding(.bottom, 30)
-
-            HStack {
-                Spacer()
-                Button {
-                    changeMonth(by: -1)
-                } label: {
-                    Image(systemName: "chevron.left")
-                }
-
-                Rectangle()
-                    .frame(width: 20, height: 1)
-                    .foregroundStyle(.clear)
-
-                Button {
-                    changeMonth(by: 1)
-                } label: {
-                    Image(systemName: "chevron.right")
-                }
-
-            }
-            .padding(.bottom)
-            .foregroundStyle(colorScheme == .dark ? .white : .black)
-
-
-
-            HStack {
-                ForEach(Self.weekdaySymbols, id: \.self) { symbol in
-                    Text(symbol)
-                        .frame(maxWidth: .infinity)
                 }
             }
-            .padding(.bottom, 5)
         }
-
+        .padding()
     }
 
 
@@ -170,6 +106,69 @@ struct CalendarView: View {
         }
     }
 }
+
+// MARK: - headerView
+private struct HeaderView: View {
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+
+    @Binding var month: Date
+    
+    var body: some View {
+        
+        VStack(alignment: .leading) {
+            Text("Today")
+                .font(.BdayTitle1)
+                .foregroundStyle(.gray)
+            
+            HStack {
+                Text(Self.dateString ?? "")
+                    .foregroundStyle(Color.init(hex: "BF794E"))
+                Text(Self.dayString ?? "")
+                    .foregroundStyle(.primary)
+            }
+                .font(.BdayLargeTitle)
+
+            
+            HStack {
+                Text("\(month, formatter: Self.monthFormatter)")
+                    .font(.custom("Pretendard-Regular", size: 20))
+                
+                Spacer()
+                Button {
+                    changeMonth(by: -1)
+                } label: {
+                    Image(systemName: "chevron.left")
+                }
+                
+                Rectangle()
+                    .frame(width: 20, height: 1)
+                    .foregroundStyle(.clear)
+                
+                Button {
+                    changeMonth(by: 1)
+                } label: {
+                    Image(systemName: "chevron.right")
+                }
+                
+            }
+            .padding(.bottom)
+            .foregroundStyle(colorScheme == .dark ? .white : .black)
+            
+            
+            
+            HStack {
+                ForEach(Self.weekdaySymbols, id: \.self) { symbol in
+                    Text(symbol)
+                        .frame(maxWidth: .infinity)
+                }
+            }
+            .padding(.bottom, 5)
+        }
+        
+    }
+
+}
+
 
 
 // MARK: - CellView
@@ -312,7 +311,7 @@ private struct CardView: View {
 
 // MARK: - CalendarView Method
 
-private extension CalendarView {
+extension CalendarView {
     /// 특정 해당 일자를 반환합니다.
     private func getDate(for day: Int) -> Date {
         return Calendar.current.date(byAdding: .day, value: day, to: startOfMonth())!
@@ -352,6 +351,39 @@ private extension CalendarView {
         return Calendar.current.component(.weekday, from: firstDayOfMonth)
     }
     
+}
+
+
+// MARK: - extension HeaderView
+
+extension HeaderView {
+    
+    static var dateString: String? {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM. dd"
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+    }
+    
+    static var dayString: String? {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        let dateString = dateFormatter.string(from: date)
+        return dateString
+    }
+    
+    static var monthFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy"
+        return formatter
+    }()
+    
+    
+    static let weekdaySymbols = Calendar.current.shortWeekdaySymbols
+    
     /// 월을 변경합니다.
     func changeMonth(by value: Int) {
         let calendar = Calendar.current
@@ -359,26 +391,15 @@ private extension CalendarView {
             self.month = newMonth
         }
     }
-}
-
-
-// MARK: - Static Property
-
-extension CalendarView {
-    static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd, yyyy"
-        return formatter
-    }()
     
-    
-    static let weekdaySymbols = Calendar.current.shortWeekdaySymbols
 }
 
 
 // MARK: - extension Date
 
 extension Date {
+    /// 주어진 date의 가장 첫번째 순간을 반환하는 함수입니다.
+    /// 예를 들어 11월의 startOfDay는 1일입니다.
     func startOfDay() -> Date {
         Calendar.current.startOfDay(for: self)
     }
@@ -386,9 +407,12 @@ extension Date {
     func isSameDate(date: Date) -> Bool {
         self.startOfDay() == date.startOfDay()
     }
+    
 }
 
 
 #Preview {
-    ContentView()
+    NavigationStack{
+        CalendarView(month: Date())
+    }
 }
