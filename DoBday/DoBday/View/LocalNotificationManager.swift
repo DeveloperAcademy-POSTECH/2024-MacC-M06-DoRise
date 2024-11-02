@@ -10,26 +10,25 @@ import SwiftUI
 import UserNotifications
 
 class NotificationManager {
-    
+
     static let instance = NotificationManager()
-    
+
     let notiCenter = UNUserNotificationCenter.current()
-    
+
     //인증
     func requestAuthorization() {
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
         notiCenter.requestAuthorization(options: options) { (success, error) in
-            
+
             if success {
                 print("인증 완료")
             }
             else {
                 print("인증 안됨")
             }
-        
-            }
         }
-    
+    }
+
     //노티 생성
     func scheduleNotification(for name: String, dateOfBday: Date, notiFrequency: [String])
     {
@@ -48,7 +47,7 @@ class NotificationManager {
                     notificationDate = newDate
                     notificationMessage = "내일은 \(name)의 생일이에요! 정말 코앞이네요!"
 
-                    
+
                 }
             case "3일 전":
                 if let newDate = Calendar.current.date(byAdding: .day, value: -3, to: dateOfBday) {
@@ -65,7 +64,7 @@ class NotificationManager {
             default:
                 continue
             }
-            
+
             //내용
             let content = UNMutableNotificationContent()
             content.title = "🎂BRTH"
@@ -78,27 +77,23 @@ class NotificationManager {
             dateComponents.minute = 30
 
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            
+
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-            
+
             print("noti생성")
-            
+
             notiCenter.add(request) { error in
                 if let error = error {
                     print("Error scheduling notification: \(error.localizedDescription)")
                 }
             }
-            
-            
-            
         }
     }
-    
+
     //노티삭제
-    func CancelNotification(){
+    func CancelNotification() {
         notiCenter.removeAllPendingNotificationRequests()
         notiCenter.removeAllDeliveredNotifications()
     }
-    
-    }
+}
 

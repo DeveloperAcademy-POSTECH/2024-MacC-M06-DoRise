@@ -22,6 +22,10 @@
 		9E7F90822CC89894008F0F23 /* LunarToSolarConversionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7F90812CC89894008F0F23 /* LunarToSolarConversionView.swift */; };
 		9E7F90852CCB9FE5008F0F23 /* KoreanLunarSolarConverter in Frameworks */ = {isa = PBXBuildFile; productRef = 9E7F90842CCB9FE5008F0F23 /* KoreanLunarSolarConverter */; };
 		9EF7D56D2CC146D4003A3B79 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF7D56C2CC146D4003A3B79 /* LocalNotificationManager.swift */; };
+		F734F1812CD4CC5B00108CCC /* BdayGift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734F1802CD4CC5B00108CCC /* BdayGift.swift */; };
+		F734F1832CD4CCBD00108CCC /* BdayTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734F1822CD4CCBD00108CCC /* BdayTag.swift */; };
+		F734F1852CD4CD1300108CCC /* BDayAndGiftCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734F1842CD4CD1300108CCC /* BDayAndGiftCombination.swift */; };
+		F734F1872CD4FF3800108CCC /* GiftStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734F1862CD4FF3800108CCC /* GiftStatus.swift */; };
 		F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FA02CC0F83700C38E73 /* DoBdayApp.swift */; };
 		F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */; };
 		F7386FA52CC0F83900C38E73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7386FA42CC0F83900C38E73 /* Assets.xcassets */; };
@@ -31,8 +35,7 @@
 		F7386FBA2CC0F90C00C38E73 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FB92CC0F90C00C38E73 /* Component.swift */; };
 		F7386FBC2CC0F91F00C38E73 /* Helper+Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBB2CC0F91F00C38E73 /* Helper+Fonts.swift */; };
 		F7386FBE2CC1009D00C38E73 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBD2CC1009D00C38E73 /* CalendarView.swift */; };
-		F7386FC02CC100AC00C38E73 /* CreateBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBF2CC100AC00C38E73 /* CreateBdayView.swift */; };
-		F7386FC22CC100BD00C38E73 /* EditBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FC12CC100BD00C38E73 /* EditBdayView.swift */; };
+		F7386FC02CC100AC00C38E73 /* SaveBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */; };
 		F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +55,10 @@
 		9E66AF582CC13B08001323D9 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
 		9E7F90812CC89894008F0F23 /* LunarToSolarConversionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarToSolarConversionView.swift; sourceTree = "<group>"; };
 		9EF7D56C2CC146D4003A3B79 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		F734F1802CD4CC5B00108CCC /* BdayGift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BdayGift.swift; sourceTree = "<group>"; };
+		F734F1822CD4CCBD00108CCC /* BdayTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BdayTag.swift; sourceTree = "<group>"; };
+		F734F1842CD4CD1300108CCC /* BDayAndGiftCombination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDayAndGiftCombination.swift; sourceTree = "<group>"; };
+		F734F1862CD4FF3800108CCC /* GiftStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftStatus.swift; sourceTree = "<group>"; };
 		F7386F9D2CC0F83700C38E73 /* DoBday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoBday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7386FA02CC0F83700C38E73 /* DoBdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoBdayApp.swift; sourceTree = "<group>"; };
 		F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingBdayView.swift; sourceTree = "<group>"; };
@@ -62,8 +69,7 @@
 		F7386FB92CC0F90C00C38E73 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		F7386FBB2CC0F91F00C38E73 /* Helper+Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Fonts.swift"; sourceTree = "<group>"; };
 		F7386FBD2CC1009D00C38E73 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		F7386FBF2CC100AC00C38E73 /* CreateBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBdayView.swift; sourceTree = "<group>"; };
-		F7386FC12CC100BD00C38E73 /* EditBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBdayView.swift; sourceTree = "<group>"; };
+		F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveBdayView.swift; sourceTree = "<group>"; };
 		F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+ImagePicker.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,8 +152,12 @@
 			isa = PBXGroup;
 			children = (
 				F7386FB52CC0F8F900C38E73 /* Bday.swift */,
+				F734F1802CD4CC5B00108CCC /* BdayGift.swift */,
+				F734F1822CD4CCBD00108CCC /* BdayTag.swift */,
+				F734F1842CD4CD1300108CCC /* BDayAndGiftCombination.swift */,
 				93ED0E912CC10185003250A9 /* MockupData.swift */,
 				9E7F90812CC89894008F0F23 /* LunarToSolarConversionView.swift */,
+				F734F1862CD4FF3800108CCC /* GiftStatus.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,8 +169,7 @@
 				F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */,
 				896A53522CC6087D004631A9 /* BdayTextView.swift */,
 				F7386FBD2CC1009D00C38E73 /* CalendarView.swift */,
-				F7386FBF2CC100AC00C38E73 /* CreateBdayView.swift */,
-				F7386FC12CC100BD00C38E73 /* EditBdayView.swift */,
+				F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */,
 				F7386FB32CC0F89600C38E73 /* Component */,
 			);
 			path = View;
@@ -285,17 +294,20 @@
 			files = (
 				F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */,
 				93ED0E922CC10185003250A9 /* MockupData.swift in Sources */,
+				F734F1852CD4CD1300108CCC /* BDayAndGiftCombination.swift in Sources */,
 				9E7F90822CC89894008F0F23 /* LunarToSolarConversionView.swift in Sources */,
 				F7386FBC2CC0F91F00C38E73 /* Helper+Fonts.swift in Sources */,
+				F734F1832CD4CCBD00108CCC /* BdayTag.swift in Sources */,
 				F7386FBE2CC1009D00C38E73 /* CalendarView.swift in Sources */,
+				F734F1872CD4FF3800108CCC /* GiftStatus.swift in Sources */,
 				F7386FB62CC0F8F900C38E73 /* Bday.swift in Sources */,
 				F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */,
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
 				9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */,
 				F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */,
+				F734F1812CD4CC5B00108CCC /* BdayGift.swift in Sources */,
 				9EF7D56D2CC146D4003A3B79 /* LocalNotificationManager.swift in Sources */,
-				F7386FC02CC100AC00C38E73 /* CreateBdayView.swift in Sources */,
-				F7386FC22CC100BD00C38E73 /* EditBdayView.swift in Sources */,
+				F7386FC02CC100AC00C38E73 /* SaveBdayView.swift in Sources */,
 				F7386FBA2CC0F90C00C38E73 /* Component.swift in Sources */,
 				896A53532CC6087D004631A9 /* BdayTextView.swift in Sources */,
 			);
@@ -431,7 +443,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DoBday/Preview Content\"";
-				DEVELOPMENT_TEAM = 56D5DRN4CX;
+				DEVELOPMENT_TEAM = RH8DZ4H46B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DoBday/Info.plist;
@@ -462,7 +474,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DoBday/Preview Content\"";
-				DEVELOPMENT_TEAM = 56D5DRN4CX;
+				DEVELOPMENT_TEAM = RH8DZ4H46B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DoBday/Info.plist;

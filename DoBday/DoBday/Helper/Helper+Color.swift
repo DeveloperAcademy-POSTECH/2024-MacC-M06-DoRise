@@ -21,3 +21,7 @@ extension Color {
         self.init(red: r, green: g, blue: b)
     }
 }
+
+//extension Color {
+//    static let BdayRed = Color.init(hex: <#T##String#>)
+//}

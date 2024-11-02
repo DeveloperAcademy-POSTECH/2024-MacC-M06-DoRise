@@ -27,5 +27,5 @@ final class Bday: Identifiable {
         self.notiFrequency = notiFrequency
         self.relationshipTag = relationshipTag
     }
-    }
+}
 

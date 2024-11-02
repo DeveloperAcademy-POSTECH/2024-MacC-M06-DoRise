@@ -1,6 +1,5 @@
-
-
 import SwiftUI
+
 import KoreanLunarSolarConverter
 
 class KoreanLunarSolarConverter {
@@ -36,8 +35,5 @@ class KoreanLunarSolarConverter {
             }
         }
         return nil
-    }
-    
-    
-    
+    } 
 }
