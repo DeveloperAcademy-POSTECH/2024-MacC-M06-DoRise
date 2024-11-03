@@ -15,25 +15,24 @@ struct CalendarView: View {
     
     // Property
     @Environment(\.modelContext) var context
-
+    
     
     @Query var bdays: [Bday]
     
     
     @State var offset: CGSize = CGSize()
-    @State private var clickedDate: Date? = nil
+    @State var clickedDate: Date? = nil
     @State private var clickedBdays: [Bday] = []
-    @State private var showingAlert = false
-    
     @State var selectedDate: Date? = nil
     @State var month: Date
-
-
-
-
+    
+    
+    
+    
     var body: some View {
-
+        
         VStack {
+            
             HeaderView(month: $month)
             CalendarGridView(
                 month: $month,
@@ -41,22 +40,37 @@ struct CalendarView: View {
                 clickedDate: $clickedDate,
                 clickedBdays: $clickedBdays,
                 bdays: bdays)
-                .padding(.bottom)
-
-            if !clickedBdays.isEmpty {
-                ScrollView {
+            .padding(.bottom)
+            
+            if let date = clickedDate {
+                HStack {
+                    Text("\(formattedDate(date)) 생일인 사람")
+                        .font(.custom("Pretendard-Bold", size: 24))
+                        .padding(.leading)
+                    
+                    Spacer()
+                }
+                
+                if !clickedBdays.isEmpty {
+                    CardListView(bdays: clickedBdays, clickedBdays: $clickedBdays)
+                } else {
+                    
                     VStack {
-                        ForEach(clickedBdays, id: \.id) { bday in
-                            NavigationLink(destination: SaveBdayView(bday: bday)){
-                                CardView(bday: bday)
-                            }
-                            .padding(.bottom, 5)
-                        }
+                        Text("오늘은 생일인 사람이 없어요!")
+                            .font(.custom("Pretendard-Medium", size: 20))
+                            .padding(.top, 10)
+                            .padding(.vertical, 16)
+                        Text("하지만 매일을 생일처럼 보내보아요🎉")
+                            .font(.custom("Pretendard-Medium", size: 16))
                     }
                 }
-
+                
             }
+            
+            
+            
             Spacer()
+            
         }
         .navigationTitle("캘린더")
         .navigationBarTitleDisplayMode(.inline)
@@ -71,17 +85,22 @@ struct CalendarView: View {
         }
         .padding()
     }
-
-
     
-
+    /// 날짜를 "M월 d일" 형식으로 포맷팅하는 함수입니다.
+    func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M월 d일"
+        return formatter.string(from: date)
+    }
+    
     
 }
+
 
 // MARK: - HeaderView
 private struct HeaderView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-
+    
     @Binding var month: Date
     
     var body: some View {
@@ -97,8 +116,8 @@ private struct HeaderView: View {
                 Text(Self.dayString ?? "")
                     .foregroundStyle(.primary)
             }
-                .font(.BdayLargeTitle)
-
+            .font(.BdayLargeTitle)
+            
             
             HStack {
                 Text("\(month, formatter: Self.monthFormatter)")
@@ -137,7 +156,7 @@ private struct HeaderView: View {
         }
         
     }
-
+    
 }
 
 
@@ -150,7 +169,7 @@ private struct CalendarGridView: View {
     @Binding var clickedBdays: [Bday]
     
     var bdays: [Bday]
-
+    
     
     var daysInMonth: Int {
         numberOfDays(in: month)
@@ -159,7 +178,7 @@ private struct CalendarGridView: View {
     var firstWeekday: Int {
         firstWeekdayOfMonth(in: month) - 1
     }
-
+    
     var body: some View {
         VStack {
             LazyVGrid(columns: Array(repeating: GridItem(), count: 7)) {
@@ -178,17 +197,11 @@ private struct CalendarGridView: View {
                             isClicked: clicked,
                             cellDate: date,
                             bday: bdaysOnData)
-                            .onTapGesture {
-                                if clicked {
-                                    clickedDate = nil
-                                    clickedBdays = []
-                                } else {
-                                    clickedDate = date
-                                    selectedDate = date
-                                    clickedDate = date
-                                    clickedBdays = bdaysOnData
-                                }
-                            }
+                        .onTapGesture {
+                            clickedDate = date
+                            selectedDate = date
+                            clickedBdays = bdaysOnData
+                        }
                     }
                 }
             }
@@ -205,7 +218,7 @@ private struct CellView: View {
     var isClicked: Bool = false
     var cellDate: Date
     var bday: [Bday]
-        
+    
     var body: some View {
         ZStack {
             
@@ -240,6 +253,76 @@ private struct CellView: View {
 }
 
 
+// MARK: - CardListView
+private struct CardListView: View {
+    @Environment(\.modelContext) var context
+    
+    @State private var showingAlert = false
+    @State var selectedBday: Bday?
+    
+    var bdays: [Bday]
+    @Binding var clickedBdays: [Bday]
+    
+    
+    let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1"), "#지인": Color.init(hex: "C9F69C"), "#비지니스": Color.init(hex: "A1ACFF")]
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            List {
+                ForEach(clickedBdays, id: \.id) { bday in
+                    HStack {
+                        Image(bday.profileImage == nil || bday.profileImage == "" ? "basicprofile" : bday.profileImage!)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 80, height: 80)
+                            .clipShape(Circle())
+                            .padding(.trailing, 10)
+                        
+                        VStack(alignment: .leading) {
+                            Text(bday.name)
+                            Text(bday.relationshipTag)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
+                                .background(
+                                    relationshipDictionary[bday.relationshipTag]?.opacity(0.5) ?? .gray.opacity(0.2)
+                                )
+                                .clipShape(.capsule)
+                        }
+                        .foregroundStyle(.primary)
+                    }
+                }
+                .onDelete(perform: showAlertBeforeDelete)
+                .listRowSeparator(.hidden)
+            }
+            .listRowInsets(.none)
+            .listStyle(.plain)
+            .alert("생일 기록을 삭제하시겠습니까?", isPresented: $showingAlert) {
+                Button("취소", role: .cancel) {
+                    showingAlert = false
+                }
+                Button("삭제", role: .destructive) {
+                    
+                    if let bdayToRemove = selectedBday {
+                        context.delete(bdayToRemove)
+                        clickedBdays.removeAll { $0.id == bdayToRemove.id }
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    /// 삭제 경고창을 띄우기 전 호출되는 함수입니다.
+    func showAlertBeforeDelete(at offsets: IndexSet) {
+        if let index = offsets.first {
+            selectedBday = clickedBdays[index]
+            showingAlert = true
+        }
+    }
+    
+}
+
+
 // MARK: - CardView
 
 private struct CardView: View {
@@ -251,75 +334,72 @@ private struct CardView: View {
     @State private var showingAlert = false
     
     var body: some View {
-            RoundedRectangle(cornerRadius: 16)
-                .foregroundStyle(
-                    relationshipDictionary[bday.relationshipTag] ?? .gray.opacity(0.5)
-                )
-                .frame(maxWidth: .infinity)
-                .frame(height: 120)
-                .overlay {
-                    HStack {
-                        NavigationLink {
-                            SaveBdayView(bday: bday)
-                        } label: {
-                            
-//                            Image(bday.profileImage!)
-                            Image("basicprofile")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 100, height: 100)
-//                                .background(.white)
-                                .clipShape(Circle())
-                            
-                        }
-                        Spacer()
-                        
-                        VStack(alignment: .leading) {
-                            Text(bday.name)
-                                .font(.custom("Pretendard-SemiBold", size: 24))
-                                .foregroundStyle(.black)
-                            Spacer(minLength: 16)
-                            HStack {
-                                Text(bday.relationshipTag)
-                                Spacer()
-                                Text("D-\(daysUntilBday(from: bday.dateOfBday!))")
-                            }
-                            .font(.custom("Pretendard-Regular", size: 16))
+        RoundedRectangle(cornerRadius: 16)
+            .foregroundStyle(
+                relationshipDictionary[bday.relationshipTag] ?? .gray.opacity(0.5)
+            )
+            .frame(maxWidth: .infinity)
+            .frame(height: 120)
+            .overlay {
+                HStack {
+                    NavigationLink {
+                        SaveBdayView(bday: bday)
+                    } label: {
+                        Image("basicprofile")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                            .clipShape(Circle())
+                    }
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .leading) {
+                        Text(bday.name)
+                            .font(.custom("Pretendard-SemiBold", size: 24))
                             .foregroundStyle(.black)
+                        Spacer(minLength: 16)
+                        HStack {
+                            Text(bday.relationshipTag)
+                            Spacer()
+                            Text("D-\(daysUntilBday(from: bday.dateOfBday!))")
                         }
-                        .padding()
-                        
+                        .font(.custom("Pretendard-Regular", size: 16))
+                        .foregroundStyle(.black)
                     }
                     .padding()
+                    
                 }
-                .contextMenu {
-                    Button {
-                        showingAlert = true
-                    } label: {
-                        Label("Delete", systemImage: "trash.fill")
-                    }
-
+                .padding()
+            }
+            .contextMenu {
+                Button {
+                    showingAlert = true
+                } label: {
+                    Label("Delete", systemImage: "trash.fill")
                 }
-                .alert("생일 기록을 삭제하시겠습니까?", isPresented: $showingAlert) {
-                    Button("취소", role: .cancel) {
-                        showingAlert = false
-                    }
-                    Button("삭제", role: .destructive) {
-
-                        context.delete(bday)
-
-                        print("Record deleted")
-                        showingAlert = false
-                    }
-                } message: {
-                    Text("\(bday.name)의 생일 기록을 삭제하시겠습니까?")
+                
+            }
+            .alert("생일 기록을 삭제하시겠습니까?", isPresented: $showingAlert) {
+                Button("취소", role: .cancel) {
+                    showingAlert = false
                 }
-            
+                Button("삭제", role: .destructive) {
+                    
+                    context.delete(bday)
+                    
+                    print("Record deleted")
+                    showingAlert = false
+                }
+            } message: {
+                Text("\(bday.name)의 생일 기록을 삭제하시겠습니까?")
+            }
+        
     }
     
-
+    
     // MARK: - CardView method
-
+    
     /// 오늘 날짜로부터 생일이 며칠 남았는지 계산하여 반환합니다.
     func daysUntilBday(from date: Date) -> Int {
         let calendar = Calendar.current
