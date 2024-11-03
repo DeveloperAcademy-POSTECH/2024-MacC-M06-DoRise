@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		896A53532CC6087D004631A9 /* BdayTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896A53522CC6087D004631A9 /* BdayTextView.swift */; };
+		8983D72D2CD76E84006C3F66 /* ZenDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8983D72C2CD76E84006C3F66 /* ZenDots-Regular.ttf */; };
 		93ED0E922CC10185003250A9 /* MockupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED0E912CC10185003250A9 /* MockupData.swift */; };
 		9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */; };
 		9E66AF5A2CC13B08001323D9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF572CC13B08001323D9 /* Pretendard-SemiBold.otf */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		896A53522CC6087D004631A9 /* BdayTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BdayTextView.swift; sourceTree = "<group>"; };
+		8983D72C2CD76E84006C3F66 /* ZenDots-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZenDots-Regular.ttf"; sourceTree = "<group>"; };
 		93ED0E912CC10185003250A9 /* MockupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockupData.swift; sourceTree = "<group>"; };
 		9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Color.swift"; sourceTree = "<group>"; };
 		9E66AF4F2CC13A93001323D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				9E66AF562CC13B08001323D9 /* Pretendard-Regular.otf */,
 				9E66AF572CC13B08001323D9 /* Pretendard-SemiBold.otf */,
 				9E66AF582CC13B08001323D9 /* Pretendard-Thin.otf */,
+				8983D72C2CD76E84006C3F66 /* ZenDots-Regular.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				9E66AF5A2CC13B08001323D9 /* Pretendard-SemiBold.otf in Resources */,
 				9E66AF5B2CC13B08001323D9 /* Pretendard-ExtraBold.otf in Resources */,
 				9E66AF5C2CC13B08001323D9 /* Pretendard-Black.otf in Resources */,
+				8983D72D2CD76E84006C3F66 /* ZenDots-Regular.ttf in Resources */,
 				9E66AF5D2CC13B08001323D9 /* Pretendard-Regular.otf in Resources */,
 				9E66AF5E2CC13B08001323D9 /* Pretendard-ExtraLight.otf in Resources */,
 				9E66AF5F2CC13B08001323D9 /* Pretendard-Light.otf in Resources */,
