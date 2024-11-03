@@ -21,6 +21,8 @@ struct SaveBdayView: View {
     @State private var notiFrequency = [""]
     @State private var relationshipTag = ""
 
+    @State private var isshowingSheet = false
+
     var bday: Bday?
 
     init(bday: Bday? = nil) {
@@ -90,6 +92,7 @@ struct SaveBdayView: View {
                 }
             }.padding(.init(top: 0, leading: 22, bottom: 0, trailing: 24))
 
+            //MARK: 이미지 피커
             ZStack {
                 if let image = image {
                     image
@@ -121,6 +124,7 @@ struct SaveBdayView: View {
                 }
             }
 
+            //MARK: 이름 설정
             HStack {
                 Text("이름")
                     .font(.system(size: 18, weight: .semibold))
@@ -135,7 +139,68 @@ struct SaveBdayView: View {
                     .textFieldStyle(.plain)
                     .padding(.init(top: 0, leading: 20, bottom: 0, trailing: 20))
             }.padding(.init(top: 0, leading: 38, bottom: 0, trailing: 38))
+                .onAppear (perform : UIApplication.shared.hideKeyboard)
 
+
+            //MARK: 생일 날짜 설정
+            HStack(alignment: .bottom) {
+                Text("생일")
+                    .font(.system(size: 18, weight: .semibold))
+
+                Spacer()
+            }.padding(.init(top: 5, leading: 45, bottom: 1, trailing: 45))
+
+            HStack {
+                Button {
+                    isshowingSheet.toggle()
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(Color.init(hex: "F0F0F0"))
+                            .frame(width: 157, height: 43)
+                        Text("\(dateOfBday, formatter: SaveBdayView.dateFormat)")
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.blue)
+                    }
+                }
+                .sheet(isPresented: $isshowingSheet) {
+                    SetDateView(dateOfBday: $dateOfBday, isshowingSheet: $isshowingSheet, isLunar: $isLunar)
+                        .presentationDragIndicator(.visible)
+                        .presentationDetents([.medium])
+                }
+
+                Spacer()
+
+                Button {
+                    isLunar = false
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 40)
+                            .fill(Color.init(hex: "0A84FF"))
+                            .opacity(!isLunar ? 1 : 0.15)
+                            .frame(width: 74, height: 43)
+                        Text("양력")
+                            .foregroundColor(!isLunar ? .white : Color.init(hex: "0A84FF"))
+                            .font(.system(size: 15, weight: !isLunar ? .bold : .regular))
+                    }
+                }
+
+                Button {
+                    isLunar = true
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 40)
+                            .fill(Color.init(hex: "0A84FF"))
+                            .opacity(isLunar ? 1 : 0.15)
+                            .frame(width: 74, height: 43)
+                        Text("음력")
+                            .foregroundColor(isLunar ? .white : Color.init(hex: "0A84FF"))
+                            .font(.system(size: 15, weight: isLunar ? .bold : .regular))
+                    }
+                }
+            }.padding(.init(top: 0, leading: 38, bottom: 0, trailing: 38))
+
+            //MARK: 태그 설정
             HStack {
                 Text("태그")
                     .font(.system(size: 18, weight: .semibold))
@@ -177,7 +242,7 @@ struct SaveBdayView: View {
                 }
             }.padding(.init(top: 0, leading: 38, bottom: 0, trailing: 38))
 
-
+            //MARK: 알람 여부
             HStack {
                 Text("알람 여부")
                     .font(.system(size: 18, weight: .semibold))
@@ -208,41 +273,7 @@ struct SaveBdayView: View {
                 }
             }.padding(.init(top: 0, leading: 38, bottom: 0, trailing: 38))
 
-            HStack(alignment: .bottom) {
-                Text("생일 날짜")
-                    .font(.system(size: 18, weight: .semibold))
-
-                Text("(양력: \(dateOfBday, formatter: SaveBdayView.dateFormat))")
-                    .font(.system(size: 12, weight: .semibold))
-                    .foregroundColor(.gray)
-                Spacer()
-            }.padding(.init(top: 5, leading: 45, bottom: 1, trailing: 45))
-
-            HStack {
-                Text("양력과 음력은 약 30일 정도 차이가 나요")
-                    .font(.system(size: 8, weight: .semibold))
-                    .foregroundColor(.gray)
-                Spacer()
-
-                Toggle(isOn: $isLunar) {
-                    Text("음력으로 변환")
-                }
-            }.padding(.init(top: 0, leading: 45, bottom: 1, trailing: 45))
-
-            DatePicker("Please enter a date", selection: $dateOfBday, displayedComponents: .date)
-                .datePickerStyle(WheelDatePickerStyle())
-                .labelsHidden()
-
-            if isLunar {
-
-                if let lunarDate = KoreanLunarSolarConverter.instance.solarToLunar(date: dateOfBday), let solarDateForCurrentYear =
-                    KoreanLunarSolarConverter.instance.convertLunarToSolarForCurrentYear(lunarDate: lunarDate)
-
-                {
-                    Text("음력으로 변환된 날짜: \(lunarDate, formatter: SaveBdayView.dateFormat)")
-                    Text("현재 연도의 양력 생일: \(solarDateForCurrentYear, formatter: SaveBdayView.dateFormat)")
-                }
-            }
+            Spacer()
         }
     }
 
@@ -271,6 +302,134 @@ struct SaveBdayView: View {
     }
 }
 
+
+struct SetDateView: View {
+
+    @Binding var dateOfBday: Date
+    @Binding var isshowingSheet: Bool
+    @Binding var isLunar: Bool
+
+    var body: some View {
+        VStack {
+
+            HStack(alignment: .bottom) {
+                Text("생일 날짜")
+                    .font(.system(size: 30, weight: .bold))
+
+                Spacer()
+            }.padding(.init(top: 5, leading: 0, bottom: 1, trailing: 0))
+
+            if isLunar {
+
+                if let lunarDate = KoreanLunarSolarConverter.instance.solarToLunar(date: dateOfBday), let _ =
+                    KoreanLunarSolarConverter.instance.convertLunarToSolarForCurrentYear(lunarDate: lunarDate)
+
+                {
+                    HStack {
+                        Text("양력과 음력은 약 30일 정도 차이가 나요")
+                            .font(.system(size: 10, weight: .semibold))
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }.padding(0)
+
+                    HStack {
+                        Text("음력: \(lunarDate, formatter: SaveBdayView.dateFormat)")
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    .padding(0)
+                }
+            }
+
+            Spacer()
+
+            DatePicker("Please enter a date", selection: $dateOfBday, displayedComponents: .date)
+                .datePickerStyle(WheelDatePickerStyle())
+                .labelsHidden()
+                .padding(0)
+
+            Spacer()
+
+            Button {
+                isshowingSheet.toggle()
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(.black)
+                        .frame(width: 340, height: 60)
+                    Text("완료")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(.white)
+                }
+            }
+        }
+        .padding(.init(top: 40, leading: 20, bottom: 0, trailing: 20))
+    }
+}
+
+struct SetTagView: View {
+
+    @Binding var dateOfBday: Date
+    @Binding var isshowingSheet: Bool
+    @Binding var isLunar: Bool
+
+    var body: some View {
+        VStack {
+
+            HStack(alignment: .bottom) {
+                Text("태그 생성")
+                    .font(.system(size: 30, weight: .bold))
+
+                Spacer()
+            }.padding(.init(top: 5, leading: 0, bottom: 1, trailing: 0))
+
+            if isLunar {
+
+                if let lunarDate = KoreanLunarSolarConverter.instance.solarToLunar(date: dateOfBday), let _ =
+                    KoreanLunarSolarConverter.instance.convertLunarToSolarForCurrentYear(lunarDate: lunarDate)
+
+                {
+                    HStack {
+                        Text("양력과 음력은 약 30일 정도 차이가 나요")
+                            .font(.system(size: 10, weight: .semibold))
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }.padding(0)
+
+                    HStack {
+                        Text("음력: \(lunarDate, formatter: SaveBdayView.dateFormat)")
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    .padding(0)
+                }
+            }
+
+            Spacer()
+
+            DatePicker("Please enter a date", selection: $dateOfBday, displayedComponents: .date)
+                .datePickerStyle(WheelDatePickerStyle())
+                .labelsHidden()
+                .padding(0)
+
+            Spacer()
+
+            Button {
+                isshowingSheet.toggle()
+            } label: {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(.black)
+                        .frame(width: 340, height: 60)
+                    Text("완료")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(.white)
+                }
+            }
+        }
+        .padding(.init(top: 40, leading: 20, bottom: 0, trailing: 20))
+    }
+}
 
 
 #Preview {
