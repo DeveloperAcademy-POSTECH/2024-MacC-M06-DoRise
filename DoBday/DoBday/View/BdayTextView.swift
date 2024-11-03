@@ -113,7 +113,7 @@ struct BdayTextView: View {
                           dateOfBday: Date(),
                           isLunar: false,
                           notiFrequency: ["당일", "1일 전"],
-                          relationshipTag: "#비지니스")
+                          relationshipTag: ["#비지니스"])
     
     return BdayTextView(bday: sampleBday)
 }

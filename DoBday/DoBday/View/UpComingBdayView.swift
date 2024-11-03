@@ -11,7 +11,9 @@ import SwiftData
 struct UpComingBdayView: View {
     @Environment(\.modelContext) var context
     @Query var bdays: [Bday]
-    
+    @Query var bdayTags: [BdayTag]
+
+
     var upcomingBdays: [Bday] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
@@ -45,7 +47,7 @@ struct UpComingBdayView: View {
                 Spacer(minLength: 98)
                 HStack {
                     Spacer()
-                    NavigationLink(destination: CalendarView(month: Date(), bdays: bdays)) {
+                    NavigationLink(destination: CalendarView(month: Date(), bdays: bdays/*, bdayTags: bdayTags*/)) {
                         Image(systemName: "calendar")
                             .foregroundColor(.black)
                             .frame(width: 34, height: 16)
@@ -100,10 +102,10 @@ struct UpComingBdayView: View {
         // 목업 데이터 생성
         let today = Date()
         let mockBdays = [
-            Bday(id: UUID(), name: "소이", profileImage: "soy", dateOfBday: today, isLunar: false, notiFrequency: ["당일", "1일 전"], relationshipTag: "#비지니스"),
-            Bday(id: UUID(), name: "씨네필", profileImage: "cinephile", dateOfBday: Calendar.current.date(byAdding: .day, value: 7, to: today)!, isLunar: false, notiFrequency: ["3일 전"], relationshipTag: "#지인"),
-            Bday(id: UUID(), name: "피카", profileImage: "pika", dateOfBday: Calendar.current.date(byAdding: .day, value: 15, to: today)!, isLunar: true, notiFrequency: ["1일 전", "7일 전"], relationshipTag: "#친구"),
-            Bday(id: UUID(), name: "레디", profileImage: "ready", dateOfBday: Calendar.current.date(byAdding: .day, value: 25, to: today)!, isLunar: false, notiFrequency: ["당일"], relationshipTag: "#가족")
+            Bday(id: UUID(), name: "소이", profileImage: "soy", dateOfBday: today, isLunar: false, notiFrequency: ["당일", "1일 전"], relationshipTag: ["#비지니스"]),
+            Bday(id: UUID(), name: "씨네필", profileImage: "cinephile", dateOfBday: Calendar.current.date(byAdding: .day, value: 7, to: today)!, isLunar: false, notiFrequency: ["3일 전"], relationshipTag: ["#지인"]),
+            Bday(id: UUID(), name: "피카", profileImage: "pika", dateOfBday: Calendar.current.date(byAdding: .day, value: 15, to: today)!, isLunar: true, notiFrequency: ["1일 전", "7일 전"], relationshipTag: ["#친구"]),
+            Bday(id: UUID(), name: "레디", profileImage: "ready", dateOfBday: Calendar.current.date(byAdding: .day, value: 25, to: today)!, isLunar: false, notiFrequency: ["당일"], relationshipTag: ["#가족"])
         ]
         
         for bday in mockBdays {

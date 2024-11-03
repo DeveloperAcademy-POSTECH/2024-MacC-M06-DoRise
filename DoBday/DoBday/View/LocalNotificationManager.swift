@@ -71,6 +71,7 @@ class NotificationManager {
             content.body = notificationMessage
             content.sound = .default
             content.badge = 1
+
             //노티주는시간
             var dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: notificationDate)
             dateComponents.hour = 9

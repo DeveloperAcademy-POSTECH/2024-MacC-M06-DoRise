@@ -221,15 +221,15 @@ private struct CardView: View {
     
     var body: some View {
             RoundedRectangle(cornerRadius: 16)
-                .foregroundStyle(
-                    relationshipDictionary[bday.relationshipTag] ?? .gray.opacity(0.5)
-                )
+//                .foregroundStyle(
+//                    relationshipDictionary[bday.relationshipTag] ?? .gray.opacity(0.5)
+//                )
                 .frame(maxWidth: .infinity)
                 .frame(height: 120)
                 .overlay {
                     HStack {
                         NavigationLink {
-                            SaveBdayView(bday: bday)
+                            PersonDetailView(bday: bday)
                         } label: {
                             
 //                            Image(bday.profileImage!)
@@ -249,7 +249,8 @@ private struct CardView: View {
                                 .foregroundStyle(.black)
                             Spacer(minLength: 16)
                             HStack {
-                                Text(bday.relationshipTag)
+                                // TODO: relationshipTag 배열 출력
+//                                Text(bday.relationshipTag)
                                 Spacer()
                                 Text("D-\(daysUntilBday(from: bday.dateOfBday!))")
                             }

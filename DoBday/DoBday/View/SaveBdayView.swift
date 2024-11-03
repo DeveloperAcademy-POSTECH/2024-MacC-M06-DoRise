@@ -19,11 +19,14 @@ struct SaveBdayView: View {
     @State private var dateOfBday: Date = Date()
     @State private var isLunar = false
     @State private var notiFrequency = [""]
-    @State private var relationshipTag = ""
+    @State private var relationshipTag = [""]
 
-    @State private var isshowingSheet = false
+    @State private var isshowingSheetForSettingDate = false
+    @State private var isshowingSheetForCreatingTag = false
 
     var bday: Bday?
+
+    @Query var bdayTags: [BdayTag]
 
     init(bday: Bday? = nil) {
         self.bday = bday
@@ -45,7 +48,7 @@ struct SaveBdayView: View {
     @State private var imageData: Data?
     //    @State private var finalDate: Date
 
-    let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1"), "#지인": Color.init(hex: "C9F69C"), "#비지니스": Color.init(hex: "A1ACFF")]
+    let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1")/*, "#지인": Color.init(hex: "C9F69C"), "#비지니스": Color.init(hex: "A1ACFF")*/]
 
     let notiArray: [String] = ["당일", "1일 전", "3일 전", "7일 전"]
 
@@ -152,7 +155,7 @@ struct SaveBdayView: View {
 
             HStack {
                 Button {
-                    isshowingSheet.toggle()
+                    isshowingSheetForSettingDate.toggle()
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 6)
@@ -163,8 +166,8 @@ struct SaveBdayView: View {
                             .foregroundColor(.blue)
                     }
                 }
-                .sheet(isPresented: $isshowingSheet) {
-                    SetDateView(dateOfBday: $dateOfBday, isshowingSheet: $isshowingSheet, isLunar: $isLunar)
+                .sheet(isPresented: $isshowingSheetForSettingDate) {
+                    SetDateView(dateOfBday: $dateOfBday, isshowingSheetForSettingDate: $isshowingSheetForSettingDate, isLunar: $isLunar)
                         .presentationDragIndicator(.visible)
                         .presentationDetents([.medium])
                 }
@@ -209,21 +212,25 @@ struct SaveBdayView: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(relationshipDictionary.keys.sorted(), id:\.self) {relationship in
+                    ForEach(bdayTags, id:\.self) {relationship in
                         Button {
-                            relationshipTag = relationship
+                            if relationshipTag.contains(relationship.tagName) {
+                                relationshipTag.removeAll { $0 == relationship.tagName }
+                            } else {
+                                relationshipTag.append(relationship.tagName)
+                            }
                         } label: {
                             ZStack {
-                                Text(relationship)
+                                Text(relationship.tagName)
                                     .font(.system(size: 15, weight: .bold))
                                     .foregroundColor(.black)
                                     .padding()
                                     .frame(height: 43)
-                                    .background(relationshipDictionary[relationship]!)
+                                    .background(.gray)
                                     .cornerRadius(40)
 
-                                if relationshipTag == relationship {
-                                    Text(relationship)
+                                if relationshipTag.contains(relationship.tagName) {
+                                    Text(relationship.tagName)
                                         .font(.system(size: 15, weight: .bold))
                                         .foregroundColor(.clear)
                                         .padding()
@@ -239,6 +246,26 @@ struct SaveBdayView: View {
                             }
                         }
                     }
+
+                    Button {
+                        isshowingSheetForCreatingTag.toggle()
+                    } label: {
+                        ZStack {
+                            Text("+")
+                                .font(.system(size: 15, weight: .bold))
+                                .foregroundColor(Color.init(hex: "0A84FF"))
+                                .padding()
+                                .frame(height: 43)
+                                .background(Color.init(hex: "0A84FF").opacity(0.15))
+                                .cornerRadius(40)
+                        }
+                    }
+                    .sheet(isPresented: $isshowingSheetForCreatingTag) {
+                        SetTagView(isshowingSheetForCreatingTag: $isshowingSheetForCreatingTag)
+                            .presentationDragIndicator(.visible)
+                            .presentationDetents([.medium])
+                    }
+
                 }
             }.padding(.init(top: 0, leading: 38, bottom: 0, trailing: 38))
 
@@ -248,6 +275,12 @@ struct SaveBdayView: View {
                     .font(.system(size: 18, weight: .semibold))
                 Spacer()
             }.padding(.init(top: 5, leading: 45, bottom: 2, trailing: 45))
+
+            HStack {
+                Text("해당 날짜의 오전 9시에 생일 알림을 보내드려요")
+                    .font(.system(size: 12, weight: .light))
+                Spacer()
+            }.padding(.init(top: 0, leading: 45, bottom: 2, trailing: 45))
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack  {
@@ -274,6 +307,7 @@ struct SaveBdayView: View {
             }.padding(.init(top: 0, leading: 38, bottom: 0, trailing: 38))
 
             Spacer()
+
         }
     }
 
@@ -288,6 +322,7 @@ struct SaveBdayView: View {
             bday.dateOfBday = dateOfBday
             bday.isLunar = isLunar
             bday.profileImage = profileImage
+            bday.notiFrequency = notiFrequency
             bday.relationshipTag = relationshipTag
 
         } else {
@@ -302,76 +337,25 @@ struct SaveBdayView: View {
     }
 }
 
-
-struct SetDateView: View {
-
-    @Binding var dateOfBday: Date
-    @Binding var isshowingSheet: Bool
-    @Binding var isLunar: Bool
-
-    var body: some View {
-        VStack {
-
-            HStack(alignment: .bottom) {
-                Text("생일 날짜")
-                    .font(.system(size: 30, weight: .bold))
-
-                Spacer()
-            }.padding(.init(top: 5, leading: 0, bottom: 1, trailing: 0))
-
-            if isLunar {
-
-                if let lunarDate = KoreanLunarSolarConverter.instance.solarToLunar(date: dateOfBday), let _ =
-                    KoreanLunarSolarConverter.instance.convertLunarToSolarForCurrentYear(lunarDate: lunarDate)
-
-                {
-                    HStack {
-                        Text("양력과 음력은 약 30일 정도 차이가 나요")
-                            .font(.system(size: 10, weight: .semibold))
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }.padding(0)
-
-                    HStack {
-                        Text("음력: \(lunarDate, formatter: SaveBdayView.dateFormat)")
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }
-                    .padding(0)
-                }
-            }
-
-            Spacer()
-
-            DatePicker("Please enter a date", selection: $dateOfBday, displayedComponents: .date)
-                .datePickerStyle(WheelDatePickerStyle())
-                .labelsHidden()
-                .padding(0)
-
-            Spacer()
-
-            Button {
-                isshowingSheet.toggle()
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(.black)
-                        .frame(width: 340, height: 60)
-                    Text("완료")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.white)
-                }
-            }
-        }
-        .padding(.init(top: 40, leading: 20, bottom: 0, trailing: 20))
-    }
-}
-
 struct SetTagView: View {
+    @Environment(\.modelContext) var context
 
-    @Binding var dateOfBday: Date
-    @Binding var isshowingSheet: Bool
-    @Binding var isLunar: Bool
+    @Binding var isshowingSheetForCreatingTag: Bool
+    
+    var bdayTags: BdayTag?
+
+    @State private var tagName = ""
+    @State private var tagColor: Color? = nil
+
+    let colors: [Color] = [.black, .blue, .brown, .cyan, .gray, .indigo, .mint, .yellow, .orange, .purple]
+
+    let columns: [GridItem] = [
+            GridItem(.fixed(50), spacing: nil, alignment: nil),
+            GridItem(.fixed(50), spacing: nil, alignment: nil),
+            GridItem(.fixed(50), spacing: nil, alignment: nil),
+            GridItem(.fixed(50), spacing: nil, alignment: nil),
+            GridItem(.fixed(50), spacing: nil, alignment: nil)
+        ]
 
     var body: some View {
         VStack {
@@ -381,47 +365,60 @@ struct SetTagView: View {
                     .font(.system(size: 30, weight: .bold))
 
                 Spacer()
-            }.padding(.init(top: 5, leading: 0, bottom: 1, trailing: 0))
+            }.padding(.init(top: 5, leading: 0, bottom: 20, trailing: 0))
 
-            if isLunar {
+            ZStack {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.init(hex: "F0F0F0"))
+                    .frame(width: 324, height: 48)
 
-                if let lunarDate = KoreanLunarSolarConverter.instance.solarToLunar(date: dateOfBday), let _ =
-                    KoreanLunarSolarConverter.instance.convertLunarToSolarForCurrentYear(lunarDate: lunarDate)
+                TextField("입력한 내용을 태그 목록에 추가됩니다.", text: $tagName)
+                    .textFieldStyle(.plain)
+                    .padding(.init(top: 0, leading: 25, bottom: 0, trailing: 25))
+            }.padding(.init(top: 0, leading: 25, bottom: 20, trailing: 25))
 
-                {
-                    HStack {
-                        Text("양력과 음력은 약 30일 정도 차이가 나요")
-                            .font(.system(size: 10, weight: .semibold))
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }.padding(0)
+            ZStack {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.init(hex: "F0F0F0"))
+                    .frame(width: 324, height: 103)
 
-                    HStack {
-                        Text("음력: \(lunarDate, formatter: SaveBdayView.dateFormat)")
-                            .foregroundColor(.gray)
-                        Spacer()
+                LazyVGrid(columns: columns) {
+                    ForEach(colors, id: \.self) { color in
+                        Button {
+                            tagColor = color
+                        } label: {
+                            ZStack {
+                                Circle()
+                                    .fill(color)
+                                    .frame(width: 30)
+                                if tagColor == color {
+                                    Circle()
+                                        .fill(.black)
+                                        .opacity(0.2)
+                                        .frame(width: 30)
+                                    Image(systemName: "checkmark")
+                                        .font(.system(size: 20, weight: .bold))
+                                        .foregroundColor(.white)
+                                }
+                            }
+                        }
                     }
-                    .padding(0)
                 }
             }
 
             Spacer()
 
-            DatePicker("Please enter a date", selection: $dateOfBday, displayedComponents: .date)
-                .datePickerStyle(WheelDatePickerStyle())
-                .labelsHidden()
-                .padding(0)
-
-            Spacer()
-
             Button {
-                isshowingSheet.toggle()
+                let newBdayTag = BdayTag(id: UUID(), tagName: tagName)
+                context.insert(newBdayTag)
+
+                isshowingSheetForCreatingTag.toggle()
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(.black)
                         .frame(width: 340, height: 60)
-                    Text("완료")
+                    Text("추가")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(.white)
                 }

@@ -14,7 +14,7 @@ struct PersonDetailView: View {
     @State private var dateOfBday: Date = Date()
     @State private var isLunar = false
     @State private var notiFrequency = [""]
-    @State private var relationshipTag = ""
+    @State private var relationshipTag = [""]
 
     @State private var isshowingSheet = false
 
@@ -54,11 +54,14 @@ struct PersonDetailView: View {
                         VStack(alignment: .leading) {
                             HStack(alignment: .bottom) {
                                 Text(name)
+                                    .foregroundColor(.black)
                                     .font(.system(size: 18, weight: .bold))
-                                Text(relationshipTag)
-                                    .font(.system(size: 12, weight: .regular))
+//                                Text(relationshipTag)
+//                                    .foregroundColor(.black)
+//                                    .font(.system(size: 12, weight: .regular))
                             }
                             Text("\(dateOfBday, formatter: SaveBdayView.dateFormat)")
+                                .foregroundColor(.black)
                                 .font(.system(size: 18, weight: .regular))
                         }.padding(.init(top: 0, leading:47, bottom: 0, trailing: 0))
 
