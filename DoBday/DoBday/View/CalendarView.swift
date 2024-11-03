@@ -21,8 +21,6 @@ struct CalendarView: View {
     
     
     @State var offset: CGSize = CGSize()
-    @State var clickedDates: Set<Date> = []
-    
     @State private var clickedDate: Date? = nil
     @State private var clickedBdays: [Bday] = []
     @State private var showingAlert = false
@@ -37,7 +35,12 @@ struct CalendarView: View {
 
         VStack {
             HeaderView(month: $month)
-            calendarGridView
+            CalendarGridView(
+                month: $month,
+                selectedDate: $selectedDate,
+                clickedDate: $clickedDate,
+                clickedBdays: $clickedBdays,
+                bdays: bdays)
                 .padding(.bottom)
 
             if !clickedBdays.isEmpty {
@@ -70,44 +73,12 @@ struct CalendarView: View {
     }
 
 
-    // MARK: - calendarGridView
+    
 
-    private var calendarGridView: some View {
-        let daysInMonth: Int = numberOfDays(in: month)
-        let firstWeekday: Int = firstWeekdayOfMonth(in: month) - 1
-
-        return VStack {
-            LazyVGrid(columns: Array(repeating: GridItem(), count: 7)) {
-                ForEach(0 ..< (daysInMonth + firstWeekday), id: \.self) { index in
-                    if index < firstWeekday {
-                        RoundedRectangle(cornerRadius: 5)
-                            .foregroundColor(Color.clear)
-                    } else {
-                        let date = getDate(for: index - firstWeekday)
-                        let day = index - firstWeekday + 1
-                        let clicked = clickedDates.contains(date)
-                        let bdaysOnData = bdays.filter { $0.dateOfBday?.startOfDay() == date.startOfDay() }
-
-                        CellView(day: day, clicked: clicked, cellDate: date, bday: bdaysOnData)
-                            .onTapGesture {
-                                if clicked {
-                                    clickedDates.remove(date)
-                                    clickedBdays = []
-                                } else {
-                                    clickedDates.insert(date)
-                                    selectedDate = date
-                                    clickedDate = date
-                                    clickedBdays = bdaysOnData
-                                }
-                            }
-                    }
-                }
-            }
-        }
-    }
+    
 }
 
-// MARK: - headerView
+// MARK: - HeaderView
 private struct HeaderView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
 
@@ -170,13 +141,68 @@ private struct HeaderView: View {
 }
 
 
+// MARK: - CalendarGridView
+private struct CalendarGridView: View {
+    
+    @Binding var month: Date
+    @Binding var selectedDate: Date?
+    @Binding var clickedDate: Date?
+    @Binding var clickedBdays: [Bday]
+    
+    var bdays: [Bday]
+
+    
+    var daysInMonth: Int {
+        numberOfDays(in: month)
+    }
+    
+    var firstWeekday: Int {
+        firstWeekdayOfMonth(in: month) - 1
+    }
+
+    var body: some View {
+        VStack {
+            LazyVGrid(columns: Array(repeating: GridItem(), count: 7)) {
+                ForEach(0 ..< (daysInMonth + firstWeekday), id: \.self) { index in
+                    if index < firstWeekday {
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(Color.clear)
+                    } else {
+                        let date = getDate(for: index - firstWeekday)
+                        let day = index - firstWeekday + 1
+                        let clicked = (clickedDate == date)
+                        let bdaysOnData = bdays.filter { $0.dateOfBday?.startOfDay() == date.startOfDay() }
+                        
+                        CellView(
+                            day: day,
+                            isClicked: clicked,
+                            cellDate: date,
+                            bday: bdaysOnData)
+                            .onTapGesture {
+                                if clicked {
+                                    clickedDate = nil
+                                    clickedBdays = []
+                                } else {
+                                    clickedDate = date
+                                    selectedDate = date
+                                    clickedDate = date
+                                    clickedBdays = bdaysOnData
+                                }
+                            }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
 // MARK: - CellView
 
 private struct CellView: View {
     var day: Int
-    // TODO: Bool타입 이름 바꾸기-이 변수, 쓰는 변수인가요?
-    var clicked: Bool = false
+    var isClicked: Bool = false
     var cellDate: Date
     var bday: [Bday]
         
@@ -195,6 +221,12 @@ private struct CellView: View {
             if cellDate.isSameDate(date: Date()) {
                 Circle()
                     .foregroundStyle(.primary)
+                    .opacity(0.2)
+            }
+            
+            if isClicked {
+                Circle()
+                    .stroke(Color.primary, lineWidth: 4)
                     .opacity(0.2)
             }
             
@@ -311,7 +343,7 @@ private struct CardView: View {
 
 // MARK: - CalendarView Method
 
-extension CalendarView {
+extension CalendarGridView {
     /// 특정 해당 일자를 반환합니다.
     private func getDate(for day: Int) -> Date {
         return Calendar.current.date(byAdding: .day, value: day, to: startOfMonth())!
