@@ -16,19 +16,14 @@ struct CalendarView: View {
     // Property
     @Environment(\.modelContext) var context
     
-    
     @Query var bdays: [Bday]
-    
     
     @State var offset: CGSize = CGSize()
     @State var clickedDate: Date? = nil
     @State private var clickedBdays: [Bday] = []
     @State var selectedDate: Date? = nil
     @State var month: Date
-    
-    
-    
-    
+        
     var body: some View {
         
         VStack {
@@ -54,17 +49,21 @@ struct CalendarView: View {
                 if !clickedBdays.isEmpty {
                     CardListView(bdays: clickedBdays, clickedBdays: $clickedBdays)
                 } else {
-                    
-                    VStack {
-                        Text("오늘은 생일인 사람이 없어요!")
-                            .font(.custom("Pretendard-Medium", size: 20))
-                            .padding(.top, 10)
-                            .padding(.vertical, 16)
-                        Text("하지만 매일을 생일처럼 보내보아요🎉")
-                            .font(.custom("Pretendard-Medium", size: 16))
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 12)
+                            .foregroundStyle(.gray.opacity(0.2))
+                            
+                        VStack {
+                            Text("오늘은 생일인 사람이 없어요!")
+                                .font(.custom("Pretendard-Medium", size: 20))
+                                .padding(.bottom, 8)
+                            Text("하지만 매일을 생일처럼 보내보아요🎉")
+                                .font(.custom("Pretendard-Medium", size: 12))
+                        }
+                        .padding()
+                        
                     }
                 }
-                
             }
             
             
@@ -92,8 +91,6 @@ struct CalendarView: View {
         formatter.dateFormat = "M월 d일"
         return formatter.string(from: date)
     }
-    
-    
 }
 
 
@@ -227,12 +224,13 @@ private struct CellView: View {
                 Circle()
                     .fill(Color.init(hex: "FF8080"))
                     .frame(width: 10, height: 10)
-                    .offset(x: 0, y: 20)
+                    .offset(x: 0, y: 22)
                 
             }
             
             if cellDate.isSameDate(date: Date()) {
                 Circle()
+                    .frame(width: 30, height: 30)
                     .foregroundStyle(.primary)
                     .opacity(0.2)
             }
@@ -240,6 +238,7 @@ private struct CellView: View {
             if isClicked {
                 Circle()
                     .stroke(Color.primary, lineWidth: 4)
+                    .frame(width: 30, height: 30)
                     .opacity(0.2)
             }
             
@@ -263,36 +262,56 @@ private struct CardListView: View {
     var bdays: [Bday]
     @Binding var clickedBdays: [Bday]
     
-    
+    // TODO: 새로운 tag 모델로 갈아끼우면 삭제할 것
     let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1"), "#지인": Color.init(hex: "C9F69C"), "#비지니스": Color.init(hex: "A1ACFF")]
     
     var body: some View {
         VStack(alignment: .leading) {
             List {
                 ForEach(clickedBdays, id: \.id) { bday in
-                    HStack {
-                        Image(bday.profileImage == nil || bday.profileImage == "" ? "basicprofile" : bday.profileImage!)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 80, height: 80)
-                            .clipShape(Circle())
-                            .padding(.trailing, 10)
-                        
-                        VStack(alignment: .leading) {
-                            Text(bday.name)
-                            Text(bday.relationshipTag)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 4)
-                                .background(
-                                    relationshipDictionary[bday.relationshipTag]?.opacity(0.5) ?? .gray.opacity(0.2)
-                                )
-                                .clipShape(.capsule)
+                    NavigationLink {
+                        // TODO: PersonalDetailView 로 갈아 끼우기
+                        EmptyView()
+                    } label: {
+                        HStack {
+                            Image(bday.profileImage == nil || bday.profileImage == "" ? "basicprofile" : bday.profileImage!)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80, height: 80)
+                                .clipShape(Circle())
+                                .padding(.trailing, 10)
+                            
+                            VStack(alignment: .leading) {
+                                Text(bday.name)
+                                    .padding(.horizontal, 8)
+                                Text(bday.relationshipTag)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 4)
+                                    .background(
+                                        // TODO: 새로운 relationshipTag 모델로 갈아끼워야 함
+                                        relationshipDictionary[bday.relationshipTag]?.opacity(0.5) ?? .gray.opacity(0.2)
+                                    )
+                                    .clipShape(.capsule)
+                            }
+                            .foregroundStyle(.primary)
                         }
-                        .foregroundStyle(.primary)
                     }
                 }
                 .onDelete(perform: showAlertBeforeDelete)
                 .listRowSeparator(.hidden)
+                .listRowBackground(
+                    RoundedRectangle(cornerRadius: 12)
+                        .background(.clear)
+                        .foregroundStyle(.gray.opacity(0.2))
+                        .padding(
+                            EdgeInsets(
+                                top: 2,
+                                leading: 10,
+                                bottom: 2,
+                                trailing: 10
+                            )
+                        )
+                )
             }
             .listRowInsets(.none)
             .listStyle(.plain)
