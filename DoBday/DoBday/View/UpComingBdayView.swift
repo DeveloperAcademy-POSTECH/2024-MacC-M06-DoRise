@@ -45,7 +45,7 @@ struct UpComingBdayView: View {
                 Spacer(minLength: 98)
                 HStack {
                     Spacer()
-                    NavigationLink(destination: CalendarView(month: Date(), bdays: bdays)) {
+                    NavigationLink(destination: CalendarView(month: Date())) {
                         Image(systemName: "calendar")
                             .foregroundColor(.black)
                             .frame(width: 34, height: 16)
