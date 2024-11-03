@@ -49,7 +49,7 @@ struct CalendarView: View {
                 ScrollView {
                     VStack {
                         ForEach(clickedBdays, id: \.id) { bday in
-                            NavigationLink(destination: SaveBdayView(bday: bday)){
+                            NavigationLink(destination: PersonDetailView(bday: bday)){
                                 CardView(bday: bday)
                             }
                             .padding(.bottom, 5)

@@ -17,6 +17,7 @@ final class Bday: Identifiable {
     var isLunar: Bool
     var notiFrequency: [String]
     var relationshipTag: String
+//    @Attribute(.externalStorage) var profileImage: Data?
 
     init(id: UUID, name: String, profileImage: String? = nil, dateOfBday: Date? = nil, isLunar: Bool, notiFrequency: [String], relationshipTag: String) {
         self.id = id
