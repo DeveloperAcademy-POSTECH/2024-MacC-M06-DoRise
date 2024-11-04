@@ -309,14 +309,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */,
-<<<<<<< HEAD
 				F734F18F2CD78ACF00108CCC /* SetDateView.swift in Sources */,
 				F734F18B2CD699DB00108CCC /* Helper+Keyboard.swift in Sources */,
 				F734F18D2CD76C2600108CCC /* PersonDetailView.swift in Sources */,
-				93ED0E922CC10185003250A9 /* MockupData.swift in Sources */,
-=======
 				93ED0E922CC10185003250A9 /* MockData.swift in Sources */,
->>>>>>> main
 				F734F1852CD4CD1300108CCC /* BDayAndGiftCombination.swift in Sources */,
 				9E7F90822CC89894008F0F23 /* LunarToSolarConversionView.swift in Sources */,
 				F7386FBC2CC0F91F00C38E73 /* Helper+Fonts.swift in Sources */,
