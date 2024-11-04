@@ -13,19 +13,34 @@ struct SaveGiftView: View {
     
     // MARK: - Property
     @Environment(\.modelContext) var context
-    @State var giftName: String = ""
-    @State var giftPrice: String = ""
-    @State var memo: String = ""
     @State private var selectedItem: PhotosPickerItem?
     
     @Namespace var bottomID
     
     @FocusState var isFocused: Bool
     
+    // MARK: - SwiftData Initialize
+    var bdayGift: BdayGift?
     
-    //    @Bindable var bdayGift: BdayGift
-    //    @Query var bdayGift: BdayGift
-    //    var bdayGift: BdayGift
+    @State var isToBeGiven: Bool = false
+    @State var giftName: String = ""
+    @State var giftPrice: String? = nil
+    @State var giftImage: Data? = nil
+    @State var memo: String? = nil
+    @State var giftURL: String? = nil
+    
+    init(bdayGift: BdayGift? = nil) {
+        self.bdayGift = bdayGift
+        if let bdayGift = bdayGift {
+            _isToBeGiven = State(initialValue: bdayGift.isToBeGiven)
+            _giftName = State(initialValue: bdayGift.giftName)
+            _giftPrice = State(initialValue: bdayGift.giftPrice)
+            _giftImage = State(initialValue: bdayGift.giftImage)
+            _memo = State(initialValue: bdayGift.memo)
+            _giftURL = State(initialValue: bdayGift.giftURL)
+        }
+    }
+
     
     var body: some View {
         ScrollViewReader { proxy in
@@ -56,14 +71,20 @@ struct SaveGiftView: View {
                             .focused($isFocused)
                             .padding(.bottom, 16)
                         
-                        makeTextAndField(text: "가격", textField: $giftPrice)
+                        makeTextAndField(text: "가격", textField: Binding(
+                            get: { giftPrice ?? "" },
+                            set: { giftPrice = $0.isEmpty ? nil : $0 }
+                        ))
                             .focused($isFocused)
                             .padding(.bottom, 16)
                         
                         
                         Text("메모")
                             .font(.bday_bodyEmphasized)
-                        TextEditor(text: $memo)
+                        TextEditor(text: Binding(
+                            get: { memo ?? "" },
+                            set: { memo = $0.isEmpty ? nil : $0 }
+                        ))
                             .focused($isFocused)
                             .scrollContentBackground(.hidden)
                             .padding()
@@ -111,6 +132,7 @@ struct SaveGiftView: View {
 
 
 
+
 // MARK: - extension SaveGiftView
 extension SaveGiftView {
     /// Text와 TextField를 생성하는 함수입니다.
@@ -125,6 +147,7 @@ extension SaveGiftView {
         }
     }
     
+    /// isToBeGivenButton을 생성하는 함수입니다.
     func makeIsToBeGivenButton(text: String) -> some View {
         Text(text)
             .font(.bday_callRegular)
@@ -133,6 +156,33 @@ extension SaveGiftView {
             .frame(width: 80)
             .background(.blue.opacity(0.2))
             .clipShape(.capsule)
+    }
+    
+    /// bdayGift를 수정하거나 저장할 수 있는 함수입니다. 
+    func addBdayGift() {
+        // 기존 생일 선물 수정
+        if let bdayGift = bdayGift {
+            print("기존 선물 수정 중")
+            bdayGift.isToBeGiven = isToBeGiven
+            bdayGift.giftName = giftName
+            bdayGift.giftPrice = giftPrice
+            bdayGift.giftImage = giftImage
+            bdayGift.memo = memo
+            bdayGift.giftURL = giftURL
+        } else {
+            // 새 생일 선물 객체 저장
+            let bdayGift = BdayGift(
+                id: UUID(),
+                isToBeGiven: isToBeGiven,
+                giftName: giftName,
+                giftPrice: giftPrice,
+                giftImage: giftImage,
+                memo: memo,
+                giftURL: giftURL
+            )
+            
+            context.insert(bdayGift)
+        }
     }
 }
 
