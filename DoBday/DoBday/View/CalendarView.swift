@@ -16,17 +16,23 @@ struct CalendarView: View {
     // Property
     @Environment(\.modelContext) var context
     
-    @Query var bdays: [Bday]
+    var bdays: [Bday]
     
     @State var offset: CGSize = CGSize()
     @State var clickedDate: Date? = nil
     @State private var clickedBdays: [Bday] = []
+    @State private var showingAlert = false
+
+//    @Environment(\.modelContext) var context
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+
     @State var selectedDate: Date? = nil
     @State var month: Date
-        
+
     var body: some View {
         
         VStack {
+
             
             HeaderView(month: $month)
             CalendarGridView(
@@ -265,6 +271,7 @@ private struct CardListView: View {
     let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1"), "#지인": Color.init(hex: "C9F69C"), "#비지니스": Color.init(hex: "A1ACFF")]
     
     var body: some View {
+
         VStack(alignment: .leading) {
             List {
                 ForEach(clickedBdays, id: \.id) { bday in
@@ -280,17 +287,17 @@ private struct CardListView: View {
                                 .clipShape(Circle())
                                 .padding(.trailing, 10)
                             
-                            VStack(alignment: .leading) {
+                                VStack(alignment: .leading) {
                                 Text(bday.name)
                                     .padding(.horizontal, 8)
-                                Text(bday.relationshipTag)
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .background(
-                                        // TODO: 새로운 relationshipTag 모델로 갈아끼워야 함
-                                        relationshipDictionary[bday.relationshipTag]?.opacity(0.5) ?? .gray.opacity(0.2)
-                                    )
-                                    .clipShape(.capsule)
+//                                Text(bday.relationshipTag)
+//                                    .padding(.horizontal, 8)
+//                                    .padding(.vertical, 4)
+//                                    .background(
+//                                        // TODO: 새로운 relationshipTag 모델로 갈아끼워야 함
+//                                        relationshipDictionary[bday.relationshipTag]?.opacity(0.5) ?? .gray.opacity(0.2)
+//                                    )
+//                                    .clipShape(.capsule)
                             }
                             .foregroundStyle(.primary)
                         }
@@ -326,7 +333,6 @@ private struct CardListView: View {
                     }
                 }
             }
-            
         }
     }
     
@@ -337,7 +343,6 @@ private struct CardListView: View {
             showingAlert = true
         }
     }
-    
 }
 
 
@@ -353,9 +358,9 @@ private struct CardView: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
-            .foregroundStyle(
-                relationshipDictionary[bday.relationshipTag] ?? .gray.opacity(0.5)
-            )
+//            .foregroundStyle(
+//                relationshipDictionary[bday.relationshipTag] ?? .gray.opacity(0.5)
+//            )
             .frame(maxWidth: .infinity)
             .frame(height: 120)
             .overlay {
@@ -378,7 +383,7 @@ private struct CardView: View {
                             .foregroundStyle(.black)
                         Spacer(minLength: 16)
                         HStack {
-                            Text(bday.relationshipTag)
+//                            Text(bday.relationshipTag)
                             Spacer()
                             Text("D-\(daysUntilBday(from: bday.dateOfBday!))")
                         }
@@ -541,8 +546,8 @@ extension Date {
 }
 
 
-#Preview {
-    NavigationStack{
-        CalendarView(month: Date())
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        CalendarView()
+//    }
+//}
