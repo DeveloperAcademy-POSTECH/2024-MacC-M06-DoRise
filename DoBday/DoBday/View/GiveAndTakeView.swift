@@ -42,52 +42,75 @@ struct giftCardView: View {
     var sampleGift: BdayGift
     
     var body: some View {
-        HStack(alignment: .top, spacing: 15) {
-            Circle()
-                .frame(width: 10, height: 10)
-                .padding(4)
-                .background(
-                    .white.shadow(.drop(color: .black.opacity(0.1), radius: 3)), in: .circle
-                )
+        ZStack{
             
-            VStack(alignment: .leading) {
-                HStack {
-                    if let imageData = sampleGift.giftImage, let uiImage = UIImage(data: imageData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(.rect(cornerRadius: 20))
-                        
-                    } else {
-                        Image("starrynight") // 기본 이미지 이름
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 80)
-                            .clipShape(.rect(cornerRadius: 20))
-                    }
+            RoundedRectangle(cornerRadius: 12)
+                .foregroundStyle(.gray.opacity(0.2))
+                .frame(maxWidth: .infinity)
+                .frame(height: 100)
+                .padding(.leading, 16)
+            
+            HStack {
+                if sampleGift.isToBeGiven {
                     
-                    VStack(alignment: .leading) {
-                        Text(sampleGift.giftName)
-                            .font(.bday_t3Emphasized)
-                        
-                        if sampleGift.isToBeGiven {
-                            if let giftPrice = sampleGift.giftPrice {
-                                Text("가격 \(giftPrice)")
-                            }
-                        } else {
-                            Text("만족도 ⭐️⭐️⭐️⭐️⭐️")
-                        }
-                    }
+                    Text("받은")
+                        .font(.bday_c2Regular)
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .multilineTextAlignment(.center)
+                        .background(.blue)
+                        .padding(0)
+                        .clipShape(.capsule)
                     
-                    Spacer()
+                } else {
+                    
+                    Text("준")
+                        .font(.bday_c2Regular)
+                        .foregroundStyle(.blue)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.init(hex: "C6E7FF"))
+                        .clipShape(.capsule)
+                    
                 }
+                
+                VStack(alignment: .leading) {
+                    HStack {
+                        if let imageData = sampleGift.giftImage, let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 80)
+                                .clipShape(.rect(cornerRadius: 20))
+                            
+                        } else {
+                            Image("starrynight") // 기본 이미지 이름
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 80)
+                                .clipShape(.rect(cornerRadius: 20))
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            Text(sampleGift.giftName)
+                                .font(.bday_t3Emphasized)
+                            
+                            if sampleGift.isToBeGiven {
+                                if let giftPrice = sampleGift.giftPrice {
+                                    Text("가격 \(giftPrice)")
+                                }
+                            } else {
+                                Text("만족도 ⭐️⭐️⭐️⭐️⭐️")
+                            }
+                        }
+                        
+                        Spacer()
+                    }
+                }
+                .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(.gray.opacity(0.2))
-            .clipShape(.rect(cornerRadius: 20))
         }
-        
     }
 }
 

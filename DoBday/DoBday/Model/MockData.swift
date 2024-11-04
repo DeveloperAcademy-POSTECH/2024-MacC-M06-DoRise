@@ -47,7 +47,7 @@ let sampleGifts: [BdayGift] = [
     BdayGift(
         id: UUID(),
         isToBeGiven: false,
-        giftName: "커피 기프티콘",
+        giftName: "커피 기프티콘 스타벅스 개존맛",
         giftPrice: "₩5,000",
         giftImage: nil,
         memo: "언제든 사용 가능",
