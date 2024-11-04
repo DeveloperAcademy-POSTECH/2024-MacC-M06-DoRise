@@ -14,17 +14,17 @@ final class BdayGift: Identifiable {
     var isToBeGiven: Bool
     var giftName: String
     var giftPrice: String?
-    var giftImage: String?
+    var giftImage: Data?
     var memo: String?
     var giftURL: String?
 
-    init(id: UUID, isToBeGiven: Bool, giftName: String, giftPrice: String?, giftImage: String?, memo: String?, giftURL: String?) {
+    init(id: UUID, isToBeGiven: Bool, giftName: String, giftPrice: String?, giftImage: Data?, memo: String?, giftURL: String?) {
         self.id = id
-        self.isToBeGiven = true
+        self.isToBeGiven = isToBeGiven
         self.giftName = giftName
-        self.giftPrice = nil
-        self.giftImage = nil
-        self.memo = nil
-        self.giftURL = nil
+        self.giftPrice = giftPrice
+        self.giftImage = giftImage
+        self.memo = memo
+        self.giftURL = giftURL
     }
 }

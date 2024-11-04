@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		896A53532CC6087D004631A9 /* BdayTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896A53522CC6087D004631A9 /* BdayTextView.swift */; };
 		8983D72D2CD76E84006C3F66 /* ZenDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8983D72C2CD76E84006C3F66 /* ZenDots-Regular.ttf */; };
-		93ED0E922CC10185003250A9 /* MockupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED0E912CC10185003250A9 /* MockupData.swift */; };
+		932F21212CD7D68F00BF696C /* GiveAndTakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */; };
+		93ED0E922CC10185003250A9 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED0E912CC10185003250A9 /* MockData.swift */; };
 		9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */; };
 		9E66AF5A2CC13B08001323D9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF572CC13B08001323D9 /* Pretendard-SemiBold.otf */; };
 		9E66AF5B2CC13B08001323D9 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF522CC13B08001323D9 /* Pretendard-ExtraBold.otf */; };
@@ -43,7 +44,8 @@
 /* Begin PBXFileReference section */
 		896A53522CC6087D004631A9 /* BdayTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BdayTextView.swift; sourceTree = "<group>"; };
 		8983D72C2CD76E84006C3F66 /* ZenDots-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZenDots-Regular.ttf"; sourceTree = "<group>"; };
-		93ED0E912CC10185003250A9 /* MockupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockupData.swift; sourceTree = "<group>"; };
+		932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveAndTakeView.swift; sourceTree = "<group>"; };
+		93ED0E912CC10185003250A9 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Color.swift"; sourceTree = "<group>"; };
 		9E66AF4F2CC13A93001323D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9E66AF502CC13B08001323D9 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
@@ -158,7 +160,7 @@
 				F734F1802CD4CC5B00108CCC /* BdayGift.swift */,
 				F734F1822CD4CCBD00108CCC /* BdayTag.swift */,
 				F734F1842CD4CD1300108CCC /* BDayAndGiftCombination.swift */,
-				93ED0E912CC10185003250A9 /* MockupData.swift */,
+				93ED0E912CC10185003250A9 /* MockData.swift */,
 				9E7F90812CC89894008F0F23 /* LunarToSolarConversionView.swift */,
 				F734F1862CD4FF3800108CCC /* GiftStatus.swift */,
 			);
@@ -174,6 +176,7 @@
 				F7386FBD2CC1009D00C38E73 /* CalendarView.swift */,
 				F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */,
 				F7386FB32CC0F89600C38E73 /* Component */,
+				932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -297,7 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */,
-				93ED0E922CC10185003250A9 /* MockupData.swift in Sources */,
+				93ED0E922CC10185003250A9 /* MockData.swift in Sources */,
 				F734F1852CD4CD1300108CCC /* BDayAndGiftCombination.swift in Sources */,
 				9E7F90822CC89894008F0F23 /* LunarToSolarConversionView.swift in Sources */,
 				F7386FBC2CC0F91F00C38E73 /* Helper+Fonts.swift in Sources */,
@@ -307,6 +310,7 @@
 				F7386FB62CC0F8F900C38E73 /* Bday.swift in Sources */,
 				F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */,
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
+				932F21212CD7D68F00BF696C /* GiveAndTakeView.swift in Sources */,
 				9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */,
 				F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */,
 				F734F1812CD4CC5B00108CCC /* BdayGift.swift in Sources */,
