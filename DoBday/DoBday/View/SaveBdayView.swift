@@ -154,25 +154,6 @@ struct SaveBdayView: View {
             }.padding(.init(top: 5, leading: 45, bottom: 1, trailing: 45))
 
             HStack {
-                Button {
-                    isshowingSheetForSettingDate.toggle()
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 6)
-                            .fill(Color.init(hex: "F0F0F0"))
-                            .frame(width: 157, height: 43)
-                        Text("\(dateOfBday, formatter: SaveBdayView.dateFormat)")
-                            .font(.system(size: 16, weight: .medium))
-                            .foregroundColor(.blue)
-                    }
-                }
-                .sheet(isPresented: $isshowingSheetForSettingDate) {
-                    SetDateView(dateOfBday: $dateOfBday, isshowingSheetForSettingDate: $isshowingSheetForSettingDate, isLunar: $isLunar)
-                        .presentationDragIndicator(.visible)
-                        .presentationDetents([.medium])
-                }
-
-                Spacer()
 
                 Button {
                     isLunar = false
@@ -201,6 +182,26 @@ struct SaveBdayView: View {
                             .font(.system(size: 15, weight: isLunar ? .bold : .regular))
                     }
                 }
+
+                Button {
+                    isshowingSheetForSettingDate.toggle()
+                } label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 6)
+                            .fill(Color.init(hex: "F0F0F0"))
+                            .frame(width: 157, height: 43)
+                        Text("\(dateOfBday, formatter: SaveBdayView.dateFormat)")
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.blue)
+                    }
+                }
+                .sheet(isPresented: $isshowingSheetForSettingDate) {
+                    SetDateView(dateOfBday: $dateOfBday, isshowingSheetForSettingDate: $isshowingSheetForSettingDate, isLunar: $isLunar)
+                        .presentationDragIndicator(.visible)
+                        .presentationDetents([.medium])
+                }
+
+                Spacer()
             }.padding(.init(top: 0, leading: 38, bottom: 0, trailing: 38))
 
             //MARK: 태그 설정
@@ -338,7 +339,7 @@ struct SaveBdayView: View {
 }
 
 struct SetTagView: View {
-    @Environment(\.modelContext) var context
+    @Environment(\.modelContext) var contextForBdayTag
 
     @Binding var isshowingSheetForCreatingTag: Bool
     
@@ -409,10 +410,9 @@ struct SetTagView: View {
             Spacer()
 
             Button {
-                let newBdayTag = BdayTag(id: UUID(), tagName: tagName)
-                context.insert(newBdayTag)
-
+                SaveBdayTag()
                 isshowingSheetForCreatingTag.toggle()
+
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
@@ -425,6 +425,11 @@ struct SetTagView: View {
             }
         }
         .padding(.init(top: 40, leading: 20, bottom: 0, trailing: 20))
+    }
+
+    func SaveBdayTag() {
+        let newBdayTag = BdayTag(id: UUID(), tagName: tagName)
+        contextForBdayTag.insert(newBdayTag)
     }
 }
 

@@ -11,9 +11,10 @@ import SwiftData
 struct UpComingBdayView: View {
     @Environment(\.modelContext) var context
     @Query var bdays: [Bday]
-    @Query var bdayTags: [BdayTag]
+//    @Query var bdayTags: [BdayTag]
 
 
+    @State var now = Date.now
     var upcomingBdays: [Bday] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
@@ -47,12 +48,12 @@ struct UpComingBdayView: View {
                 Spacer(minLength: 98)
                 HStack {
                     Spacer()
-                    NavigationLink(destination: CalendarView(month: Date(), bdays: bdays/*, bdayTags: bdayTags*/)) {
+                    NavigationLink(destination: CalendarView(month: now, bdays: bdays/*, bdayTags: bdayTags*/)) {
                         Image(systemName: "calendar")
                             .foregroundColor(.black)
                             .frame(width: 34, height: 16)
                     }
-                        
+
                 } //: HSTACK
                 
                 Spacer(minLength: 69)

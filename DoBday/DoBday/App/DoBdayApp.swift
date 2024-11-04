@@ -6,10 +6,23 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct DoBdayApp: App {
-    @Environment(\.modelContext) var context
+//    @Environment(\.modelContext) var context
+
+    var container: ModelContainer
+
+        init() {
+            do {
+                let config = ModelConfiguration(for: Bday.self, BdayTag.self)
+                container = try ModelContainer(for: Bday.self, BdayTag.self, configurations: config)
+            } catch {
+                fatalError("Failed to configure SwiftData container.")
+            }
+        }
+
     var body: some Scene {
         WindowGroup {
             UpComingBdayView()
@@ -21,7 +34,6 @@ struct DoBdayApp: App {
 //                    }
                 }
         }
-        .modelContainer(for: Bday.self)
-        .modelContainer(for: BdayTag.self)
+        .modelContainer(container)
     }
 }

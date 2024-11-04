@@ -35,7 +35,7 @@ struct CalendarView: View {
 
     var bdays: [Bday]
 
-    @Environment(\.modelContext) var context
+//    @Environment(\.modelContext) var context
     @Environment(\.colorScheme) var colorScheme: ColorScheme
 
     var body: some View {
