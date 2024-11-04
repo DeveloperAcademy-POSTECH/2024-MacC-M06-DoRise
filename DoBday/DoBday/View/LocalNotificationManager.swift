@@ -79,8 +79,8 @@ class NotificationManager {
 
             //노티주는시간
             var dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: notificationDate)
-            dateComponents.hour = 22
-            dateComponents.minute = 32
+            dateComponents.hour = 9
+            dateComponents.minute = 00
 
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
 
