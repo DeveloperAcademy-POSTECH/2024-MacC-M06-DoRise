@@ -33,6 +33,10 @@ struct DoBdayApp: App {
 //                    if let context = context.current {
 //                        initializeDefaultTags(context: context)
 //                    }
+                    
+                    // 사용자가 앱을 열 때 호출되어 알림 카운트를 리셋.
+                    NotificationManager.instance.resetBadgeCount()
+                    
                 }
         }
         .modelContainer(container)

@@ -1,13 +1,13 @@
-////
-////  BdayTextView.swift
-////  DoBday
-////
-////  Created by Cho YeonJi on 10/20/24.
-////
-//
+////////
+////////  UpComingBdayCardView.swift
+////////  DoBday
+////////
+////////  Created by chanu on 11/3/24.
+////////
+//////
 import SwiftUI
 
-struct BdayTextView: View {
+struct UpComingBdayCardView: View {
     let bday: Bday
     let formatter = DateFormatter()
     let calendar = Calendar.current
@@ -34,7 +34,7 @@ struct BdayTextView: View {
         let targetDate = calendar.startOfDay(for: birthdate)
         let components = calendar.dateComponents([.day], from: today, to: targetDate)
         if let daysUntil = components.day {
-            return daysUntil == 0 ? "D-Day" : "D-\(daysUntil)"
+            return daysUntil == 0 ? "D-Day" : "D-\(daysUntil)" // : D-day 표기
         } else {
             return "daysUntil is nil"
         }
@@ -42,66 +42,65 @@ struct BdayTextView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .foregroundColor(.upComingBdayCardBackgroundColor)
-                .frame(width: 352, height: 102)
-                .shadow(radius: 4)
-            
             HStack(spacing: 20) {
                 ZStack {
                     if let profileImage = bday.profileImage, !profileImage.isEmpty {
                         Image(profileImage)
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 70, height: 70)
-                            .cornerRadius(45)                          .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                            .frame(width: 120, height: 160)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
                     } else {
                         Image("basicprofile")
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 70, height: 70)
-                            .cornerRadius(45)
-                            .overlay(Circle().stroke(Color.white, lineWidth: 2))
-                        
+                            .frame(width: 120, height: 160)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
-                }
+                    
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color(hex: "FFFFFF"), lineWidth: 5)
+                        .frame(width: 120, height: 160)
+                } // : ZStack
                 
-                VStack(alignment: .leading, spacing: 5) {
+                
+                VStack(alignment: .leading, spacing: 10) {
                     Text(bday.name)
-                        .font(.bday_t3Emphasized)
+                        .font(.bday_t2Emphasized)
                     
                     Text("\(formattedBirthdate)(\(dayOfWeek))")
-                        .font(.bday_footRegular)
+                        .font(.bday_t3Regular)
                         .foregroundColor(.gray)
                     
-                    if !bday.relationshipTag.filter({ !$0.isEmpty }).isEmpty {
-                        HStack {
-                            ForEach(bday.relationshipTag.filter { !$0.isEmpty }, id: \.self) { tag in
-                                Text(tag)
-                                    .font(.bday_c2Emphasized)
-                                    .padding(.horizontal, 6)
-                                    .padding(.vertical, 2)
-                                    .background(Color.red.opacity(0.3))
-                                    .cornerRadius(20)
-                            }
-                        }
-                    }
-                }
-                
-                
+                    //TODO : #47PR 피카피드백반영하여 주석처리
+//                    if !bday.relationshipTag.filter({ !$0.isEmpty }).isEmpty {
+//                        HStack {
+//                            ForEach(bday.relationshipTag.filter { !$0.isEmpty }, id: \.self) { tag in
+//                                Text(tag)
+//                                    .font(.bday_c2Emphasized)
+//                                    .padding(.horizontal, 6)
+//                                    .padding(.vertical, 2)
+//                                    .background(Color.red.opacity(0.3))
+//                                    .cornerRadius(20)
+//                            }
+//                        }
+//                    }
+                    
+                    
+                    HStack{
+                        Spacer()
+                        Text(dDayText)
+                            .font(.bday_t1Emphasized)
+                        
+                    }.padding(.trailing,-30)
+                    
+                }.padding(.leading,10) // : VStack
                 
                 Spacer()
-                
-                Text(dDayText)
-                    .font(.bday_footEmphasized)
-                    .padding(.trailing,17)
-                    .padding(.top,60)
-                
-                
-                
             } // : HStack
-            .padding(.horizontal, 15)
+            .padding()
         }
+        .padding(.horizontal)
     }
 }
 
@@ -112,7 +111,7 @@ struct BdayTextView: View {
                           dateOfBday: Calendar.current.date(byAdding: .day, value: 7, to: Date()),
                           isLunar: false,
                           notiFrequency: ["당일", "1일 전"],
-                          relationshipTag: ["#친구","#비즈니스"])
+                          relationshipTag: ["#친구","비즈니스"])
     
     return UpComingBdayCardView(bday: sampleBday)
 }

@@ -25,3 +25,9 @@ extension Color {
 //extension Color {
 //    static let BdayRed = Color.init(hex: <#T##String#>)
 //}
+
+extension Color {
+    static let titleDayOfWeekColor = Color(hex: "FFB71B") // 원하는 색상 추가
+    static let upComingBdayCardBackgroundColor = Color(hex: "D9D9D9")
+
+}

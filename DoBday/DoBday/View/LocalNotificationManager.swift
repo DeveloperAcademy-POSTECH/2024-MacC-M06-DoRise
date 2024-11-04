@@ -14,6 +14,9 @@ class NotificationManager {
     static let instance = NotificationManager()
 
     let notiCenter = UNUserNotificationCenter.current()
+    
+    private var badgeCount = 0
+    //뱃지개수
 
     //인증
     func requestAuthorization() {
@@ -70,12 +73,14 @@ class NotificationManager {
             content.title = "🎂BRTH"
             content.body = notificationMessage
             content.sound = .default
-            content.badge = 1
+            
+            badgeCount += 1
+            content.badge = NSNumber(value: badgeCount)
 
             //노티주는시간
             var dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: notificationDate)
             dateComponents.hour = 9
-            dateComponents.minute = 30
+            dateComponents.minute = 00
 
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
 
@@ -90,11 +95,17 @@ class NotificationManager {
             }
         }
     }
+    /// `badgeCount`를 0으로 설정하고 앱 아이콘의 뱃지 숫자를 지움.
+    func resetBadgeCount() {
+        badgeCount = 0
+        UIApplication.shared.applicationIconBadgeNumber = 0
+    }
 
-    //노티삭제
+    
     func CancelNotification() {
         notiCenter.removeAllPendingNotificationRequests()
         notiCenter.removeAllDeliveredNotifications()
+        resetBadgeCount()
     }
 }
 
