@@ -14,40 +14,42 @@ struct GiveAndTakeView: View {
     @Query var bdayGifts: [BdayGift]
     
     var body: some View {
-        ZStack {
-            HStack {
-                Rectangle()
-                    .frame(width: 2)
-                    .frame(maxHeight: .infinity)
-                    .padding(.leading, 12)
-                Spacer()
-            }
-            VStack(alignment: .leading) {
-                Text("2024")
-                    .font(.bday_t2Emphasized)
-                    .padding(.leading, 32)
-                
-                ForEach(sampleGifts, id: \.self) {sampleGift in
-                    ZStack {
-                        HStack {
-                            GiveOrTakeTag(sampleGift: sampleGift)
-                            Spacer()
-                        }
-                        GiftCardView(sampleGift: sampleGift)
-                    }
+        NavigationStack {
+            ZStack {
+                HStack {
+                    Rectangle()
+                        .frame(width: 2)
+                        .frame(maxHeight: .infinity)
+                        .padding(.leading, 12)
+                    Spacer()
                 }
-                Spacer()
+                VStack(alignment: .leading) {
+                    Text("2024")
+                        .font(.bday_t2Emphasized)
+                        .padding(.leading, 32)
+                    
+                    ForEach(sampleGifts, id: \.self) {sampleGift in
+                        ZStack {
+                            HStack {
+                                GiveOrTakeTag(sampleGift: sampleGift)
+                                Spacer()
+                            }
+                            GiftCardView(sampleGift: sampleGift)
+                        }
+                    }
+                    Spacer()
+                }
             }
-        }
-        .padding()
-        .navigationTitle("마일스와의 선물기록")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink {
-                    EmptyView()
-                } label: {
-                    Image(systemName: "plus")
+            .padding()
+            .navigationTitle("마일스와의 선물기록")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        SaveGiftView()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
             }
         }

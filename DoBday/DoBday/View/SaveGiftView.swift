@@ -40,24 +40,39 @@ struct SaveGiftView: View {
             _giftURL = State(initialValue: bdayGift.giftURL)
         }
     }
-
+    
     
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
                 VStack {
-                    PhotosPicker(selection: $selectedItem, matching: .images) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .frame(width: 140, height: 160)
-                                .foregroundStyle(.gray.opacity(0.2))
-                            
-                            Image(systemName: "photo.badge.plus")
-                                .font(.largeTitle)
-                                .foregroundStyle(.gray)
+                    
+                    if let imageData = giftImage, let uiImage = UIImage(data: imageData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 140, height: 160) // 원하는 크기로 조정
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                    } else {
+                        PhotosPicker(selection: $selectedItem, matching: .images) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .frame(width: 140, height: 160)
+                                    .foregroundStyle(.gray.opacity(0.2))
+                                
+                                Image(systemName: "photo.badge.plus")
+                                    .font(.largeTitle)
+                                    .foregroundStyle(.gray)
+                            }
+                        }
+                        .onChange(of: selectedItem) { oldItem, newItem in
+                            Task {
+                                if let data = try? await newItem?.loadTransferable(type: Data.self) {
+                                    giftImage = data
+                                }
+                            }
                         }
                     }
-                    .padding(.bottom, 8)
                     
                     HStack {
                         makeIsToBeGivenButton(text: "받은 선물")
@@ -75,8 +90,8 @@ struct SaveGiftView: View {
                             get: { giftPrice ?? "" },
                             set: { giftPrice = $0.isEmpty ? nil : $0 }
                         ))
-                            .focused($isFocused)
-                            .padding(.bottom, 16)
+                        .focused($isFocused)
+                        .padding(.bottom, 16)
                         
                         
                         Text("메모")
@@ -85,12 +100,12 @@ struct SaveGiftView: View {
                             get: { memo ?? "" },
                             set: { memo = $0.isEmpty ? nil : $0 }
                         ))
-                            .focused($isFocused)
-                            .scrollContentBackground(.hidden)
-                            .padding()
-                            .background(.gray.opacity(0.2))
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .id(bottomID)
+                        .focused($isFocused)
+                        .scrollContentBackground(.hidden)
+                        .padding()
+                        .background(.gray.opacity(0.2))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .id(bottomID)
                     }
                     .onTapGesture {
                         withAnimation {
@@ -105,7 +120,8 @@ struct SaveGiftView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            
+                            addBdayGift()
+                            print(giftName)
                         } label: {
                             Text("추가")
                         }
@@ -158,7 +174,7 @@ extension SaveGiftView {
             .clipShape(.capsule)
     }
     
-    /// bdayGift를 수정하거나 저장할 수 있는 함수입니다. 
+    /// bdayGift를 수정하거나 저장할 수 있는 함수입니다.
     func addBdayGift() {
         // 기존 생일 선물 수정
         if let bdayGift = bdayGift {
