@@ -12,8 +12,7 @@ struct DoBdayApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            UpComingBdayView()
-            GiveAndTakeView()
+            UpComingBdayView()
                 .onAppear {
                     // 앱이 실행될 때 알림 권한 요청입니다.
                     NotificationManager.instance.requestAuthorization()

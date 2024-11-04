@@ -22,9 +22,19 @@ struct GiveAndTakeView: View {
                     .padding(.leading, 12)
                 Spacer()
             }
-            VStack {
+            VStack(alignment: .leading) {
+                Text("2024")
+                    .font(.bday_t2Emphasized)
+                    .padding(.leading, 32)
+                
                 ForEach(sampleGifts, id: \.self) {sampleGift in
-                    GiftCardView(sampleGift: sampleGift)
+                    ZStack {
+                        HStack {
+                            GiveOrTakeTag(sampleGift: sampleGift)
+                            Spacer()
+                        }
+                        GiftCardView(sampleGift: sampleGift)
+                    }
                 }
                 Spacer()
             }
@@ -45,7 +55,7 @@ struct GiveAndTakeView: View {
     }
 }
 
-
+// MARK: - GiftCardView
 struct GiftCardView: View {
     var sampleGift: BdayGift
     
@@ -67,7 +77,7 @@ struct GiftCardView: View {
                             .clipShape(.rect(cornerRadius: 20))
                         
                     } else {
-                        Image("starrynight") // 기본 이미지 이름
+                        Image("starrynight")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 100, height: 80)
@@ -96,81 +106,38 @@ struct GiftCardView: View {
 }
 
 
-struct giftCardView: View {
-    
+// MARK: - GiveOrTakeTag
+struct GiveOrTakeTag: View {
     var sampleGift: BdayGift
     
     var body: some View {
-        ZStack{
+        if sampleGift.isToBeGiven {
             
-            RoundedRectangle(cornerRadius: 12)
-                .foregroundStyle(.gray.opacity(0.2))
-                .frame(maxWidth: .infinity)
-                .frame(height: 100)
-                .padding(.leading, 32)
+            Text("받은")
+                .font(.bday_c2Regular)
+                .foregroundStyle(.white)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .multilineTextAlignment(.center)
+                .background(.blue)
+                .clipShape(.capsule)
             
-            HStack {
-                if sampleGift.isToBeGiven {
-                    
-                    Text("받은")
-                        .font(.bday_c2Regular)
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .multilineTextAlignment(.center)
-                        .background(.blue)
-                        .clipShape(.capsule)
-                    
-                } else {
-                    
-                    Text("준")
-                        .font(.bday_c2Regular)
-                        .foregroundStyle(.blue)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Color.init(hex: "C6E7FF"))
-                        .clipShape(.capsule)
-                    
-                }
-                
-                VStack(alignment: .leading) {
-                    HStack {
-                        if let imageData = sampleGift.giftImage, let uiImage = UIImage(data: imageData) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 100, height: 80)
-                                .clipShape(.rect(cornerRadius: 20))
-                            
-                        } else {
-                            Image("starrynight") // 기본 이미지 이름
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 100, height: 80)
-                                .clipShape(.rect(cornerRadius: 20))
-                        }
-                        
-                        VStack(alignment: .leading) {
-                            Text(sampleGift.giftName)
-                                .font(.bday_t3Emphasized)
-                            
-                            if sampleGift.isToBeGiven {
-                                if let giftPrice = sampleGift.giftPrice {
-                                    Text("가격 \(giftPrice)")
-                                }
-                            } else {
-                                Text("만족도 ⭐️⭐️⭐️⭐️⭐️")
-                            }
-                        }
-                        
-                        Spacer()
-                    }
-                }
-                .frame(maxWidth: .infinity)
-            }
+        } else {
+            
+            Text("준")
+                .font(.bday_c2Regular)
+                .foregroundStyle(.blue)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color.init(hex: "C6E7FF"))
+                .clipShape(.capsule)
+            
         }
+        
+
     }
 }
+
 
 #Preview {
     NavigationStack {
