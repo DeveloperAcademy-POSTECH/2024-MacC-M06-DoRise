@@ -71,17 +71,11 @@ struct GiftCardView: View {
                 HStack {
                     if let imageData = sampleGift.giftImage, let uiImage = UIImage(data: imageData) {
                         Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 80)
-                            .clipShape(.rect(cornerRadius: 20))
+                            .giftCardViewImgViewModifier()
                         
                     } else {
                         Image("starrynight")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 80)
-                            .clipShape(.rect(cornerRadius: 20))
+                            .giftCardViewImgViewModifier()
                     }
                     
                     VStack(alignment: .leading) {
@@ -114,29 +108,43 @@ struct GiveOrTakeTag: View {
         if sampleGift.isToBeGiven {
             
             Text("받은")
-                .font(.bday_c2Regular)
-                .foregroundStyle(.white)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .multilineTextAlignment(.center)
-                .background(.blue)
-                .clipShape(.capsule)
-            
+                .giveOrTakeTagTextViewModifier(.blue)
         } else {
             
             Text("준")
-                .font(.bday_c2Regular)
-                .foregroundStyle(.blue)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(Color.init(hex: "C6E7FF"))
-                .clipShape(.capsule)
+                .giveOrTakeTagTextViewModifier(Color.init(hex: "C6E7FF"))
             
         }
         
 
     }
 }
+
+
+// MARK: - ViewModifier extension
+extension View {
+        
+    /// GiveOrTakeTag의 Text에 쓰이는 ViewModifier 입니다.
+    func giveOrTakeTagTextViewModifier(_ color: Color) -> some View { self
+        .font(.bday_c2Regular)
+        .foregroundStyle(.white)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(color)
+        .clipShape(.capsule)
+    }
+}
+
+extension Image {
+    /// GiftCardView에서 Img에 쓰이는 ViewModifier입니다.
+    func giftCardViewImgViewModifier() -> some View { self
+            .resizable()
+            .scaledToFit()
+            .frame(width: 100, height: 80)
+            .clipShape(.rect(cornerRadius: 20))
+    }
+}
+
 
 
 #Preview {
