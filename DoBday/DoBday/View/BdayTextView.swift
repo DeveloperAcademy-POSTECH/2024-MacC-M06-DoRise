@@ -56,27 +56,34 @@ struct BdayTextView: View {
                             .scaledToFill()
                             .frame(width: 70, height: 70)
                             .cornerRadius(45)
-                                .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                            .overlay(Circle().stroke(Color.white, lineWidth: 2))
                         
                     }
                 }
                 
                 VStack(alignment: .leading, spacing: 5) {
-                        Text(bday.name)
+                    Text(bday.name)
                         .font(.bday_t3Emphasized)
                     
                     Text("\(formattedBirthdate)(\(dayOfWeek))")
-                    .font(.bday_footRegular)
-                    .foregroundColor(.gray)
+                        .font(.bday_footRegular)
+                        .foregroundColor(.gray)
                     
-                    Text(bday.relationshipTag)
-                    .font(.bday_c2Emphasized)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 3)
-                    .background(Color.yellow.opacity(0.3))
-                    .clipShape(Capsule())
-                    
+                    if !bday.relationshipTag.filter({ !$0.isEmpty }).isEmpty {
+                        HStack {
+                            ForEach(bday.relationshipTag.filter { !$0.isEmpty }, id: \.self) { tag in
+                                Text(tag)
+                                    .font(.bday_c2Emphasized)
+                                    .padding(.horizontal, 6)
+                                    .padding(.vertical, 2)
+                                    .background(Color.red.opacity(0.3))
+                                    .cornerRadius(20)
+                            }
+                        }
+                    }
                 }
+                
+                
                 
                 Spacer()
                 
@@ -100,7 +107,7 @@ struct BdayTextView: View {
                           dateOfBday: Calendar.current.date(byAdding: .day, value: 7, to: Date()),
                           isLunar: false,
                           notiFrequency: ["당일", "1일 전"],
-                          relationshipTag: "친구")
+                          relationshipTag: ["#친구","#비즈니스"])
     
-    return BdayTextView(bday: sampleBday)
+    return UpComingBdayCardView(bday: sampleBday)
 }

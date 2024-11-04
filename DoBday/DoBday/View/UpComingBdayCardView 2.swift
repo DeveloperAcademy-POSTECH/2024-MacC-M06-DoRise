@@ -1,3 +1,11 @@
+//
+//  UpComingBdayCardView 2.swift
+//  DoBday
+//
+//  Created by chanu on 11/4/24.
+//
+
+
 ////////
 ////////  UpComingBdayCardView.swift
 ////////  DoBday
@@ -67,20 +75,12 @@ struct UpComingBdayCardView: View {
                         .font(.bday_t3Regular)
                         .foregroundColor(.gray)
                     
-                    if !bday.relationshipTag.filter({ !$0.isEmpty }).isEmpty {
-                        HStack {
-                            ForEach(bday.relationshipTag.filter { !$0.isEmpty }, id: \.self) { tag in
-                                Text(tag)
-                                    .font(.bday_c2Emphasized)
-                                    .padding(.horizontal, 6)
-                                    .padding(.vertical, 2)
-                                    .background(Color.red.opacity(0.3))
-                                    .cornerRadius(20)
-                            }
-                        }
-                    }
-                    
-                    
+                    Text(bday.relationshipTag)
+                        .font(.bday_c2Emphasized)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background(Color.yellow.opacity(0.3))
+                        .cornerRadius(20)
                     HStack{
                         Spacer()
                         Text(dDayText)
@@ -105,7 +105,7 @@ struct UpComingBdayCardView: View {
                           dateOfBday: Calendar.current.date(byAdding: .day, value: 7, to: Date()),
                           isLunar: false,
                           notiFrequency: ["당일", "1일 전"],
-                          relationshipTag: ["#친구","비즈니스"])
+                          relationshipTag: "#친구")
     
     return UpComingBdayCardView(bday: sampleBday)
 }

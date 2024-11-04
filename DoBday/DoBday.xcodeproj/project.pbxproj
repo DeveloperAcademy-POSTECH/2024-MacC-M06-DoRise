@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		896A53532CC6087D004631A9 /* BdayTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896A53522CC6087D004631A9 /* BdayTextView.swift */; };
 		8983D72D2CD76E84006C3F66 /* ZenDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8983D72C2CD76E84006C3F66 /* ZenDots-Regular.ttf */; };
-		93ED0E922CC10185003250A9 /* MockupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED0E912CC10185003250A9 /* MockupData.swift */; };
-		9E05C20F2CD747E2006D43FA /* UpComingBdayCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05C20E2CD747E2006D43FA /* UpComingBdayCardView.swift */; };
+		932F21212CD7D68F00BF696C /* GiveAndTakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */; };
+		93ED0E922CC10185003250A9 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED0E912CC10185003250A9 /* MockData.swift */; };
 		9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */; };
 		9E66AF5A2CC13B08001323D9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF572CC13B08001323D9 /* Pretendard-SemiBold.otf */; };
 		9E66AF5B2CC13B08001323D9 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF522CC13B08001323D9 /* Pretendard-ExtraBold.otf */; };
@@ -23,11 +23,15 @@
 		9E66AF622CC13B08001323D9 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF582CC13B08001323D9 /* Pretendard-Thin.otf */; };
 		9E7F90822CC89894008F0F23 /* LunarToSolarConversionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7F90812CC89894008F0F23 /* LunarToSolarConversionView.swift */; };
 		9E7F90852CCB9FE5008F0F23 /* KoreanLunarSolarConverter in Frameworks */ = {isa = PBXBuildFile; productRef = 9E7F90842CCB9FE5008F0F23 /* KoreanLunarSolarConverter */; };
+		9ED52C082CD8ED7400FC5D8B /* UpComingBdayCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED52C072CD8ED7400FC5D8B /* UpComingBdayCardView.swift */; };
 		9EF7D56D2CC146D4003A3B79 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF7D56C2CC146D4003A3B79 /* LocalNotificationManager.swift */; };
 		F734F1812CD4CC5B00108CCC /* BdayGift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734F1802CD4CC5B00108CCC /* BdayGift.swift */; };
 		F734F1832CD4CCBD00108CCC /* BdayTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734F1822CD4CCBD00108CCC /* BdayTag.swift */; };
 		F734F1852CD4CD1300108CCC /* BDayAndGiftCombination.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734F1842CD4CD1300108CCC /* BDayAndGiftCombination.swift */; };
 		F734F1872CD4FF3800108CCC /* GiftStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734F1862CD4FF3800108CCC /* GiftStatus.swift */; };
+		F734F18B2CD699DB00108CCC /* Helper+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734F18A2CD699DB00108CCC /* Helper+Keyboard.swift */; };
+		F734F18D2CD76C2600108CCC /* PersonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734F18C2CD76C2600108CCC /* PersonDetailView.swift */; };
+		F734F18F2CD78ACF00108CCC /* SetDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F734F18E2CD78ACF00108CCC /* SetDateView.swift */; };
 		F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FA02CC0F83700C38E73 /* DoBdayApp.swift */; };
 		F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */; };
 		F7386FA52CC0F83900C38E73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7386FA42CC0F83900C38E73 /* Assets.xcassets */; };
@@ -44,8 +48,8 @@
 /* Begin PBXFileReference section */
 		896A53522CC6087D004631A9 /* BdayTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BdayTextView.swift; sourceTree = "<group>"; };
 		8983D72C2CD76E84006C3F66 /* ZenDots-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZenDots-Regular.ttf"; sourceTree = "<group>"; };
-		93ED0E912CC10185003250A9 /* MockupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockupData.swift; sourceTree = "<group>"; };
-		9E05C20E2CD747E2006D43FA /* UpComingBdayCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingBdayCardView.swift; sourceTree = "<group>"; };
+		932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveAndTakeView.swift; sourceTree = "<group>"; };
+		93ED0E912CC10185003250A9 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Color.swift"; sourceTree = "<group>"; };
 		9E66AF4F2CC13A93001323D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9E66AF502CC13B08001323D9 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
@@ -58,11 +62,15 @@
 		9E66AF572CC13B08001323D9 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		9E66AF582CC13B08001323D9 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
 		9E7F90812CC89894008F0F23 /* LunarToSolarConversionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarToSolarConversionView.swift; sourceTree = "<group>"; };
+		9ED52C072CD8ED7400FC5D8B /* UpComingBdayCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingBdayCardView.swift; sourceTree = "<group>"; };
 		9EF7D56C2CC146D4003A3B79 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		F734F1802CD4CC5B00108CCC /* BdayGift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BdayGift.swift; sourceTree = "<group>"; };
 		F734F1822CD4CCBD00108CCC /* BdayTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BdayTag.swift; sourceTree = "<group>"; };
 		F734F1842CD4CD1300108CCC /* BDayAndGiftCombination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDayAndGiftCombination.swift; sourceTree = "<group>"; };
 		F734F1862CD4FF3800108CCC /* GiftStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftStatus.swift; sourceTree = "<group>"; };
+		F734F18A2CD699DB00108CCC /* Helper+Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Keyboard.swift"; sourceTree = "<group>"; };
+		F734F18C2CD76C2600108CCC /* PersonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailView.swift; sourceTree = "<group>"; };
+		F734F18E2CD78ACF00108CCC /* SetDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDateView.swift; sourceTree = "<group>"; };
 		F7386F9D2CC0F83700C38E73 /* DoBday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoBday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7386FA02CC0F83700C38E73 /* DoBdayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoBdayApp.swift; sourceTree = "<group>"; };
 		F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingBdayView.swift; sourceTree = "<group>"; };
@@ -165,7 +173,7 @@
 				F734F1802CD4CC5B00108CCC /* BdayGift.swift */,
 				F734F1822CD4CCBD00108CCC /* BdayTag.swift */,
 				F734F1842CD4CD1300108CCC /* BDayAndGiftCombination.swift */,
-				93ED0E912CC10185003250A9 /* MockupData.swift */,
+				93ED0E912CC10185003250A9 /* MockData.swift */,
 				9E7F90812CC89894008F0F23 /* LunarToSolarConversionView.swift */,
 				F734F1862CD4FF3800108CCC /* GiftStatus.swift */,
 			);
@@ -177,11 +185,14 @@
 			children = (
 				9EF7D56C2CC146D4003A3B79 /* LocalNotificationManager.swift */,
 				F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */,
-				9E05C20E2CD747E2006D43FA /* UpComingBdayCardView.swift */,
+				9ED52C072CD8ED7400FC5D8B /* UpComingBdayCardView.swift */,
 				896A53522CC6087D004631A9 /* BdayTextView.swift */,
 				F7386FBD2CC1009D00C38E73 /* CalendarView.swift */,
 				F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */,
+				F734F18C2CD76C2600108CCC /* PersonDetailView.swift */,
+				F734F18E2CD78ACF00108CCC /* SetDateView.swift */,
 				F7386FB32CC0F89600C38E73 /* Component */,
+				932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,6 +211,7 @@
 				F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */,
 				F7386FBB2CC0F91F00C38E73 /* Helper+Fonts.swift */,
 				9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */,
+				F734F18A2CD699DB00108CCC /* Helper+Keyboard.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -305,9 +317,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */,
-				93ED0E922CC10185003250A9 /* MockupData.swift in Sources */,
+				F734F18F2CD78ACF00108CCC /* SetDateView.swift in Sources */,
+				F734F18B2CD699DB00108CCC /* Helper+Keyboard.swift in Sources */,
+				F734F18D2CD76C2600108CCC /* PersonDetailView.swift in Sources */,
+				93ED0E922CC10185003250A9 /* MockData.swift in Sources */,
 				F734F1852CD4CD1300108CCC /* BDayAndGiftCombination.swift in Sources */,
 				9E7F90822CC89894008F0F23 /* LunarToSolarConversionView.swift in Sources */,
+				9ED52C082CD8ED7400FC5D8B /* UpComingBdayCardView.swift in Sources */,
 				F7386FBC2CC0F91F00C38E73 /* Helper+Fonts.swift in Sources */,
 				F734F1832CD4CCBD00108CCC /* BdayTag.swift in Sources */,
 				F7386FBE2CC1009D00C38E73 /* CalendarView.swift in Sources */,
@@ -315,8 +331,8 @@
 				F7386FB62CC0F8F900C38E73 /* Bday.swift in Sources */,
 				F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */,
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
+				932F21212CD7D68F00BF696C /* GiveAndTakeView.swift in Sources */,
 				9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */,
-				9E05C20F2CD747E2006D43FA /* UpComingBdayCardView.swift in Sources */,
 				F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */,
 				F734F1812CD4CC5B00108CCC /* BdayGift.swift in Sources */,
 				9EF7D56D2CC146D4003A3B79 /* LocalNotificationManager.swift in Sources */,
