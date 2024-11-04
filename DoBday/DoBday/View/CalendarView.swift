@@ -16,41 +16,23 @@ struct CalendarView: View {
     // Property
     @Environment(\.modelContext) var context
     
-    @Query var bdays: [Bday]
+    var bdays: [Bday]
     
     @State var offset: CGSize = CGSize()
     @State var clickedDate: Date? = nil
     @State private var clickedBdays: [Bday] = []
-<<<<<<< HEAD
     @State private var showingAlert = false
-
-    var bdays: [Bday]
 
 //    @Environment(\.modelContext) var context
     @Environment(\.colorScheme) var colorScheme: ColorScheme
 
-=======
     @State var selectedDate: Date? = nil
     @State var month: Date
-        
->>>>>>> main
+
     var body: some View {
         
         VStack {
-<<<<<<< HEAD
-            headerView
-            calendarGridView
-                .padding(.bottom)
 
-            if !clickedBdays.isEmpty {
-                ScrollView {
-                    VStack {
-                        ForEach(clickedBdays, id: \.id) { bday in
-                            NavigationLink(destination: PersonDetailView(bday: bday)){
-                                CardView(bday: bday)
-                            }
-                            .padding(.bottom, 5)
-=======
             
             HeaderView(month: $month)
             CalendarGridView(
@@ -83,7 +65,6 @@ struct CalendarView: View {
                                 .padding(.bottom, 8)
                             Text("하지만 매일을 생일처럼 보내보아요🎉")
                                 .font(.custom("Pretendard-Medium", size: 12))
->>>>>>> main
                         }
                         .padding()
                         
@@ -290,22 +271,7 @@ private struct CardListView: View {
     let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1"), "#지인": Color.init(hex: "C9F69C"), "#비지니스": Color.init(hex: "A1ACFF")]
     
     var body: some View {
-<<<<<<< HEAD
-            RoundedRectangle(cornerRadius: 16)
-//                .foregroundStyle(
-//                    relationshipDictionary[bday.relationshipTag] ?? .gray.opacity(0.5)
-//                )
-                .frame(maxWidth: .infinity)
-                .frame(height: 120)
-                .overlay {
-                    HStack {
-                        NavigationLink {
-                            PersonDetailView(bday: bday)
-                        } label: {
-                            
-//                            Image(bday.profileImage!)
-                            Image("basicprofile")
-=======
+
         VStack(alignment: .leading) {
             List {
                 ForEach(clickedBdays, id: \.id) { bday in
@@ -315,40 +281,23 @@ private struct CardListView: View {
                     } label: {
                         HStack {
                             Image(bday.profileImage == nil || bday.profileImage == "" ? "basicprofile" : bday.profileImage!)
->>>>>>> main
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 80, height: 80)
                                 .clipShape(Circle())
                                 .padding(.trailing, 10)
                             
-<<<<<<< HEAD
-                        }
-                        Spacer()
-                        
-                        VStack(alignment: .leading) {
-                            Text(bday.name)
-                                .font(.custom("Pretendard-SemiBold", size: 24))
-                                .foregroundStyle(.black)
-                            Spacer(minLength: 16)
-                            HStack {
-                                // TODO: relationshipTag 배열 출력
-//                                Text(bday.relationshipTag)
-                                Spacer()
-                                Text("D-\(daysUntilBday(from: bday.dateOfBday!))")
-=======
-                            VStack(alignment: .leading) {
+                                VStack(alignment: .leading) {
                                 Text(bday.name)
                                     .padding(.horizontal, 8)
-                                Text(bday.relationshipTag)
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 4)
-                                    .background(
-                                        // TODO: 새로운 relationshipTag 모델로 갈아끼워야 함
-                                        relationshipDictionary[bday.relationshipTag]?.opacity(0.5) ?? .gray.opacity(0.2)
-                                    )
-                                    .clipShape(.capsule)
->>>>>>> main
+//                                Text(bday.relationshipTag)
+//                                    .padding(.horizontal, 8)
+//                                    .padding(.vertical, 4)
+//                                    .background(
+//                                        // TODO: 새로운 relationshipTag 모델로 갈아끼워야 함
+//                                        relationshipDictionary[bday.relationshipTag]?.opacity(0.5) ?? .gray.opacity(0.2)
+//                                    )
+//                                    .clipShape(.capsule)
                             }
                             .foregroundStyle(.primary)
                         }
@@ -384,7 +333,6 @@ private struct CardListView: View {
                     }
                 }
             }
-            
         }
     }
     
@@ -395,7 +343,6 @@ private struct CardListView: View {
             showingAlert = true
         }
     }
-    
 }
 
 
@@ -411,9 +358,9 @@ private struct CardView: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 16)
-            .foregroundStyle(
-                relationshipDictionary[bday.relationshipTag] ?? .gray.opacity(0.5)
-            )
+//            .foregroundStyle(
+//                relationshipDictionary[bday.relationshipTag] ?? .gray.opacity(0.5)
+//            )
             .frame(maxWidth: .infinity)
             .frame(height: 120)
             .overlay {
@@ -436,7 +383,7 @@ private struct CardView: View {
                             .foregroundStyle(.black)
                         Spacer(minLength: 16)
                         HStack {
-                            Text(bday.relationshipTag)
+//                            Text(bday.relationshipTag)
                             Spacer()
                             Text("D-\(daysUntilBday(from: bday.dateOfBday!))")
                         }
@@ -599,8 +546,8 @@ extension Date {
 }
 
 
-#Preview {
-    NavigationStack{
-        CalendarView(month: Date())
-    }
-}
+//#Preview {
+//    NavigationStack{
+//        CalendarView()
+//    }
+//}

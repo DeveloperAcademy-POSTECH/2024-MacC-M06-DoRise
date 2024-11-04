@@ -15,6 +15,7 @@ struct UpComingBdayView: View {
 
 
     @State var now = Date.now
+    
     var upcomingBdays: [Bday] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
@@ -48,15 +49,18 @@ struct UpComingBdayView: View {
                 Spacer(minLength: 98)
                 HStack {
                     Spacer()
-<<<<<<< HEAD
-                    NavigationLink(destination: CalendarView(month: now, bdays: bdays/*, bdayTags: bdayTags*/)) {
-=======
-                    NavigationLink(destination: CalendarView(month: Date())) {
->>>>>>> main
+
+                    NavigationLink(destination: CalendarView(bdays: bdays, month: now)) {
                         Image(systemName: "calendar")
                             .foregroundColor(.black)
                             .frame(width: 34, height: 16)
                     }
+
+//                    NavigationLink(destination: CalendarView(month: .now, bdays: bdays)) {
+//                        Image(systemName: "calendar")
+//                            .foregroundColor(.black)
+//                            .frame(width: 34, height: 16)
+//                    }
 
                 } //: HSTACK
                 
