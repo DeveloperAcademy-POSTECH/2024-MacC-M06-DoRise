@@ -95,13 +95,13 @@ class NotificationManager {
             }
         }
     }
-    
+    /// `badgeCount`를 0으로 설정하고 앱 아이콘의 뱃지 숫자를 지움.
     func resetBadgeCount() {
         badgeCount = 0
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
-    //노티삭제
+    
     func CancelNotification() {
         notiCenter.removeAllPendingNotificationRequests()
         notiCenter.removeAllDeliveredNotifications()

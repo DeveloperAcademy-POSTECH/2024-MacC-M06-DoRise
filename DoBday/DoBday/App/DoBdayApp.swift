@@ -34,7 +34,7 @@ struct DoBdayApp: App {
 //                        initializeDefaultTags(context: context)
 //                    }
                     
-                    // 앱이 실행될 때 알림 뱃지를 초기화
+                    // 사용자가 앱을 열 때 호출되어 알림 카운트를 리셋.
                     NotificationManager.instance.resetBadgeCount()
                     
                 }

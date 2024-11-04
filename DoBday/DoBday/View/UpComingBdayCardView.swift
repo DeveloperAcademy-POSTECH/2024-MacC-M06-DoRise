@@ -12,17 +12,22 @@ struct UpComingBdayCardView: View {
     let formatter = DateFormatter()
     let calendar = Calendar.current
     
+    /// 날짜 M.dd 표기
     var formattedBirthdate: String {
         formatter.dateFormat = "M.dd"
         return formatter.string(from: bday.dateOfBday ?? Date())
-    } // : 날짜 M.dd 표기
+    }
     
+    /// 요일 E 표기
     var dayOfWeek: String {
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "E"
         return formatter.string(from: bday.dateOfBday ?? Date())
-    } // : 요일 E 표기
+    }
     
+    /// 선택된 생일 날짜와 오늘의 날짜를 비교하여 D-Day 텍스트를 반환.
+    /// 생일이 오늘이면 "D-Day"를 반환하고, 오늘보다 멀다면 "D-daysUntil" 형식으로 반환.
+    /// 생일 날짜가 없으면 "저장된 날짜가 없어요."를 반환.
     var dDayText: String {
         guard let birthdate = bday.dateOfBday else { return "저장된 날짜가 없어요." }
         let today = calendar.startOfDay(for: Date())
@@ -67,18 +72,19 @@ struct UpComingBdayCardView: View {
                         .font(.bday_t3Regular)
                         .foregroundColor(.gray)
                     
-                    if !bday.relationshipTag.filter({ !$0.isEmpty }).isEmpty {
-                        HStack {
-                            ForEach(bday.relationshipTag.filter { !$0.isEmpty }, id: \.self) { tag in
-                                Text(tag)
-                                    .font(.bday_c2Emphasized)
-                                    .padding(.horizontal, 6)
-                                    .padding(.vertical, 2)
-                                    .background(Color.red.opacity(0.3))
-                                    .cornerRadius(20)
-                            }
-                        }
-                    }
+                    //TODO : #47PR 피카피드백반영하여 주석처리
+//                    if !bday.relationshipTag.filter({ !$0.isEmpty }).isEmpty {
+//                        HStack {
+//                            ForEach(bday.relationshipTag.filter { !$0.isEmpty }, id: \.self) { tag in
+//                                Text(tag)
+//                                    .font(.bday_c2Emphasized)
+//                                    .padding(.horizontal, 6)
+//                                    .padding(.vertical, 2)
+//                                    .background(Color.red.opacity(0.3))
+//                                    .cornerRadius(20)
+//                            }
+//                        }
+//                    }
                     
                     
                     HStack{

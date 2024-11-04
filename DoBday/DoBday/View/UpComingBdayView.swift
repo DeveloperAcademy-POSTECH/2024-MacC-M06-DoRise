@@ -38,7 +38,7 @@ struct UpComingBdayView: View {
             return date1 < date2
         }
     }
-    
+    /// 가장 가까운 생일 리스트를 반환.
     var closestBdays: [Bday] {
         guard let firstBday = upcomingBdays.first else { return [] }
         let calendar = Calendar.current
@@ -50,23 +50,25 @@ struct UpComingBdayView: View {
         }
     }
     
+    /// 가장 가까운 생일을 제외한 나머지 생일을 반환.
     var filteredUpcomingBdays: [Bday] {
         return upcomingBdays.filter { !closestBdays.contains($0) }
     }
     
+    /// 요일 EEEE(영어)로 표기.
     var titleDayOfWeek: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
         let dayOfWeek = dateFormatter.string(from: Date())
         return dayOfWeek.uppercased()
-    } // : 요일 EEEE(영어)로 표기
+    }
     
-    
+    /// 날짜 yyyy.MM.dd 표기.
     var titleDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
         return dateFormatter.string(from: Date())
-    } // : 날짜 yyyy.MM.dd 표기
+    }
     
     var body: some View {
         TabView {
