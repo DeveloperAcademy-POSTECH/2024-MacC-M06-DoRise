@@ -16,6 +16,7 @@ struct UpComingBdayView: View {
 
     @State var now = Date.now
     
+    /// 현재 날짜로부터 30일 이내에 해당하는 생일 목록을 반환.
     var upcomingBdays: [Bday] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
@@ -24,9 +25,11 @@ struct UpComingBdayView: View {
         return bdays.filter { bday in
             guard let bdayDate = bday.dateOfBday else { return false }
             
+            /// 해당 생일의 월, 일을 가져와서 현재 연도의 날짜로 변환.
             let components = calendar.dateComponents([.month, .day], from: bdayDate)
             let thisYearBday = calendar.date(from: DateComponents(year: calendar.component(.year, from: today), month: components.month, day: components.day)) ?? today
             
+            /// 오늘과 같은 날짜이거나 30일 이내에 포함되는지 확인.
             if calendar.isDate(thisYearBday, inSameDayAs: today) {
                 return true
             }
@@ -39,6 +42,7 @@ struct UpComingBdayView: View {
         }
     }
     /// 가장 가까운 생일 리스트를 반환.
+    /// 가장 가까운 날짜의 생일을 찾아 해당 날짜와 같은 생일들을 필터링.
     var closestBdays: [Bday] {
         guard let firstBday = upcomingBdays.first else { return [] }
         let calendar = Calendar.current
@@ -50,7 +54,7 @@ struct UpComingBdayView: View {
         }
     }
     
-    /// 가장 가까운 생일을 제외한 나머지 생일을 반환.
+    /// 가장 가까운 생일을 제외한 나머지 30일 이내의 생일 목록을 반환.
     var filteredUpcomingBdays: [Bday] {
         return upcomingBdays.filter { !closestBdays.contains($0) }
     }
