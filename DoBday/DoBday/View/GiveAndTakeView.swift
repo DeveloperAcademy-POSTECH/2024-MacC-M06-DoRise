@@ -51,9 +51,9 @@ struct GiveAndTakeView: View {
                 }
             }
         }
-        
     }
 }
+
 
 // MARK: - GiftCardView
 struct GiftCardView: View {
