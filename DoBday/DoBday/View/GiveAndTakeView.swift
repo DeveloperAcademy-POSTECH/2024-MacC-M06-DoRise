@@ -14,13 +14,22 @@ struct GiveAndTakeView: View {
     @Query var bdayGifts: [BdayGift]
     
     var body: some View {
-        VStack {
-            ForEach(sampleGifts, id: \.self) {sampleGift in
-                giftCardView(sampleGift: sampleGift)
+        ZStack {
+            HStack {
+                Rectangle()
+                    .frame(width: 2)
+                    .frame(maxHeight: .infinity)
+                    .padding(.leading, 12)
+                Spacer()
             }
-            Spacer()
+            VStack {
+                ForEach(sampleGifts, id: \.self) {sampleGift in
+                    GiftCardView(sampleGift: sampleGift)
+                }
+                Spacer()
+            }
         }
-        .padding(.horizontal)
+        .padding()
         .navigationTitle("마일스와의 선물기록")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -37,6 +46,56 @@ struct GiveAndTakeView: View {
 }
 
 
+struct GiftCardView: View {
+    var sampleGift: BdayGift
+    
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+                .foregroundStyle(.gray.opacity(0.2))
+                .frame(maxWidth: .infinity)
+                .frame(height: 100)
+                .padding(.leading, 32)
+            
+            VStack {
+                HStack {
+                    if let imageData = sampleGift.giftImage, let uiImage = UIImage(data: imageData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 80)
+                            .clipShape(.rect(cornerRadius: 20))
+                        
+                    } else {
+                        Image("starrynight") // 기본 이미지 이름
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 80)
+                            .clipShape(.rect(cornerRadius: 20))
+                    }
+                    
+                    VStack(alignment: .leading) {
+                        Text(sampleGift.giftName)
+                            .font(.bday_t3Emphasized)
+                        
+                        if sampleGift.isToBeGiven {
+                            if let giftPrice = sampleGift.giftPrice {
+                                Text("가격 \(giftPrice)")
+                            }
+                        } else {
+                            Text("만족도 ⭐️⭐️⭐️⭐️⭐️")
+                        }
+                    }
+                    
+                    Spacer()
+                }
+            }
+            .padding(.leading, 44)
+        }
+    }
+}
+
+
 struct giftCardView: View {
     
     var sampleGift: BdayGift
@@ -48,7 +107,7 @@ struct giftCardView: View {
                 .foregroundStyle(.gray.opacity(0.2))
                 .frame(maxWidth: .infinity)
                 .frame(height: 100)
-                .padding(.leading, 16)
+                .padding(.leading, 32)
             
             HStack {
                 if sampleGift.isToBeGiven {
@@ -60,7 +119,6 @@ struct giftCardView: View {
                         .padding(.vertical, 4)
                         .multilineTextAlignment(.center)
                         .background(.blue)
-                        .padding(0)
                         .clipShape(.capsule)
                     
                 } else {
