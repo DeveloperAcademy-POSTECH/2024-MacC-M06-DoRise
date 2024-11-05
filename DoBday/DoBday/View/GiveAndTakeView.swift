@@ -14,43 +14,45 @@ struct GiveAndTakeView: View {
     @Query var bdayGifts: [BdayGift]
     
     var body: some View {
-        ZStack {
-            HStack {
-                Rectangle()
-                    .frame(width: 2)
-                    .frame(maxHeight: .infinity)
-                    .padding(.leading, 12)
-                Spacer()
-            }
-            VStack(alignment: .leading) {
-                Text("2024")
-                    .font(.bday_t2Emphasized)
-                    .padding(.leading, 32)
-                
-                ForEach(sampleGifts, id: \.self) {sampleGift in
-                    ZStack {
-                        HStack {
-                            GiveOrTakeTag(sampleGift: sampleGift)
-                            Spacer()
+        NavigationStack {   // 나중에 지워야 함
+            ZStack {
+                HStack {
+                    Rectangle()
+                        .frame(width: 1)
+                        .frame(maxHeight: .infinity)
+                        .padding(.leading, 12)
+                    Spacer()
+                }
+                VStack(alignment: .leading) {
+                    Text("2024")
+                        .font(.bday_t2Emphasized)
+                        .padding(.leading, 32)
+                    
+                    ForEach(sampleGifts, id: \.self) {sampleGift in
+                        ZStack {
+                            HStack {
+                                GiveOrTakeTag(sampleGift: sampleGift)
+                                Spacer()
+                            }
+                            GiftCardView(sampleGift: sampleGift)
                         }
-                        GiftCardView(sampleGift: sampleGift)
+                    }
+                    Spacer()
+                }
+            }
+            .padding()
+            .navigationTitle("마일스와의 선물기록")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        SaveGiftView()
+                    } label: {
+                        Image(systemName: "plus")
                     }
                 }
-                Spacer()
             }
-        }
-        .padding()
-        .navigationTitle("마일스와의 선물기록")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink {
-                    EmptyView()
-                } label: {
-                    Image(systemName: "plus")
-                }
-            }
-        }
+        }   // NaviStack 나중에 지우세요
     }
 }
 
@@ -61,11 +63,13 @@ struct GiftCardView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 12)
-                .foregroundStyle(.gray.opacity(0.2))
-                .frame(maxWidth: .infinity)
-                .frame(height: 100)
-                .padding(.leading, 32)
+            GeometryReader { geometry in
+                RoundedRectangle(cornerRadius: 12)
+                    .foregroundStyle(.gray.opacity(0.2))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: max(geometry.size.height, 100))
+                    .padding(.leading, 32)
+            }
             
             VStack {
                 HStack {
@@ -86,9 +90,7 @@ struct GiftCardView: View {
                             if let giftPrice = sampleGift.giftPrice {
                                 Text("가격 \(giftPrice)")
                             }
-                        } else {
-                            Text("만족도 ⭐️⭐️⭐️⭐️⭐️")
-                        }
+                        } 
                     }
                     
                     Spacer()
@@ -111,8 +113,8 @@ struct GiveOrTakeTag: View {
                 .giveOrTakeTagTextViewModifier(.blue)
         } else {
             
-            Text("준")
-                .giveOrTakeTagTextViewModifier(Color.init(hex: "C6E7FF"))
+            Text("내가 준")
+                .giveOrTakeTagTextViewModifier(.green)
             
         }
         

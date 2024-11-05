@@ -16,7 +16,7 @@ enum GiftStatusType: Codable {
 
 @Model
 final class GiftStatus: Identifiable {
-    let id: UUID
+    var id: UUID
     var gift: BdayGift?
     var person: Bday?
     var status: GiftStatusType

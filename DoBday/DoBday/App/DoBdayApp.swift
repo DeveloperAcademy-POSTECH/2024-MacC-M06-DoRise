@@ -16,8 +16,8 @@ struct DoBdayApp: App {
 
         init() {
             do {
-                let config = ModelConfiguration(for: Bday.self, BdayTag.self)
-                container = try ModelContainer(for: Bday.self, BdayTag.self, configurations: config)
+                let config = ModelConfiguration(for: Bday.self, BdayTag.self, GiftStatus.self, BdayGift.self)
+                container = try ModelContainer(for: Bday.self, BdayTag.self, GiftStatus.self, BdayGift.self, configurations: config)
             } catch {
                 fatalError("Failed to configure SwiftData container.")
             }
@@ -25,8 +25,8 @@ struct DoBdayApp: App {
 
     var body: some Scene {
         WindowGroup {
-            UpComingBdayView()
-//            GiveAndTakeView()
+//            UpComingBdayView()
+            GiveAndTakeView()
                 .onAppear {
                     // 앱이 실행될 때 알림 권한 요청입니다.
                     NotificationManager.instance.requestAuthorization()
@@ -39,6 +39,8 @@ struct DoBdayApp: App {
                     
                 }
         }
+
         .modelContainer(container)
+
     }
 }

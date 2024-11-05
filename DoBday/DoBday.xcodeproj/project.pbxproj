@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		896A53532CC6087D004631A9 /* BdayTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 896A53522CC6087D004631A9 /* BdayTextView.swift */; };
 		8983D72D2CD76E84006C3F66 /* ZenDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8983D72C2CD76E84006C3F66 /* ZenDots-Regular.ttf */; };
+		930885532CD8AA6000E052E8 /* SaveGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930885522CD8AA6000E052E8 /* SaveGiftView.swift */; };
 		932F21212CD7D68F00BF696C /* GiveAndTakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */; };
+		936878822CD98F2F0063D4F7 /* GiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878812CD98F2F0063D4F7 /* GiftView.swift */; };
 		93ED0E922CC10185003250A9 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED0E912CC10185003250A9 /* MockData.swift */; };
 		9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */; };
 		9E66AF5A2CC13B08001323D9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF572CC13B08001323D9 /* Pretendard-SemiBold.otf */; };
@@ -48,7 +50,9 @@
 /* Begin PBXFileReference section */
 		896A53522CC6087D004631A9 /* BdayTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BdayTextView.swift; sourceTree = "<group>"; };
 		8983D72C2CD76E84006C3F66 /* ZenDots-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZenDots-Regular.ttf"; sourceTree = "<group>"; };
+		930885522CD8AA6000E052E8 /* SaveGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveGiftView.swift; sourceTree = "<group>"; };
 		932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveAndTakeView.swift; sourceTree = "<group>"; };
+		936878812CD98F2F0063D4F7 /* GiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftView.swift; sourceTree = "<group>"; };
 		93ED0E912CC10185003250A9 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Color.swift"; sourceTree = "<group>"; };
 		9E66AF4F2CC13A93001323D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -173,9 +177,9 @@
 				F734F1802CD4CC5B00108CCC /* BdayGift.swift */,
 				F734F1822CD4CCBD00108CCC /* BdayTag.swift */,
 				F734F1842CD4CD1300108CCC /* BDayAndGiftCombination.swift */,
-				93ED0E912CC10185003250A9 /* MockData.swift */,
 				9E7F90812CC89894008F0F23 /* LunarToSolarConversionView.swift */,
 				F734F1862CD4FF3800108CCC /* GiftStatus.swift */,
+				93ED0E912CC10185003250A9 /* MockData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +197,8 @@
 				F734F18E2CD78ACF00108CCC /* SetDateView.swift */,
 				F7386FB32CC0F89600C38E73 /* Component */,
 				932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */,
+				930885522CD8AA6000E052E8 /* SaveGiftView.swift */,
+				936878812CD98F2F0063D4F7 /* GiftView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -332,11 +338,13 @@
 				F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */,
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
 				932F21212CD7D68F00BF696C /* GiveAndTakeView.swift in Sources */,
+				936878822CD98F2F0063D4F7 /* GiftView.swift in Sources */,
 				9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */,
 				F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */,
 				F734F1812CD4CC5B00108CCC /* BdayGift.swift in Sources */,
 				9EF7D56D2CC146D4003A3B79 /* LocalNotificationManager.swift in Sources */,
 				F7386FC02CC100AC00C38E73 /* SaveBdayView.swift in Sources */,
+				930885532CD8AA6000E052E8 /* SaveGiftView.swift in Sources */,
 				F7386FBA2CC0F90C00C38E73 /* Component.swift in Sources */,
 				896A53532CC6087D004631A9 /* BdayTextView.swift in Sources */,
 			);
