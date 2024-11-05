@@ -333,6 +333,6 @@ struct SaveBdayView: View {
 }
 
 
-#Preview {
-    SaveBdayView()
-}
+//#Preview {
+//    SaveBdayView()
+//}

@@ -44,12 +44,20 @@ struct PersonDetailView: View {
                         .fill(Color.init(hex: "F0F0F0"))
                         .frame(width: 353, height: 127)
                     HStack {
-                        Image("basicprofile")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100)
-                            .clipShape(Circle())
-                            .padding(.init(top: 0, leading: 35, bottom: 0, trailing: 0))
+                        if let profileImage = bday?.profileImage, let uiImage = UIImage(data: profileImage) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                                .clipShape(Circle())
+                                .padding(.init(top: 0, leading: 35, bottom: 0, trailing: 0))
+                        } else {
+                            Image("basicprofile")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+                                .clipShape(Circle())
+                                .padding(.init(top: 0, leading: 35, bottom: 0, trailing: 0))
+                        }
 
                         VStack(alignment: .leading) {
                             HStack(alignment: .bottom) {
@@ -115,7 +123,7 @@ struct PersonDetailView: View {
 
             //MARK: 취향 콜라주
             HStack {
-                Text("주고 싶은 선물")
+                Text("취향 콜라보")
                     .font(.system(size: 18, weight: .semibold))
 
                 Spacer()
@@ -128,20 +136,24 @@ struct PersonDetailView: View {
                     .fill(Color.init(hex: "F0F0F0"))
                     .frame(width: 353, height: 159)
 
-                Text("아직 마일스님의 취향을 담지 않았아요!")
+                Text("아직 \(name)님의 취향을 담지 않았아요!")
                     .font(.system(size: 14, weight: .semibold))
             }
             .padding(.init(top: 0, leading: 0, bottom: 11, trailing: 0))
 
             //MARK: 주고받은 선물 리스트
-            HStack {
-                Text("주고받은 선물 리스트")
-                    .font(.system(size: 18, weight: .semibold))
+            NavigationLink {
+                GiveAndTakeView()
+            } label: {
+                HStack {
+                    Text("주고받은 선물 리스트")
+                        .font(.system(size: 18, weight: .semibold))
 
-                Spacer()
+                    Spacer()
 
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.blue)
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.blue)
+                }
             }
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
@@ -171,6 +183,6 @@ struct PersonDetailView: View {
     }
 }
 
-#Preview {
-    PersonDetailView()
-}
+//#Preview {
+//    PersonDetailView()
+//}
