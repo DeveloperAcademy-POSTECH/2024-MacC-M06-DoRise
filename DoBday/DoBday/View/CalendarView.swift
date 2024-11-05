@@ -280,12 +280,20 @@ private struct CardListView: View {
                         EmptyView()
                     } label: {
                         HStack {
-                            Image(bday.profileImage == nil || bday.profileImage == "" ? "basicprofile" : bday.profileImage!)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 80, height: 80)
-                                .clipShape(Circle())
-                                .padding(.trailing, 10)
+                            if let profileImage = bday.profileImage, let uiImage = UIImage(data: profileImage) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(Circle())
+                                    .padding(.trailing, 10)
+                            } else {
+                                Image("basicprofile")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(Circle())
+                                    .padding(.trailing, 10)
+                            }
                             
                                 VStack(alignment: .leading) {
                                 Text(bday.name)

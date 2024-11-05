@@ -10,7 +10,7 @@ import SwiftUI
 struct PersonDetailView: View {
 
     @State private var name = ""
-    @State private var profileImage = ""
+    @State private var profileImage: Data?
     @State private var dateOfBday: Date = Date()
     @State private var isLunar = false
     @State private var notiFrequency = [""]
@@ -24,7 +24,7 @@ struct PersonDetailView: View {
         self.bday = bday
         if let bday = bday {
             _name = State(initialValue: bday.name)
-            _profileImage = State(initialValue: bday.profileImage ?? "")
+            _profileImage = State(initialValue: bday.profileImage)
             _dateOfBday = State(initialValue: bday.dateOfBday ?? Date())
             _isLunar = State(initialValue: bday.isLunar)
             _notiFrequency = State(initialValue: bday.notiFrequency)

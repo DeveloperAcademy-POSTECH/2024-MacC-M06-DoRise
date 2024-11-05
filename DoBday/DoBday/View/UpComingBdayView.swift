@@ -11,8 +11,6 @@ import SwiftData
 struct UpComingBdayView: View {
     @Environment(\.modelContext) var context
     @Query var bdays: [Bday]
-//    @Query var bdayTags: [BdayTag]
-
 
     @State var now = Date.now
     
@@ -91,7 +89,7 @@ struct UpComingBdayView: View {
                         
                         Spacer()
                         
-                        NavigationLink(destination: CalendarView(bdays: bdays, month: Date())) {
+                        NavigationLink(destination: CalendarView(bdays: bdays, month: now)) {
                             Image(systemName: "calendar")
                                 .foregroundColor(.black)
                                 .font(.system(size: 24))
@@ -173,26 +171,26 @@ struct UpComingBdayView: View {
     }
 }
 
-#Preview {
-    do {
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Bday.self, configurations: config)
-
-        let today = Date()
-        let mockBdays = [
-            Bday(id: UUID(), name: "소이", profileImage: "soy", dateOfBday: today, isLunar: false, notiFrequency: ["당일", "1일 전"], relationshipTag: ["#비지니스"]),
-            Bday(id: UUID(), name: "씨네필", profileImage: "", dateOfBday: Calendar.current.date(byAdding: .day, value: 2, to: today)!, isLunar: false, notiFrequency: ["3일 전"], relationshipTag: ["#지인"]),
-            Bday(id: UUID(), name: "피카", profileImage: "pika", dateOfBday: Calendar.current.date(byAdding: .day, value: 15, to: today)!, isLunar: true, notiFrequency: ["1일 전", "7일 전"], relationshipTag: ["#친구"]),
-            Bday(id: UUID(), name: "레디", profileImage: "ready", dateOfBday: Calendar.current.date(byAdding: .day, value: 25, to: today)!, isLunar: false, notiFrequency: ["당일"], relationshipTag: ["#가족"])
-        ]
-
-        for bday in mockBdays {
-            container.mainContext.insert(bday)
-        }
-
-        return UpComingBdayView()
-            .modelContainer(container)
-    } catch {
-        return Text("Failed to create preview: \(error.localizedDescription)")
-    }
-}
+//#Preview {
+//    do {
+//        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+//        let container = try ModelContainer(for: Bday.self, configurations: config)
+//
+//        let today = Date()
+//        let mockBdays = [
+//            Bday(id: UUID(), name: "소이", profileImage: "soy", dateOfBday: today, isLunar: false, notiFrequency: ["당일", "1일 전"], relationshipTag: ["#비지니스"]),
+//            Bday(id: UUID(), name: "씨네필", profileImage: "", dateOfBday: Calendar.current.date(byAdding: .day, value: 2, to: today)!, isLunar: false, notiFrequency: ["3일 전"], relationshipTag: ["#지인"]),
+//            Bday(id: UUID(), name: "피카", profileImage: "pika", dateOfBday: Calendar.current.date(byAdding: .day, value: 15, to: today)!, isLunar: true, notiFrequency: ["1일 전", "7일 전"], relationshipTag: ["#친구"]),
+//            Bday(id: UUID(), name: "레디", profileImage: "ready", dateOfBday: Calendar.current.date(byAdding: .day, value: 25, to: today)!, isLunar: false, notiFrequency: ["당일"], relationshipTag: ["#가족"])
+//        ]
+//
+//        for bday in mockBdays {
+//            container.mainContext.insert(bday)
+//        }
+//
+//        return UpComingBdayView()
+//            .modelContainer(container)
+//    } catch {
+//        return Text("Failed to create preview: \(error.localizedDescription)")
+//    }
+//}

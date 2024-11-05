@@ -13,12 +13,12 @@ import SwiftUI
 final class BdayTag: Identifiable {
     var id: UUID
     var tagName: String
-//    var tagColor: Color
+    var tagColor: String
 
-    init(id: UUID, tagName: String/*, tagColor: Color*/) {
+    init(id: UUID, tagName: String, tagColor: String) {
         self.id = id
         self.tagName = tagName
-//        self.tagColor = tagColor
+        self.tagColor = tagColor
     }
 }
 //

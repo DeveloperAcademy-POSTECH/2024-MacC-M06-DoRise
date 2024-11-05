@@ -49,12 +49,14 @@ struct BdayTextView: View {
             
             HStack(spacing: 20) {
                 ZStack {
-                    if let profileImage = bday.profileImage, !profileImage.isEmpty {
-                        Image(profileImage)
+
+                    if let profileImage = bday.profileImage, let uiImage = UIImage(data: profileImage) {
+                        Image(uiImage: uiImage)
                             .resizable()
                             .scaledToFill()
                             .frame(width: 70, height: 70)
-                            .cornerRadius(45)                          .overlay(Circle().stroke(Color.white, lineWidth: 2))
+                            .cornerRadius(45)
+                            .overlay(Circle().stroke(Color.white, lineWidth: 2))
                     } else {
                         Image("basicprofile")
                             .resizable()
@@ -105,14 +107,14 @@ struct BdayTextView: View {
     }
 }
 
-#Preview {
-    let sampleBday = Bday(id: UUID(),
-                          name: "임찬우",
-                          profileImage: "",
-                          dateOfBday: Calendar.current.date(byAdding: .day, value: 7, to: Date()),
-                          isLunar: false,
-                          notiFrequency: ["당일", "1일 전"],
-                          relationshipTag: ["#친구","#비즈니스"])
-    
-    return UpComingBdayCardView(bday: sampleBday)
-}
+//#Preview {
+//    let sampleBday = Bday(id: UUID(),
+//                          name: "임찬우",
+//                          profileImage: "",
+//                          dateOfBday: Calendar.current.date(byAdding: .day, value: 7, to: Date()),
+//                          isLunar: false,
+//                          notiFrequency: ["당일", "1일 전"],
+//                          relationshipTag: ["#친구","#비즈니스"])
+//    
+//    return UpComingBdayCardView(bday: sampleBday)
+//}
