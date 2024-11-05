@@ -276,8 +276,7 @@ private struct CardListView: View {
             List {
                 ForEach(clickedBdays, id: \.id) { bday in
                     NavigationLink {
-                        // TODO: PersonalDetailView 로 갈아 끼우기
-                        EmptyView()
+                        PersonDetailView(bday: bday)
                     } label: {
                         HStack {
                             if let profileImage = bday.profileImage, let uiImage = UIImage(data: profileImage) {
