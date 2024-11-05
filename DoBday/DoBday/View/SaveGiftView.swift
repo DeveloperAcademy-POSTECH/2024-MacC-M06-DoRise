@@ -14,6 +14,7 @@ struct SaveGiftView: View {
     // MARK: - Property
     @Environment(\.modelContext) var context
     @State private var selectedItem: PhotosPickerItem?
+    @State var giftStatus: GiftStatusType = .receivedGift
     
     @Namespace var bottomID
     
@@ -75,8 +76,8 @@ struct SaveGiftView: View {
                     }
                     
                     HStack {
-                        makeIsToBeGivenButton(text: "받은 선물")
-                        makeIsToBeGivenButton(text: "준 선물")
+                        makeIsToBeGivenButton(text: "받은 선물", status: .receivedGift)
+                        makeIsToBeGivenButton(text: "준 선물", status: .toBeGiven)
                     }
                     .padding(.bottom)
                     
@@ -164,14 +165,17 @@ extension SaveGiftView {
     }
     
     /// isToBeGivenButton을 생성하는 함수입니다.
-    func makeIsToBeGivenButton(text: String) -> some View {
+    func makeIsToBeGivenButton(text: String, status: GiftStatusType) -> some View {
         Text(text)
             .font(.bday_callRegular)
-            .foregroundStyle(.blue)
+            .foregroundStyle(giftStatus == status ? Color.white : .blue)
             .padding(.vertical, 8)
             .frame(width: 80)
-            .background(.blue.opacity(0.2))
+            .background(giftStatus == status ? Color.blue : .blue.opacity(0.2))
             .clipShape(.capsule)
+            .onTapGesture {
+                giftStatus = status
+            }
     }
     
     /// bdayGift를 수정하거나 저장할 수 있는 함수입니다.
