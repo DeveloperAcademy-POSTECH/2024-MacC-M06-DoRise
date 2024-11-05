@@ -46,6 +46,7 @@
 		F7386FC02CC100AC00C38E73 /* SaveBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */; };
 		F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */; };
 		F767F2A82CD9C7CE001BDDC0 /* SetTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767F2A72CD9C7CE001BDDC0 /* SetTagView.swift */; };
+		F7E8AFCB2CDA11F1007CD507 /* PersonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8AFCA2CDA11F1007CD507 /* PersonListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,7 @@
 		F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveBdayView.swift; sourceTree = "<group>"; };
 		F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+ImagePicker.swift"; sourceTree = "<group>"; };
 		F767F2A72CD9C7CE001BDDC0 /* SetTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTagView.swift; sourceTree = "<group>"; };
+		F7E8AFCA2CDA11F1007CD507 /* PersonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -201,6 +203,7 @@
 				930885522CD8AA6000E052E8 /* SaveGiftView.swift */,
 				932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */,
 				936878812CD98F2F0063D4F7 /* GiftView.swift */,
+				F7E8AFCA2CDA11F1007CD507 /* PersonListView.swift */,
 				F7386FB32CC0F89600C38E73 /* Component */,
 			);
 			path = View;
@@ -330,6 +333,7 @@
 				F734F18B2CD699DB00108CCC /* Helper+Keyboard.swift in Sources */,
 				F734F18D2CD76C2600108CCC /* PersonDetailView.swift in Sources */,
 				93ED0E922CC10185003250A9 /* MockData.swift in Sources */,
+				F7E8AFCB2CDA11F1007CD507 /* PersonListView.swift in Sources */,
 				F734F1852CD4CD1300108CCC /* BDayAndGiftCombination.swift in Sources */,
 				9E7F90822CC89894008F0F23 /* LunarToSolarConversionView.swift in Sources */,
 				9ED52C082CD8ED7400FC5D8B /* UpComingBdayCardView.swift in Sources */,
