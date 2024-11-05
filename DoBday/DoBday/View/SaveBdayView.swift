@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import PhotosUI
 
 import KoreanLunarSolarConverter
 
@@ -15,11 +16,13 @@ struct SaveBdayView: View {
     @Environment(\.modelContext) var context
 
     @State private var name = ""
-    @State private var profileImage = ""
+    @State private var profileImage: Data?
     @State private var dateOfBday: Date = Date()
     @State private var isLunar = false
     @State private var notiFrequency = [""]
     @State private var relationshipTag = [""]
+
+    @State private var selectedItem: PhotosPickerItem?
 
     @State private var isshowingSheetForSettingDate = false
     @State private var isshowingSheetForCreatingTag = false
@@ -32,7 +35,7 @@ struct SaveBdayView: View {
         self.bday = bday
         if let bday = bday {
             _name = State(initialValue: bday.name)
-            _profileImage = State(initialValue: bday.profileImage ?? "")
+            _profileImage = State(initialValue: bday.profileImage)
             _dateOfBday = State(initialValue: bday.dateOfBday ?? Date())
             _isLunar = State(initialValue: bday.isLunar)
             _notiFrequency = State(initialValue: bday.notiFrequency)
@@ -42,21 +45,11 @@ struct SaveBdayView: View {
 
     @Environment(\.dismiss) var dismiss
 
-    @State private var image: Image?
-    @State private var showImagePicker = false
-    @State private var selectedUIImage: UIImage?
     @State private var imageData: Data?
-    //    @State private var finalDate: Date
 
-    let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1")/*, "#지인": Color.init(hex: "C9F69C"), "#비지니스": Color.init(hex: "A1ACFF")*/]
+    let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1")]
 
     let notiArray: [String] = ["당일", "1일 전", "3일 전", "7일 전"]
-
-    func loadImage() {
-        guard let selectedImage = selectedUIImage else { return }
-        image = Image(uiImage: selectedImage)
-        imageData = selectedImage.jpegData(compressionQuality: 1.0)
-    }
 
     static let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
@@ -96,35 +89,36 @@ struct SaveBdayView: View {
             }.padding(.init(top: 0, leading: 22, bottom: 0, trailing: 24))
 
             //MARK: 이미지 피커
+
             ZStack {
-                if let image = image {
-                    image
-                        .resizable()
-                        .clipShape(RoundedRectangle(cornerRadius: 45))
-                        .frame(width: 112, height: 112)
-                } else {
-                    Image("basicprofile")
-                        .resizable()
-                        .clipShape(RoundedRectangle(cornerRadius: 45))
-                        .frame(width: 112, height: 112)
-                }
+                    PhotosPicker(selection: $selectedItem, matching: .images) {
+                        if let imageData = imageData, let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .clipShape(RoundedRectangle(cornerRadius: 45))
+                                .frame(width: 112, height: 112)
+                        } else {
+                            ZStack {
+                                Image("basicprofile")
+                                    .resizable()
+                                    .clipShape(RoundedRectangle(cornerRadius: 45))
+                                    .frame(width: 112, height: 112)
+                            }
+                        }
+                    }
+                    .onChange(of: selectedItem) { oldItem, newItem in
+                        Task {
+                            if let data = try? await newItem?.loadTransferable(type: Data.self) {
+                                imageData = data
+                            }
+                        }
+                    }
+
                 Image("photologo")
                     .resizable()
                     .clipShape(Circle())
                     .frame(width: 30, height: 30)
                     .offset(x: 30, y: 40)
-                Button {
-                    showImagePicker.toggle()
-                } label: {
-                    RoundedRectangle(cornerRadius: 45)
-                        .fill(.clear)
-                        .frame(width: 112, height: 112)
-                }
-                .sheet(isPresented: $showImagePicker, onDismiss: {
-                    loadImage()
-                }) {
-                    ImagePicker(image: $selectedUIImage)
-                }
             }
 
             //MARK: 이름 설정
@@ -227,7 +221,7 @@ struct SaveBdayView: View {
                                     .foregroundColor(.black)
                                     .padding()
                                     .frame(height: 43)
-                                    .background(.gray)
+                                    .background(Color.init(hex: relationship.tagColor))
                                     .cornerRadius(40)
 
                                 if relationshipTag.contains(relationship.tagName) {
@@ -322,7 +316,7 @@ struct SaveBdayView: View {
             bday.name = name
             bday.dateOfBday = dateOfBday
             bday.isLunar = isLunar
-            bday.profileImage = profileImage
+            bday.profileImage = imageData
             bday.notiFrequency = notiFrequency
             bday.relationshipTag = relationshipTag
 
@@ -330,106 +324,11 @@ struct SaveBdayView: View {
             lunarToFinalDate()
 
             // 새 생일 객체를 저장
-            let newBday = Bday(id: UUID(), name: name, profileImage: profileImage, dateOfBday: dateOfBday, isLunar: isLunar, notiFrequency: notiFrequency, relationshipTag: relationshipTag)
+            let newBday = Bday(id: UUID(), name: name, profileImage: imageData, dateOfBday: dateOfBday, isLunar: isLunar, notiFrequency: notiFrequency, relationshipTag: relationshipTag)
             context.insert(newBday)
 
             NotificationManager.instance.scheduleNotification(for: name, dateOfBday: dateOfBday, notiFrequency: notiFrequency)
         }
-    }
-}
-
-struct SetTagView: View {
-    @Environment(\.modelContext) var contextForBdayTag
-
-    @Binding var isshowingSheetForCreatingTag: Bool
-    
-    var bdayTags: BdayTag?
-
-    @State private var tagName = ""
-    @State private var tagColor: Color? = nil
-
-    let colors: [Color] = [.black, .blue, .brown, .cyan, .gray, .indigo, .mint, .yellow, .orange, .purple]
-
-    let columns: [GridItem] = [
-            GridItem(.fixed(50), spacing: nil, alignment: nil),
-            GridItem(.fixed(50), spacing: nil, alignment: nil),
-            GridItem(.fixed(50), spacing: nil, alignment: nil),
-            GridItem(.fixed(50), spacing: nil, alignment: nil),
-            GridItem(.fixed(50), spacing: nil, alignment: nil)
-        ]
-
-    var body: some View {
-        VStack {
-
-            HStack(alignment: .bottom) {
-                Text("태그 생성")
-                    .font(.system(size: 30, weight: .bold))
-
-                Spacer()
-            }.padding(.init(top: 5, leading: 0, bottom: 20, trailing: 0))
-
-            ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.init(hex: "F0F0F0"))
-                    .frame(width: 324, height: 48)
-
-                TextField("입력한 내용을 태그 목록에 추가됩니다.", text: $tagName)
-                    .textFieldStyle(.plain)
-                    .padding(.init(top: 0, leading: 25, bottom: 0, trailing: 25))
-            }.padding(.init(top: 0, leading: 25, bottom: 20, trailing: 25))
-
-            ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.init(hex: "F0F0F0"))
-                    .frame(width: 324, height: 103)
-
-                LazyVGrid(columns: columns) {
-                    ForEach(colors, id: \.self) { color in
-                        Button {
-                            tagColor = color
-                        } label: {
-                            ZStack {
-                                Circle()
-                                    .fill(color)
-                                    .frame(width: 30)
-                                if tagColor == color {
-                                    Circle()
-                                        .fill(.black)
-                                        .opacity(0.2)
-                                        .frame(width: 30)
-                                    Image(systemName: "checkmark")
-                                        .font(.system(size: 20, weight: .bold))
-                                        .foregroundColor(.white)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            Spacer()
-
-            Button {
-                SaveBdayTag()
-                isshowingSheetForCreatingTag.toggle()
-
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(.black)
-                        .frame(width: 340, height: 60)
-                    Text("추가")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.white)
-                }
-            }
-        }
-        .padding(.init(top: 40, leading: 20, bottom: 0, trailing: 20))
-    }
-
-    func SaveBdayTag() {
-        let newBdayTag = BdayTag(id: UUID(), tagName: tagName)
-        contextForBdayTag.insert(newBdayTag)
     }
 }
 

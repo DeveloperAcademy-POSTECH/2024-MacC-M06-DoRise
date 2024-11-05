@@ -12,6 +12,9 @@ import SwiftData
 struct DoBdayApp: App {
 //    @Environment(\.modelContext) var context
 
+//    @State private var isFirstTime: Bool = UserDefaults.standard.bool(forKey: "isFirstTime")
+    @AppStorage("isFirstTime") private var isFirstTime = false
+
     var container: ModelContainer
 
         init() {
@@ -25,8 +28,8 @@ struct DoBdayApp: App {
 
     var body: some Scene {
         WindowGroup {
-//            UpComingBdayView()
-            GiveAndTakeView()
+            UpComingBdayView()
+//            GiveAndTakeView()
                 .onAppear {
                     // 앱이 실행될 때 알림 권한 요청입니다.
                     NotificationManager.instance.requestAuthorization()
@@ -35,8 +38,17 @@ struct DoBdayApp: App {
 //                    }
                     
                     // 사용자가 앱을 열 때 호출되어 알림 카운트를 리셋.
+
                     NotificationManager.instance.resetBadgeCount()
-                    
+
+                    print(isFirstTime)
+                    if !isFirstTime {
+                        addDefaultTags(context: container.mainContext)
+                    }
+                    self.isFirstTime = true
+                    print(isFirstTime)
+
+
                 }
         }
 

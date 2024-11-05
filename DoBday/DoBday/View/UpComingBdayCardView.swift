@@ -44,8 +44,8 @@ struct UpComingBdayCardView: View {
         ZStack {
             HStack(spacing: 20) {
                 ZStack {
-                    if let profileImage = bday.profileImage, !profileImage.isEmpty {
-                        Image(profileImage)
+                    if let profileImage = bday.profileImage, let uiImage = UIImage(data: profileImage) {
+                        Image(uiImage: uiImage)
                             .resizable()
                             .scaledToFill()
                             .frame(width: 120, height: 160)
@@ -104,14 +104,14 @@ struct UpComingBdayCardView: View {
     }
 }
 
-#Preview {
-    let sampleBday = Bday(id: UUID(),
-                          name: "임찬우",
-                          profileImage: "",
-                          dateOfBday: Calendar.current.date(byAdding: .day, value: 7, to: Date()),
-                          isLunar: false,
-                          notiFrequency: ["당일", "1일 전"],
-                          relationshipTag: ["#친구","비즈니스"])
-    
-    return UpComingBdayCardView(bday: sampleBday)
-}
+//#Preview {
+//    let sampleBday = Bday(id: UUID(),
+//                          name: "임찬우",
+//                          profileImage: "",
+//                          dateOfBday: Calendar.current.date(byAdding: .day, value: 7, to: Date()),
+//                          isLunar: false,
+//                          notiFrequency: ["당일", "1일 전"],
+//                          relationshipTag: ["#친구","비즈니스"])
+//    
+//    return UpComingBdayCardView(bday: sampleBday)
+//}
