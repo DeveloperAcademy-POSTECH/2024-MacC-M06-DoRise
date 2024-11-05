@@ -45,21 +45,11 @@ struct SaveBdayView: View {
 
     @Environment(\.dismiss) var dismiss
 
-    @State private var image: Image?
-    @State private var showImagePicker = false
-    @State private var selectedUIImage: UIImage?
     @State private var imageData: Data?
-    //    @State private var finalDate: Date
 
-    let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1")/*, "#지인": Color.init(hex: "C9F69C"), "#비지니스": Color.init(hex: "A1ACFF")*/]
+    let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1")]
 
     let notiArray: [String] = ["당일", "1일 전", "3일 전", "7일 전"]
-
-    func loadImage() {
-        guard let selectedImage = selectedUIImage else { return }
-        image = Image(uiImage: selectedImage)
-        imageData = selectedImage.jpegData(compressionQuality: 1.0)
-    }
 
     static let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
