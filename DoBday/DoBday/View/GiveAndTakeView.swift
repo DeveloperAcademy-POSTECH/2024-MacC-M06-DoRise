@@ -16,7 +16,6 @@ struct GiveAndTakeView: View {
     
     
     var body: some View {
-        NavigationStack {   // 나중에 지워야 함
             // 선택 및 삭제 버튼 영역.
             VStack {
                 HStack {
@@ -36,7 +35,7 @@ struct GiveAndTakeView: View {
                         Text(selectedGifts.count == bdayGifts.count ? "전체삭제" : "선택삭제") // 모든 항목 선택 시 텍스트가 '전체삭제'로 변경됨.
                             .font(.bday_footEmphasized)
                             .font(.bday_footEmphasized)
-                            .foregroundColor(.black)
+                            .foregroundColor(selectedGifts.count == 0 ? .gray : .black)
                     }
                 }
                 .padding(.horizontal)
@@ -98,7 +97,6 @@ struct GiveAndTakeView: View {
             }
         }
     }   // NaviStack 나중에 지우세요
-}
 
 
 // MARK: - GiftCardView
