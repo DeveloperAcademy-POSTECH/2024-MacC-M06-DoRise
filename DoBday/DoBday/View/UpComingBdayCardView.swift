@@ -67,30 +67,34 @@ struct UpComingBdayCardView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(bday.name)
                         .font(.bday_t2Emphasized)
+                        .foregroundColor(.black)
+
                     
                     Text("\(formattedBirthdate)(\(dayOfWeek))")
                         .font(.bday_t3Regular)
                         .foregroundColor(.gray)
                     
-                    //TODO : #47PR 피카피드백반영하여 주석처리
-//                    if !bday.relationshipTag.filter({ !$0.isEmpty }).isEmpty {
-//                        HStack {
-//                            ForEach(bday.relationshipTag.filter { !$0.isEmpty }, id: \.self) { tag in
-//                                Text(tag)
-//                                    .font(.bday_c2Emphasized)
-//                                    .padding(.horizontal, 6)
-//                                    .padding(.vertical, 2)
-//                                    .background(Color.red.opacity(0.3))
-//                                    .cornerRadius(20)
-//                            }
-//                        }
-//                    }
+//                    TODO : #47PR 피카피드백반영하여 주석처리
+                    if !bday.relationshipTag.filter({ !$0.isEmpty }).isEmpty {
+                        HStack {
+                            ForEach(bday.relationshipTag.filter { !$0.isEmpty }, id: \.self) { tag in
+                                Text(tag)
+                                    .font(.bday_c2Emphasized)
+                                    .foregroundColor(.black)
+                                    .padding(.horizontal, 6)
+                                    .padding(.vertical, 2)
+                                    .background(Color.red.opacity(0.3))
+                                    .cornerRadius(20)
+                            }
+                        }
+                    }
                     
                     
                     HStack{
                         Spacer()
                         Text(dDayText)
                             .font(.bday_t1Emphasized)
+                            .foregroundColor(.black)
                         
                     }.padding(.trailing,-30)
                     
@@ -112,6 +116,6 @@ struct UpComingBdayCardView: View {
 //                          isLunar: false,
 //                          notiFrequency: ["당일", "1일 전"],
 //                          relationshipTag: ["#친구","비즈니스"])
-//    
+//
 //    return UpComingBdayCardView(bday: sampleBday)
 //}

@@ -1,10 +1,3 @@
-//
-//  PersonDetailView.swift
-//  DoBday
-//
-//  Created by Hajin on 11/3/24.
-//
-
 import SwiftUI
 
 struct PersonDetailView: View {
@@ -188,3 +181,4 @@ struct PersonDetailView: View {
 //#Preview {
 //    PersonDetailView()
 //}
+

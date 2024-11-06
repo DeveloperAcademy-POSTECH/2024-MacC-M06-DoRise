@@ -71,6 +71,8 @@ struct BdayTextView: View {
                 VStack(alignment: .leading, spacing: 5) {
                     Text(bday.name)
                         .font(.bday_t3Emphasized)
+                        .foregroundColor(.black)
+
                     
                     Text("\(formattedBirthdate)(\(dayOfWeek))")
                         .font(.bday_footRegular)
@@ -81,6 +83,7 @@ struct BdayTextView: View {
                             ForEach(bday.relationshipTag.filter { !$0.isEmpty }, id: \.self) { tag in
                                 Text(tag)
                                     .font(.bday_c2Emphasized)
+                                    .foregroundColor(.black)
                                     .padding(.horizontal, 6)
                                     .padding(.vertical, 2)
                                     .background(Color.red.opacity(0.3))
@@ -96,8 +99,10 @@ struct BdayTextView: View {
                 
                 Text(dDayText)
                     .font(.bday_footEmphasized)
+                    .foregroundColor(.black)
                     .padding(.trailing,17)
                     .padding(.top,60)
+                
                 
                 
                 
@@ -115,6 +120,6 @@ struct BdayTextView: View {
 //                          isLunar: false,
 //                          notiFrequency: ["당일", "1일 전"],
 //                          relationshipTag: ["#친구","#비즈니스"])
-//    
+//
 //    return UpComingBdayCardView(bday: sampleBday)
 //}
