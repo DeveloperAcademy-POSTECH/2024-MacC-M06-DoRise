@@ -109,9 +109,11 @@ struct UpComingBdayView: View {
                     if closestBdays.count > 1 {
                         TabView {
                             ForEach(closestBdays, id: \.id) { bday in
+//                                NavigationLink(destination: CalendarView
+                                NavigationLink(destination: PersonDetailView(bday: bday)){
                                     UpComingBdayCardView(bday: bday)
-                                    .padding(.bottom, 25)
-                                    
+                                        .padding(.bottom, 25)
+                                }
                             }
                         }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
                         .frame(height: 247)
@@ -119,11 +121,15 @@ struct UpComingBdayView: View {
                         .cornerRadius(20)
                         
                     } else if let closestBday = closestBdays.first {
-                        UpComingBdayCardView(bday: closestBday)
-                            .padding(.top, 10)
-                            .frame(height: 247)
-                            .background(Color.upComingBdayCardBackgroundColor)
-                            .cornerRadius(20)
+                        NavigationLink(destination: PersonDetailView(bday: closestBday)){
+                            
+                            
+                            UpComingBdayCardView(bday: closestBday)
+                                .padding(.top, 10)
+                                .frame(height: 247)
+                                .background(Color.upComingBdayCardBackgroundColor)
+                                .cornerRadius(20)
+                        }
                         
                     } else {
                         Text("생일을 추가해 보세요!")
@@ -148,7 +154,9 @@ struct UpComingBdayView: View {
                     ScrollView {
                         VStack {
                             ForEach(filteredUpcomingBdays) { bday in
-                                BdayTextView(bday: bday)
+                                NavigationLink(destination: PersonDetailView(bday: bday)){
+                                    BdayTextView(bday: bday)
+                                }
                             }
                         }
                     }
@@ -160,7 +168,7 @@ struct UpComingBdayView: View {
                 Text("Home")
             } // : Home 탭
             
-            PersonDetailView()
+            PersonListView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Person")
