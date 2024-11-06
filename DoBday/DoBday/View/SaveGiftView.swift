@@ -52,13 +52,13 @@ struct SaveGiftView: View {
                         Image(uiImage: uiImage)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 140, height: 160) // 원하는 크기로 조정
+                            .frame(width: 142, height: 171) // 원하는 크기로 조정
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                     } else {
                         PhotosPicker(selection: $selectedItem, matching: .images) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 12)
-                                    .frame(width: 140, height: 160)
+                                    .frame(width: 142, height: 171)
                                     .foregroundStyle(.gray.opacity(0.2))
                                 
                                 Image(systemName: "photo.badge.plus")
@@ -77,7 +77,7 @@ struct SaveGiftView: View {
                     
                     HStack {
                         makeIsToBeGivenButton(text: "받은 선물", status: .receivedGift)
-                        makeIsToBeGivenButton(text: "준 선물", status: .toBeGiven)
+                        makeIsToBeGivenButton(text: "준 선물", status: .given)
                     }
                     .padding(.bottom)
                     
@@ -116,7 +116,7 @@ struct SaveGiftView: View {
                     
                 }
                 .padding()
-                .navigationTitle("주고 싶은 선물")
+                .navigationTitle("준 선물/받은 선물")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
@@ -167,7 +167,7 @@ extension SaveGiftView {
     /// isToBeGivenButton을 생성하는 함수입니다.
     func makeIsToBeGivenButton(text: String, status: GiftStatusType) -> some View {
         Text(text)
-            .font(.bday_callRegular)
+            .font(giftStatus == status ? .bday_headEmphasized : .bday_callRegular)
             .foregroundStyle(giftStatus == status ? Color.white : .blue)
             .padding(.vertical, 8)
             .frame(width: 80)
@@ -180,6 +180,9 @@ extension SaveGiftView {
     
     /// bdayGift를 수정하거나 저장할 수 있는 함수입니다.
     func addBdayGift() {
+        isToBeGiven = (giftStatus == .given)    // giftStatus에 따라 isToBeGiven 값을 설정. giftStatus가 .given이면 isToBeGiven은 True가 됨.
+        
+        
         // 기존 생일 선물 수정
         if let bdayGift = bdayGift {
             print("기존 선물 수정 중")
@@ -199,10 +202,18 @@ extension SaveGiftView {
                 giftImage: giftImage,
                 memo: memo,
                 giftURL: giftURL
+                
             )
             
             context.insert(bdayGift)
         }
+        
+        do {
+            try context.save()
+        } catch {
+            print("Error saving data: \(error.localizedDescription)")
+        }
+        
     }
 }
 

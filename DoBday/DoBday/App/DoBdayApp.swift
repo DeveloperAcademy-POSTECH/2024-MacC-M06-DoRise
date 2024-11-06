@@ -25,7 +25,7 @@ struct DoBdayApp: App {
                 fatalError("Failed to configure SwiftData container.")
             }
         }
-
+    
     var body: some Scene {
         WindowGroup {
             UpComingBdayView()

@@ -148,6 +148,8 @@ struct PersonDetailView: View {
                 HStack {
                     Text("주고받은 선물 리스트")
                         .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(.black)
+                    
 
                     Spacer()
 
