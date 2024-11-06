@@ -13,27 +13,42 @@ import SwiftUI
 final class BdayTag: Identifiable {
     var id: UUID
     var tagName: String
-//    var tagColor: Color
+    var tagColor: String
 
-    init(id: UUID, tagName: String/*, tagColor: Color*/) {
+    init(id: UUID, tagName: String, tagColor: String) {
         self.id = id
         self.tagName = tagName
-//        self.tagColor = tagColor
+        self.tagColor = tagColor
     }
 }
+
+func addDefaultTags(context: ModelContext) {
+
+    let defaultTags = [
+        BdayTag(id: UUID(), tagName: "가족", tagColor: "73BFB9"),
+        BdayTag(id: UUID(), tagName: "친구", tagColor: "3DA5D9")
+    ]
+
+    for tag in defaultTags {
+
+        do {
+            let fetchList = try context.fetch(FetchDescriptor<BdayTag>())
+
+        } catch {
+            print("앗 패치 실패,,,")
+        }
+        context.insert(tag)
+
+
+
+//        do {
+//            let bdayList = try context.fetch(FetchDescriptor<Bday>())
+//        } catch {
 //
-//func initializeDefaultTags(context: ModelContext) {
-//    // 기본 태그들
-//    let defaultTags = [
-//        ("#친구", Color.red),
-//        ("#가족", Color.green)
-//    ]
-//
-//    // 기본 태그가 이미 존재하는지 확인하고 없으면 추가
-//    for (name, color) in defaultTags {
-//        if !context.contains(where: { ($0 as? BdayTag)?.tagName == name }) {
-//            let newTag = BdayTag(tagName: name, tagColor: color)
-//            context.insert(newTag)
 //        }
-//    }
-//}
+//
+//        if context.fetch(Bday.self).allSatisfy({ $0.tagName != tag.tagName }) {
+//            context.insert(tag)
+//        }
+    }
+}

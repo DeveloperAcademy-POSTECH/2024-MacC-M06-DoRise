@@ -276,16 +276,23 @@ private struct CardListView: View {
             List {
                 ForEach(clickedBdays, id: \.id) { bday in
                     NavigationLink {
-                        // TODO: PersonalDetailView 로 갈아 끼우기
-                        EmptyView()
+                        PersonDetailView(bday: bday)
                     } label: {
                         HStack {
-                            Image(bday.profileImage == nil || bday.profileImage == "" ? "basicprofile" : bday.profileImage!)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 80, height: 80)
-                                .clipShape(Circle())
-                                .padding(.trailing, 10)
+                            if let profileImage = bday.profileImage, let uiImage = UIImage(data: profileImage) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(Circle())
+                                    .padding(.trailing, 10)
+                            } else {
+                                Image("basicprofile")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 80, height: 80)
+                                    .clipShape(Circle())
+                                    .padding(.trailing, 10)
+                            }
                             
                                 VStack(alignment: .leading) {
                                 Text(bday.name)

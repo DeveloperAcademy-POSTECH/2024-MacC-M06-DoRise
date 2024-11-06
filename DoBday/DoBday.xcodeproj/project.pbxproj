@@ -45,6 +45,8 @@
 		F7386FBE2CC1009D00C38E73 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBD2CC1009D00C38E73 /* CalendarView.swift */; };
 		F7386FC02CC100AC00C38E73 /* SaveBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */; };
 		F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */; };
+		F767F2A82CD9C7CE001BDDC0 /* SetTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767F2A72CD9C7CE001BDDC0 /* SetTagView.swift */; };
+		F7E8AFCB2CDA11F1007CD507 /* PersonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8AFCA2CDA11F1007CD507 /* PersonListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +89,8 @@
 		F7386FBD2CC1009D00C38E73 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveBdayView.swift; sourceTree = "<group>"; };
 		F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+ImagePicker.swift"; sourceTree = "<group>"; };
+		F767F2A72CD9C7CE001BDDC0 /* SetTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTagView.swift; sourceTree = "<group>"; };
+		F7E8AFCA2CDA11F1007CD507 /* PersonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -176,9 +180,9 @@
 				F7386FB52CC0F8F900C38E73 /* Bday.swift */,
 				F734F1802CD4CC5B00108CCC /* BdayGift.swift */,
 				F734F1822CD4CCBD00108CCC /* BdayTag.swift */,
+				F734F1862CD4FF3800108CCC /* GiftStatus.swift */,
 				F734F1842CD4CD1300108CCC /* BDayAndGiftCombination.swift */,
 				9E7F90812CC89894008F0F23 /* LunarToSolarConversionView.swift */,
-				F734F1862CD4FF3800108CCC /* GiftStatus.swift */,
 				93ED0E912CC10185003250A9 /* MockData.swift */,
 			);
 			path = Model;
@@ -193,12 +197,14 @@
 				896A53522CC6087D004631A9 /* BdayTextView.swift */,
 				F7386FBD2CC1009D00C38E73 /* CalendarView.swift */,
 				F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */,
-				F734F18C2CD76C2600108CCC /* PersonDetailView.swift */,
+				F767F2A72CD9C7CE001BDDC0 /* SetTagView.swift */,
 				F734F18E2CD78ACF00108CCC /* SetDateView.swift */,
-				F7386FB32CC0F89600C38E73 /* Component */,
-				932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */,
+				F734F18C2CD76C2600108CCC /* PersonDetailView.swift */,
 				930885522CD8AA6000E052E8 /* SaveGiftView.swift */,
+				932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */,
 				936878812CD98F2F0063D4F7 /* GiftView.swift */,
+				F7E8AFCA2CDA11F1007CD507 /* PersonListView.swift */,
+				F7386FB32CC0F89600C38E73 /* Component */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 				F734F18B2CD699DB00108CCC /* Helper+Keyboard.swift in Sources */,
 				F734F18D2CD76C2600108CCC /* PersonDetailView.swift in Sources */,
 				93ED0E922CC10185003250A9 /* MockData.swift in Sources */,
+				F7E8AFCB2CDA11F1007CD507 /* PersonListView.swift in Sources */,
 				F734F1852CD4CD1300108CCC /* BDayAndGiftCombination.swift in Sources */,
 				9E7F90822CC89894008F0F23 /* LunarToSolarConversionView.swift in Sources */,
 				9ED52C082CD8ED7400FC5D8B /* UpComingBdayCardView.swift in Sources */,
@@ -336,6 +343,7 @@
 				F734F1872CD4FF3800108CCC /* GiftStatus.swift in Sources */,
 				F7386FB62CC0F8F900C38E73 /* Bday.swift in Sources */,
 				F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */,
+				F767F2A82CD9C7CE001BDDC0 /* SetTagView.swift in Sources */,
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
 				932F21212CD7D68F00BF696C /* GiveAndTakeView.swift in Sources */,
 				936878822CD98F2F0063D4F7 /* GiftView.swift in Sources */,
