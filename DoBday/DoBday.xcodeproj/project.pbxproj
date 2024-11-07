@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,10 @@
 		930885532CD8AA6000E052E8 /* SaveGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930885522CD8AA6000E052E8 /* SaveGiftView.swift */; };
 		932F21212CD7D68F00BF696C /* GiveAndTakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */; };
 		936878822CD98F2F0063D4F7 /* GiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878812CD98F2F0063D4F7 /* GiftView.swift */; };
+		936878872CDC59480063D4F7 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878862CDC59480063D4F7 /* HeaderView.swift */; };
+		936878892CDC59AC0063D4F7 /* CalendarGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878882CDC59AC0063D4F7 /* CalendarGridView.swift */; };
+		9368788B2CDC5A5B0063D4F7 /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9368788A2CDC5A5B0063D4F7 /* CardListView.swift */; };
+		9368788E2CDC5B040063D4F7 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9368788D2CDC5B000063D4F7 /* Extension+Date.swift */; };
 		93ED0E922CC10185003250A9 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED0E912CC10185003250A9 /* MockData.swift */; };
 		9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */; };
 		9E66AF5A2CC13B08001323D9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF572CC13B08001323D9 /* Pretendard-SemiBold.otf */; };
@@ -55,6 +59,10 @@
 		930885522CD8AA6000E052E8 /* SaveGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveGiftView.swift; sourceTree = "<group>"; };
 		932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveAndTakeView.swift; sourceTree = "<group>"; };
 		936878812CD98F2F0063D4F7 /* GiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftView.swift; sourceTree = "<group>"; };
+		936878862CDC59480063D4F7 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		936878882CDC59AC0063D4F7 /* CalendarGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarGridView.swift; sourceTree = "<group>"; };
+		9368788A2CDC5A5B0063D4F7 /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
+		9368788D2CDC5B000063D4F7 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		93ED0E912CC10185003250A9 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Color.swift"; sourceTree = "<group>"; };
 		9E66AF4F2CC13A93001323D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -93,10 +101,6 @@
 		F7E8AFCA2CDA11F1007CD507 /* PersonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		9ED52C032CD8775500FC5D8B /* Extension */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extension; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		F7386F9A2CC0F83700C38E73 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -109,6 +113,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		936878852CDC591E0063D4F7 /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				F7386FBD2CC1009D00C38E73 /* CalendarView.swift */,
+				9368788A2CDC5A5B0063D4F7 /* CardListView.swift */,
+				936878882CDC59AC0063D4F7 /* CalendarGridView.swift */,
+				936878862CDC59480063D4F7 /* HeaderView.swift */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		9368788C2CDC5AF80063D4F7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9368788D2CDC5B000063D4F7 /* Extension+Date.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		9E66AF592CC13B08001323D9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +168,7 @@
 		F7386F9F2CC0F83700C38E73 /* DoBday */ = {
 			isa = PBXGroup;
 			children = (
+				9368788C2CDC5AF80063D4F7 /* Extension */,
 				9E66AF4F2CC13A93001323D9 /* Info.plist */,
 				F7386FAE2CC0F85D00C38E73 /* App */,
 				F7386FAF2CC0F86800C38E73 /* Model */,
@@ -152,7 +176,6 @@
 				F7386FB02CC0F87100C38E73 /* View */,
 				F7386FB22CC0F88600C38E73 /* Helper */,
 				F7386FB42CC0F8AB00C38E73 /* Resource */,
-				9ED52C032CD8775500FC5D8B /* Extension */,
 				F7386FA62CC0F83900C38E73 /* Preview Content */,
 			);
 			path = DoBday;
@@ -195,7 +218,7 @@
 				F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */,
 				9ED52C072CD8ED7400FC5D8B /* UpComingBdayCardView.swift */,
 				896A53522CC6087D004631A9 /* BdayTextView.swift */,
-				F7386FBD2CC1009D00C38E73 /* CalendarView.swift */,
+				936878852CDC591E0063D4F7 /* CalendarView */,
 				F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */,
 				F767F2A72CD9C7CE001BDDC0 /* SetTagView.swift */,
 				F734F18E2CD78ACF00108CCC /* SetDateView.swift */,
@@ -343,6 +366,7 @@
 				F734F1872CD4FF3800108CCC /* GiftStatus.swift in Sources */,
 				F7386FB62CC0F8F900C38E73 /* Bday.swift in Sources */,
 				F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */,
+				9368788E2CDC5B040063D4F7 /* Extension+Date.swift in Sources */,
 				F767F2A82CD9C7CE001BDDC0 /* SetTagView.swift in Sources */,
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
 				932F21212CD7D68F00BF696C /* GiveAndTakeView.swift in Sources */,
@@ -350,11 +374,14 @@
 				9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */,
 				F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */,
 				F734F1812CD4CC5B00108CCC /* BdayGift.swift in Sources */,
+				9368788B2CDC5A5B0063D4F7 /* CardListView.swift in Sources */,
 				9EF7D56D2CC146D4003A3B79 /* LocalNotificationManager.swift in Sources */,
 				F7386FC02CC100AC00C38E73 /* SaveBdayView.swift in Sources */,
 				930885532CD8AA6000E052E8 /* SaveGiftView.swift in Sources */,
 				F7386FBA2CC0F90C00C38E73 /* Component.swift in Sources */,
 				896A53532CC6087D004631A9 /* BdayTextView.swift in Sources */,
+				936878872CDC59480063D4F7 /* HeaderView.swift in Sources */,
+				936878892CDC59AC0063D4F7 /* CalendarGridView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +515,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DoBday/Preview Content\"";
-				DEVELOPMENT_TEAM = 56D5DRN4CX;
+				DEVELOPMENT_TEAM = 223UXY9RY6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DoBday/Info.plist;
@@ -519,7 +546,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DoBday/Preview Content\"";
-				DEVELOPMENT_TEAM = 56D5DRN4CX;
+				DEVELOPMENT_TEAM = 223UXY9RY6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DoBday/Info.plist;
