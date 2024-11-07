@@ -50,6 +50,9 @@
 		F7386FC02CC100AC00C38E73 /* SaveBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */; };
 		F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */; };
 		F767F2A82CD9C7CE001BDDC0 /* SetTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767F2A72CD9C7CE001BDDC0 /* SetTagView.swift */; };
+		F7AEA0A42CDCBF0700D57503 /* IsLunarDateTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEA0A32CDCBF0700D57503 /* IsLunarDateTextView.swift */; };
+		F7AEA0A72CDCBF4100D57503 /* ButtonOfShowingSheetForSettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEA0A62CDCBF4100D57503 /* ButtonOfShowingSheetForSettingDateView.swift */; };
+		F7AEA0A92CDCBF4D00D57503 /* DatePickerOfSetDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEA0A82CDCBF4D00D57503 /* DatePickerOfSetDateView.swift */; };
 		F7E8AFCB2CDA11F1007CD507 /* PersonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E8AFCA2CDA11F1007CD507 /* PersonListView.swift */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +101,9 @@
 		F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveBdayView.swift; sourceTree = "<group>"; };
 		F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+ImagePicker.swift"; sourceTree = "<group>"; };
 		F767F2A72CD9C7CE001BDDC0 /* SetTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTagView.swift; sourceTree = "<group>"; };
+		F7AEA0A32CDCBF0700D57503 /* IsLunarDateTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsLunarDateTextView.swift; sourceTree = "<group>"; };
+		F7AEA0A62CDCBF4100D57503 /* ButtonOfShowingSheetForSettingDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonOfShowingSheetForSettingDateView.swift; sourceTree = "<group>"; };
+		F7AEA0A82CDCBF4D00D57503 /* DatePickerOfSetDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerOfSetDateView.swift; sourceTree = "<group>"; };
 		F7E8AFCA2CDA11F1007CD507 /* PersonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,6 +220,7 @@
 		F7386FB02CC0F87100C38E73 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F7AEA0A52CDCBF1700D57503 /* SetDateView */,
 				9EF7D56C2CC146D4003A3B79 /* LocalNotificationManager.swift */,
 				F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */,
 				9ED52C072CD8ED7400FC5D8B /* UpComingBdayCardView.swift */,
@@ -221,7 +228,6 @@
 				936878852CDC591E0063D4F7 /* CalendarView */,
 				F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */,
 				F767F2A72CD9C7CE001BDDC0 /* SetTagView.swift */,
-				F734F18E2CD78ACF00108CCC /* SetDateView.swift */,
 				F734F18C2CD76C2600108CCC /* PersonDetailView.swift */,
 				930885522CD8AA6000E052E8 /* SaveGiftView.swift */,
 				932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */,
@@ -266,6 +272,17 @@
 				F7386FA42CC0F83900C38E73 /* Assets.xcassets */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		F7AEA0A52CDCBF1700D57503 /* SetDateView */ = {
+			isa = PBXGroup;
+			children = (
+				F734F18E2CD78ACF00108CCC /* SetDateView.swift */,
+				F7AEA0A32CDCBF0700D57503 /* IsLunarDateTextView.swift */,
+				F7AEA0A82CDCBF4D00D57503 /* DatePickerOfSetDateView.swift */,
+				F7AEA0A62CDCBF4100D57503 /* ButtonOfShowingSheetForSettingDateView.swift */,
+			);
+			path = SetDateView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,11 +368,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7AEA0A92CDCBF4D00D57503 /* DatePickerOfSetDateView.swift in Sources */,
 				F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */,
 				F734F18F2CD78ACF00108CCC /* SetDateView.swift in Sources */,
 				F734F18B2CD699DB00108CCC /* Helper+Keyboard.swift in Sources */,
 				F734F18D2CD76C2600108CCC /* PersonDetailView.swift in Sources */,
 				93ED0E922CC10185003250A9 /* MockData.swift in Sources */,
+				F7AEA0A72CDCBF4100D57503 /* ButtonOfShowingSheetForSettingDateView.swift in Sources */,
 				F7E8AFCB2CDA11F1007CD507 /* PersonListView.swift in Sources */,
 				F734F1852CD4CD1300108CCC /* BDayAndGiftCombination.swift in Sources */,
 				9E7F90822CC89894008F0F23 /* LunarToSolarConversionView.swift in Sources */,
@@ -367,6 +386,7 @@
 				F7386FB62CC0F8F900C38E73 /* Bday.swift in Sources */,
 				F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */,
 				9368788E2CDC5B040063D4F7 /* Extension+Date.swift in Sources */,
+				F7AEA0A42CDCBF0700D57503 /* IsLunarDateTextView.swift in Sources */,
 				F767F2A82CD9C7CE001BDDC0 /* SetTagView.swift in Sources */,
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
 				932F21212CD7D68F00BF696C /* GiveAndTakeView.swift in Sources */,
