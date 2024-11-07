@@ -136,7 +136,7 @@ struct PersonDetailView: View {
 
             //MARK: 주고받은 선물 리스트
             NavigationLink {
-                GiveAndTakeView()
+                GiveAndTakeView(name: name)
             } label: {
                 HStack {
                     Text("주고받은 선물 리스트")

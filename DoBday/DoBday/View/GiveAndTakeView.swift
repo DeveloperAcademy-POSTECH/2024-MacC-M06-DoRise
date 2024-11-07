@@ -10,93 +10,107 @@ import SwiftData
 
 struct GiveAndTakeView: View {
     
+    var name: String
+    
     @Environment(\.modelContext) var context
     @Query var bdayGifts: [BdayGift]
     @State private var selectedGifts: Set<UUID> = [] // 선택된 선물의 UUID를 저장하는 Set임.
     
     
     var body: some View {
-            // 선택 및 삭제 버튼 영역.
-            VStack {
-                HStack {
-                    // 전체 선택/해제 버튼
-                    Button(action: toggleSelectAll) {
-                        HStack {
-                            Image(systemName: selectedGifts.count == bdayGifts.count ? "checkmark.circle.fill" : "circle")
-                                .foregroundColor(.gray)
-                            Text("전체선택(\(selectedGifts.count)/\(bdayGifts.count))")
-                                .font(.bday_footEmphasized)
-                                .foregroundColor(.gray)
-                        }
-                    }
-                    Spacer()
-                    // 선택된 항목 삭제 버튼
-                    Button(action: deleteSelectedGifts) {
-                        Text(selectedGifts.count == bdayGifts.count ? "전체삭제" : "선택삭제") // 모든 항목 선택 시 텍스트가 '전체삭제'로 변경됨.
-                            .font(.bday_footEmphasized)
-                            .font(.bday_footEmphasized)
-                            .foregroundColor(selectedGifts.count == 0 ? .gray : .black)
-                    }
-                }
+        // 선택 및 삭제 버튼 영역.
+        VStack {
+            
+            GiftDeleteSection(bdayGifts: bdayGifts, selectedGifts: $selectedGifts)
+            
+            Divider()
                 .padding(.horizontal)
-                .padding(.top, 8)
+        }
+        
+        ScrollView{
+            ZStack {
+                GiftTimeLineSection()
                 
-                Divider()
-                    .padding(.horizontal)
+                VStack(alignment: .leading) {
+                    // TODO: 선물을 받는 일자에 따라 연도가 달라지게 수정해야 함
+                    Text("2024")
+                        .font(.bday_t1Emphasized)
+                        .padding(.leading, 32)
+                    
+                    GiftCardForEachView(bdayGifts: bdayGifts, selectedGifts: $selectedGifts)
+                    
+                }
+                Spacer()
             }
             
-            ScrollView{
-                ZStack {
-                    // 타임라인 효과를 위한 세로 선
-                    HStack {
-                        Rectangle()
-                            .frame(width: 1)
-                            .frame(maxHeight: .infinity)
-                            .padding(.leading, 12)
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }
-                    VStack(alignment: .leading) {
-                        Text("2024") // 연도는 일단 2024만
-                            .font(.bday_t1Emphasized)
-                            .padding(.leading, 32)
-                        
-                        VStack(alignment: .leading) {
-                            ForEach(bdayGifts, id: \.id) { gift in
-                                HStack {
-                                    // 개별 선택 체크박스
-                                    Button(action: {
-                                        toggleSelection(for: gift.id)
-                                    }) {
-                                        CustomCheckBox(isChecked: selectedGifts.contains(gift.id), color: gift.isToBeGiven ? .green : .blue)
-                                        
-                                    }.padding(.leading, 3)
-                                    // 선물 카드 뷰
-                                    GiftCardView(sampleGift: gift).padding(.horizontal, 8)
-                                }
-                            }
-                        }
-                        
-                        
-                    }
-                    Spacer()
-                }
-                
-            }
-            .padding()
-            .navigationTitle("마일스와의 선물기록")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink {
-                        SaveGiftView()
-                    } label: {
-                        Image(systemName: "plus")
-                    }
+        }
+        .padding()
+        .navigationTitle("\(name)와의 선물기록")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    SaveGiftView()
+                } label: {
+                    Image(systemName: "plus")
                 }
             }
         }
-    }   // NaviStack 나중에 지우세요
+    }
+}
+
+
+// MARK: - GiftDeleteSection
+struct GiftDeleteSection: View {
+    @Environment(\.modelContext) var context
+    var bdayGifts: [BdayGift]
+    @Binding var selectedGifts: Set<UUID>
+    
+    var body: some View {
+        HStack {
+            // 전체 선택/해제 버튼
+            Button(action: toggleSelectAll) {
+                HStack {
+                    Image(systemName: selectedGifts.count == bdayGifts.count ? "checkmark.circle.fill" : "circle")
+                        .foregroundColor(.gray)
+                    Text("전체선택(\(selectedGifts.count)/\(bdayGifts.count))")
+                        .font(.bday_footEmphasized)
+                        .foregroundColor(.gray)
+                }
+            }
+            
+            Spacer()
+            
+            // 선택된 항목 삭제 버튼
+            Button(action: deleteSelectedGifts) {
+                Text(selectedGifts.count == bdayGifts.count ? "전체삭제" : "선택삭제") // 모든 항목 선택 시 텍스트가 '전체삭제'로 변경됨.
+                    .font(.bday_footEmphasized)
+                    .font(.bday_footEmphasized)
+                    .foregroundColor(selectedGifts.count == 0 ? .gray : .black)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.top, 8)
+        
+    }
+}
+
+// MARK: - GiftTimeLineSection
+struct GiftTimeLineSection: View{
+    var body: some View {
+        // 타임라인 효과를 위한 세로 선
+        HStack {
+            Rectangle()
+                .frame(width: 1)
+                .frame(maxHeight: .infinity)
+                .padding(.leading, 12)
+                .foregroundColor(.gray)
+            Spacer()
+        }
+    }
+}
+
+
 
 
 // MARK: - GiftCardView
@@ -198,6 +212,31 @@ struct GiveOrTakeTag: View {
 }
 
 
+// MARK: - GiftCardForEachView
+struct GiftCardForEachView: View {
+    var bdayGifts: [BdayGift]
+    @Binding var selectedGifts: Set<UUID>
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            ForEach(bdayGifts, id: \.id) { gift in
+                HStack {
+                    // 개별 선택 체크박스
+                    Button(action: {
+                        selectedGifts.toggleSelection(for: gift.id)
+                    }) {
+                        CustomCheckBox(isChecked: selectedGifts.contains(gift.id), color: gift.isToBeGiven ? .green : .blue)
+                        
+                    }.padding(.leading, 3)
+                    // 선물 카드 뷰
+                    GiftCardView(sampleGift: gift).padding(.horizontal, 8)
+                }
+            }
+        }
+    }
+}
+
+
 // MARK: - ViewModifier extension
 extension View {
     
@@ -223,22 +262,14 @@ extension Image {
 }
 
 // MARK: - 삭제기능 extension
-extension GiveAndTakeView {
+extension GiftDeleteSection {
+    
     /// 전체 선택/해제 기능
     func toggleSelectAll() {
         if selectedGifts.count == bdayGifts.count {
             selectedGifts.removeAll()
         } else {
             selectedGifts = Set(bdayGifts.map { $0.id })
-        }
-    }
-    
-    /// 개별 선택/해제 기능
-    func toggleSelection(for id: UUID) {
-        if selectedGifts.contains(id) {
-            selectedGifts.remove(id)
-        } else {
-            selectedGifts.insert(id)
         }
     }
     
@@ -255,10 +286,23 @@ extension GiveAndTakeView {
 }
 
 
+// Set에 대한 extension으로 toggleSelection 메서드 추가
+extension Set where Element: Equatable {
+    /// 주어진 요소가 포함되어 있으면 제거하고, 포함되어 있지 않으면 추가하는 기능
+    mutating func toggleSelection(for element: Element) {
+        if self.contains(element) {
+            self.remove(element)
+        } else {
+            self.insert(element)
+        }
+    }
+}
+
+
 
 #Preview {
     NavigationStack {
-        GiveAndTakeView()
+        GiveAndTakeView(name: "마일스")
     }
     .modelContainer(for: BdayGift.self)
 }
