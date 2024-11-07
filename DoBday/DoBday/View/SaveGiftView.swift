@@ -13,6 +13,7 @@ struct SaveGiftView: View {
     
     // MARK: - Property
     @Environment(\.modelContext) var context
+    @Environment(\.dismiss) var dismiss
     
     @State var giftStatus: GiftStatusType = .receivedGift
     
@@ -74,7 +75,7 @@ struct SaveGiftView: View {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
                             addBdayGift()
-                            print(giftName)
+                            dismiss()
                         } label: {
                             Text("추가")
                         }
