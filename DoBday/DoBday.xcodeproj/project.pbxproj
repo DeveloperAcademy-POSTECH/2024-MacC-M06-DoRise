@@ -16,6 +16,8 @@
 		936878892CDC59AC0063D4F7 /* CalendarGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878882CDC59AC0063D4F7 /* CalendarGridView.swift */; };
 		9368788B2CDC5A5B0063D4F7 /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9368788A2CDC5A5B0063D4F7 /* CardListView.swift */; };
 		9368788E2CDC5B040063D4F7 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9368788D2CDC5B000063D4F7 /* Extension+Date.swift */; };
+		936878902CDCA6330063D4F7 /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9368788F2CDCA6330063D4F7 /* Extension+View.swift */; };
+		936878922CDCB03E0063D4F7 /* GiftStatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878912CDCB03E0063D4F7 /* GiftStatusButton.swift */; };
 		93ED0E922CC10185003250A9 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED0E912CC10185003250A9 /* MockData.swift */; };
 		9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */; };
 		9E66AF5A2CC13B08001323D9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF572CC13B08001323D9 /* Pretendard-SemiBold.otf */; };
@@ -44,7 +46,7 @@
 		F7386FA82CC0F83900C38E73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7386FA72CC0F83900C38E73 /* Preview Assets.xcassets */; };
 		F7386FB62CC0F8F900C38E73 /* Bday.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FB52CC0F8F900C38E73 /* Bday.swift */; };
 		F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FB72CC0F90000C38E73 /* ViewModel.swift */; };
-		F7386FBA2CC0F90C00C38E73 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FB92CC0F90C00C38E73 /* Component.swift */; };
+		F7386FBA2CC0F90C00C38E73 /* LabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FB92CC0F90C00C38E73 /* LabeledTextField.swift */; };
 		F7386FBC2CC0F91F00C38E73 /* Helper+Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBB2CC0F91F00C38E73 /* Helper+Fonts.swift */; };
 		F7386FBE2CC1009D00C38E73 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBD2CC1009D00C38E73 /* CalendarView.swift */; };
 		F7386FC02CC100AC00C38E73 /* SaveBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */; };
@@ -63,6 +65,8 @@
 		936878882CDC59AC0063D4F7 /* CalendarGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarGridView.swift; sourceTree = "<group>"; };
 		9368788A2CDC5A5B0063D4F7 /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
 		9368788D2CDC5B000063D4F7 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
+		9368788F2CDCA6330063D4F7 /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
+		936878912CDCB03E0063D4F7 /* GiftStatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftStatusButton.swift; sourceTree = "<group>"; };
 		93ED0E912CC10185003250A9 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Color.swift"; sourceTree = "<group>"; };
 		9E66AF4F2CC13A93001323D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -92,7 +96,7 @@
 		F7386FA72CC0F83900C38E73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F7386FB52CC0F8F900C38E73 /* Bday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bday.swift; sourceTree = "<group>"; };
 		F7386FB72CC0F90000C38E73 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		F7386FB92CC0F90C00C38E73 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		F7386FB92CC0F90C00C38E73 /* LabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledTextField.swift; sourceTree = "<group>"; };
 		F7386FBB2CC0F91F00C38E73 /* Helper+Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Fonts.swift"; sourceTree = "<group>"; };
 		F7386FBD2CC1009D00C38E73 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveBdayView.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				9368788D2CDC5B000063D4F7 /* Extension+Date.swift */,
+				9368788F2CDCA6330063D4F7 /* Extension+View.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -168,12 +173,12 @@
 		F7386F9F2CC0F83700C38E73 /* DoBday */ = {
 			isa = PBXGroup;
 			children = (
-				9368788C2CDC5AF80063D4F7 /* Extension */,
 				9E66AF4F2CC13A93001323D9 /* Info.plist */,
 				F7386FAE2CC0F85D00C38E73 /* App */,
 				F7386FAF2CC0F86800C38E73 /* Model */,
 				F7386FB12CC0F87C00C38E73 /* VIewModel */,
 				F7386FB02CC0F87100C38E73 /* View */,
+				9368788C2CDC5AF80063D4F7 /* Extension */,
 				F7386FB22CC0F88600C38E73 /* Helper */,
 				F7386FB42CC0F8AB00C38E73 /* Resource */,
 				F7386FA62CC0F83900C38E73 /* Preview Content */,
@@ -254,7 +259,8 @@
 		F7386FB32CC0F89600C38E73 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				F7386FB92CC0F90C00C38E73 /* Component.swift */,
+				F7386FB92CC0F90C00C38E73 /* LabeledTextField.swift */,
+				936878912CDCB03E0063D4F7 /* GiftStatusButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -353,6 +359,7 @@
 			files = (
 				F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */,
 				F734F18F2CD78ACF00108CCC /* SetDateView.swift in Sources */,
+				936878922CDCB03E0063D4F7 /* GiftStatusButton.swift in Sources */,
 				F734F18B2CD699DB00108CCC /* Helper+Keyboard.swift in Sources */,
 				F734F18D2CD76C2600108CCC /* PersonDetailView.swift in Sources */,
 				93ED0E922CC10185003250A9 /* MockData.swift in Sources */,
@@ -369,6 +376,7 @@
 				9368788E2CDC5B040063D4F7 /* Extension+Date.swift in Sources */,
 				F767F2A82CD9C7CE001BDDC0 /* SetTagView.swift in Sources */,
 				F7386FB82CC0F90000C38E73 /* ViewModel.swift in Sources */,
+				936878902CDCA6330063D4F7 /* Extension+View.swift in Sources */,
 				932F21212CD7D68F00BF696C /* GiveAndTakeView.swift in Sources */,
 				936878822CD98F2F0063D4F7 /* GiftView.swift in Sources */,
 				9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */,
@@ -378,7 +386,7 @@
 				9EF7D56D2CC146D4003A3B79 /* LocalNotificationManager.swift in Sources */,
 				F7386FC02CC100AC00C38E73 /* SaveBdayView.swift in Sources */,
 				930885532CD8AA6000E052E8 /* SaveGiftView.swift in Sources */,
-				F7386FBA2CC0F90C00C38E73 /* Component.swift in Sources */,
+				F7386FBA2CC0F90C00C38E73 /* LabeledTextField.swift in Sources */,
 				896A53532CC6087D004631A9 /* BdayTextView.swift in Sources */,
 				936878872CDC59480063D4F7 /* HeaderView.swift in Sources */,
 				936878892CDC59AC0063D4F7 /* CalendarGridView.swift in Sources */,

@@ -13,7 +13,7 @@ struct SaveGiftView: View {
     
     // MARK: - Property
     @Environment(\.modelContext) var context
-    @State private var selectedItem: PhotosPickerItem?
+    
     @State var giftStatus: GiftStatusType = .receivedGift
     
     @Namespace var bottomID
@@ -48,65 +48,17 @@ struct SaveGiftView: View {
             ScrollView {
                 VStack {
                     
-                    if let imageData = giftImage, let uiImage = UIImage(data: imageData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 142, height: 171) // 원하는 크기로 조정
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                    } else {
-                        PhotosPicker(selection: $selectedItem, matching: .images) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .frame(width: 142, height: 171)
-                                    .foregroundStyle(.gray.opacity(0.2))
-                                
-                                Image(systemName: "photo.badge.plus")
-                                    .font(.largeTitle)
-                                    .foregroundStyle(.gray)
-                            }
-                        }
-                        .onChange(of: selectedItem) { oldItem, newItem in
-                            Task {
-                                if let data = try? await newItem?.loadTransferable(type: Data.self) {
-                                    giftImage = data
-                                }
-                            }
-                        }
-                    }
+                    GiftImagePicker(giftImage: $giftImage)
                     
-                    HStack {
-                        makeIsToBeGivenButton(text: "받은 선물", status: .receivedGift)
-                        makeIsToBeGivenButton(text: "준 선물", status: .given)
-                    }
-                    .padding(.bottom)
-                    
-                    
+                    GiftStatusSelectionSection(giftStatus: $giftStatus)
+                                        
                     VStack(alignment: .leading) {
-                        makeTextAndField(text: "선물 이름", textField: $giftName)
-                            .focused($isFocused)
-                            .padding(.bottom, 16)
+                        GiftNameSection(giftName: $giftName, isFocused: $isFocused)
                         
-                        makeTextAndField(text: "가격", textField: Binding(
-                            get: { giftPrice ?? "" },
-                            set: { giftPrice = $0.isEmpty ? nil : $0 }
-                        ))
-                        .focused($isFocused)
-                        .padding(.bottom, 16)
+                        GiftPriceSection(giftPrice: $giftPrice, isFocused: $isFocused)
                         
-                        
-                        Text("메모")
-                            .font(.bday_bodyEmphasized)
-                        TextEditor(text: Binding(
-                            get: { memo ?? "" },
-                            set: { memo = $0.isEmpty ? nil : $0 }
-                        ))
-                        .focused($isFocused)
-                        .scrollContentBackground(.hidden)
-                        .padding()
-                        .background(.gray.opacity(0.2))
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .id(bottomID)
+                        GiftMemoSection(memo: $memo, isFocused: $isFocused)
+                            .id(bottomID)
                     }
                     .onTapGesture {
                         withAnimation {
@@ -139,6 +91,7 @@ struct SaveGiftView: View {
                     }
                 }
             }
+            
             .onTapGesture {
                 hideKeyboard()
             }
@@ -148,35 +101,120 @@ struct SaveGiftView: View {
 }
 
 
+// MARK: - GiftImagePicker
+struct GiftImagePicker: View {
+    
+    @State var selectedItem: PhotosPickerItem?
+    @Binding var giftImage: Data?
+    
+    var body: some View {
+        
+        if let imageData = giftImage, let uiImage = UIImage(data: imageData) {
+            Image(uiImage: uiImage)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 142, height: 171) // 원하는 크기로 조정
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+        } else {
+            PhotosPicker(selection: $selectedItem, matching: .images) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12)
+                        .frame(width: 142, height: 171)
+                        .foregroundStyle(.gray.opacity(0.2))
+                    
+                    Image(systemName: "photo.badge.plus")
+                        .font(.largeTitle)
+                        .foregroundStyle(.gray)
+                }
+            }
+            .onChange(of: selectedItem) { oldItem, newItem in
+                Task {
+                    if let data = try? await newItem?.loadTransferable(type: Data.self) {
+                        giftImage = data
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// MARK: - GiftStatusSelectionSection
+struct GiftStatusSelectionSection: View {
+    
+    @Binding var giftStatus: GiftStatusType
+    
+    var body: some View {
+        HStack {
+            GiftStatusButton(text: "받은 선물", status: .receivedGift, currentStatus: $giftStatus)
+            GiftStatusButton(text: "준 선물", status: .given, currentStatus: $giftStatus)
+        }
+        .padding(.bottom)
+
+    }
+    
+}
+
+
+// MARK: - GiftNameSection
+struct GiftNameSection: View {
+    @Binding var giftName: String
+    var isFocused: FocusState<Bool>.Binding
+    
+    var body: some View {
+        LabeledTextField(text: "선물 이름", textField: $giftName)
+            .focused(isFocused)
+            .padding(.bottom, 16)
+
+    }
+}
+
+
+// MARK: - GiftPriceSection
+struct GiftPriceSection: View {
+    
+    @Binding var giftPrice: String?
+    var isFocused: FocusState<Bool>.Binding
+    
+    var body: some View {
+        LabeledTextField(text: "가격", textField: Binding(
+            get: { giftPrice ?? "" },
+            set: { giftPrice = $0.isEmpty ? nil : $0 }
+        ))
+        .focused(isFocused)
+        .padding(.bottom, 16)
+
+    }
+}
+
+// MARK: - GiftMemoSection
+struct GiftMemoSection: View {
+    @Binding var memo: String?
+    var isFocused: FocusState<Bool>.Binding
+    
+    var body: some View {
+        Text("메모")
+            .font(.bday_bodyEmphasized)
+        TextEditor(text: Binding(
+            get: { memo ?? "" },
+            set: { memo = $0.isEmpty ? nil : $0 }
+        ))
+        .focused(isFocused)
+        .scrollContentBackground(.hidden)
+        .padding()
+        .background(.gray.opacity(0.2))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+}
+
+
+
+
+
 
 
 // MARK: - extension SaveGiftView
 extension SaveGiftView {
-    /// Text와 TextField를 생성하는 함수입니다.
-    func makeTextAndField(text: String, textField: Binding<String>) -> some View {
-        VStack(alignment: .leading) {
-            Text(text)
-                .font(.bday_bodyEmphasized)
-            TextField("", text: textField)
-                .padding()
-                .background(.gray.opacity(0.2))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-        }
-    }
-    
-    /// isToBeGivenButton을 생성하는 함수입니다.
-    func makeIsToBeGivenButton(text: String, status: GiftStatusType) -> some View {
-        Text(text)
-            .font(giftStatus == status ? .bday_headEmphasized : .bday_callRegular)
-            .foregroundStyle(giftStatus == status ? Color.white : .blue)
-            .padding(.vertical, 8)
-            .frame(width: 80)
-            .background(giftStatus == status ? Color.blue : .blue.opacity(0.2))
-            .clipShape(.capsule)
-            .onTapGesture {
-                giftStatus = status
-            }
-    }
     
     /// bdayGift를 수정하거나 저장할 수 있는 함수입니다.
     func addBdayGift() {
@@ -218,11 +256,7 @@ extension SaveGiftView {
 }
 
 
-extension View {
-    func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
+
 
 
 #Preview {
