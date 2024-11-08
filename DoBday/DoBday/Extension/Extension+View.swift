@@ -14,4 +14,15 @@ extension View {
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
+    
+    /// GiveOrTakeTag의 Text에 쓰이는 ViewModifier 입니다.
+    func giveOrTakeTagTextViewModifier(_ color: Color) -> some View { self
+        .font(.bday_c2Emphasized)
+        .foregroundStyle(.white)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 4)
+        .background(color)
+        .clipShape(.capsule)
+    }
+
 }

@@ -18,6 +18,18 @@
 		9368788E2CDC5B040063D4F7 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9368788D2CDC5B000063D4F7 /* Extension+Date.swift */; };
 		936878902CDCA6330063D4F7 /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9368788F2CDCA6330063D4F7 /* Extension+View.swift */; };
 		936878922CDCB03E0063D4F7 /* GiftStatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878912CDCB03E0063D4F7 /* GiftStatusButton.swift */; };
+		936878952CDD8B010063D4F7 /* GiftImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878942CDD8B010063D4F7 /* GiftImagePicker.swift */; };
+		936878972CDD8B1F0063D4F7 /* GiftStatusSelectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878962CDD8B1F0063D4F7 /* GiftStatusSelectionSection.swift */; };
+		936878992CDD8B2E0063D4F7 /* GiftNameSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878982CDD8B2E0063D4F7 /* GiftNameSection.swift */; };
+		9368789B2CDD8B3B0063D4F7 /* GiftPriceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9368789A2CDD8B3B0063D4F7 /* GiftPriceSection.swift */; };
+		9368789D2CDD8B490063D4F7 /* GiftMemoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9368789C2CDD8B490063D4F7 /* GiftMemoSection.swift */; };
+		936878A02CDD8B880063D4F7 /* GiftDeleteSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9368789F2CDD8B880063D4F7 /* GiftDeleteSection.swift */; };
+		936878A22CDD8B950063D4F7 /* GiftTimeLineSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878A12CDD8B950063D4F7 /* GiftTimeLineSection.swift */; };
+		936878A42CDD8BA70063D4F7 /* GiftCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878A32CDD8BA70063D4F7 /* GiftCardView.swift */; };
+		936878A62CDD8BB50063D4F7 /* CustomCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878A52CDD8BB50063D4F7 /* CustomCheckBox.swift */; };
+		936878A82CDD8BC30063D4F7 /* GiveOrTakeTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878A72CDD8BC30063D4F7 /* GiveOrTakeTag.swift */; };
+		936878AA2CDD8BD00063D4F7 /* GiftCardForEachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878A92CDD8BD00063D4F7 /* GiftCardForEachView.swift */; };
+		936878AC2CDD8E280063D4F7 /* Extension+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878AB2CDD8E280063D4F7 /* Extension+Image.swift */; };
 		93ED0E922CC10185003250A9 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED0E912CC10185003250A9 /* MockData.swift */; };
 		9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */; };
 		9E66AF5A2CC13B08001323D9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF572CC13B08001323D9 /* Pretendard-SemiBold.otf */; };
@@ -67,6 +79,18 @@
 		9368788D2CDC5B000063D4F7 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		9368788F2CDCA6330063D4F7 /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
 		936878912CDCB03E0063D4F7 /* GiftStatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftStatusButton.swift; sourceTree = "<group>"; };
+		936878942CDD8B010063D4F7 /* GiftImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftImagePicker.swift; sourceTree = "<group>"; };
+		936878962CDD8B1F0063D4F7 /* GiftStatusSelectionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftStatusSelectionSection.swift; sourceTree = "<group>"; };
+		936878982CDD8B2E0063D4F7 /* GiftNameSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftNameSection.swift; sourceTree = "<group>"; };
+		9368789A2CDD8B3B0063D4F7 /* GiftPriceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftPriceSection.swift; sourceTree = "<group>"; };
+		9368789C2CDD8B490063D4F7 /* GiftMemoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftMemoSection.swift; sourceTree = "<group>"; };
+		9368789F2CDD8B880063D4F7 /* GiftDeleteSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftDeleteSection.swift; sourceTree = "<group>"; };
+		936878A12CDD8B950063D4F7 /* GiftTimeLineSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftTimeLineSection.swift; sourceTree = "<group>"; };
+		936878A32CDD8BA70063D4F7 /* GiftCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardView.swift; sourceTree = "<group>"; };
+		936878A52CDD8BB50063D4F7 /* CustomCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCheckBox.swift; sourceTree = "<group>"; };
+		936878A72CDD8BC30063D4F7 /* GiveOrTakeTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveOrTakeTag.swift; sourceTree = "<group>"; };
+		936878A92CDD8BD00063D4F7 /* GiftCardForEachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftCardForEachView.swift; sourceTree = "<group>"; };
+		936878AB2CDD8E280063D4F7 /* Extension+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Image.swift"; sourceTree = "<group>"; };
 		93ED0E912CC10185003250A9 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Color.swift"; sourceTree = "<group>"; };
 		9E66AF4F2CC13A93001323D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -133,8 +157,36 @@
 			children = (
 				9368788D2CDC5B000063D4F7 /* Extension+Date.swift */,
 				9368788F2CDCA6330063D4F7 /* Extension+View.swift */,
+				936878AB2CDD8E280063D4F7 /* Extension+Image.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		936878932CDD8AEC0063D4F7 /* SaveGiftView */ = {
+			isa = PBXGroup;
+			children = (
+				930885522CD8AA6000E052E8 /* SaveGiftView.swift */,
+				9368789C2CDD8B490063D4F7 /* GiftMemoSection.swift */,
+				9368789A2CDD8B3B0063D4F7 /* GiftPriceSection.swift */,
+				936878982CDD8B2E0063D4F7 /* GiftNameSection.swift */,
+				936878962CDD8B1F0063D4F7 /* GiftStatusSelectionSection.swift */,
+				936878942CDD8B010063D4F7 /* GiftImagePicker.swift */,
+			);
+			path = SaveGiftView;
+			sourceTree = "<group>";
+		};
+		9368789E2CDD8B750063D4F7 /* GiveAndTakeView */ = {
+			isa = PBXGroup;
+			children = (
+				932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */,
+				936878A92CDD8BD00063D4F7 /* GiftCardForEachView.swift */,
+				936878A72CDD8BC30063D4F7 /* GiveOrTakeTag.swift */,
+				936878A52CDD8BB50063D4F7 /* CustomCheckBox.swift */,
+				936878A32CDD8BA70063D4F7 /* GiftCardView.swift */,
+				936878A12CDD8B950063D4F7 /* GiftTimeLineSection.swift */,
+				9368789F2CDD8B880063D4F7 /* GiftDeleteSection.swift */,
+			);
+			path = GiveAndTakeView;
 			sourceTree = "<group>";
 		};
 		9E66AF592CC13B08001323D9 /* Fonts */ = {
@@ -228,8 +280,8 @@
 				F767F2A72CD9C7CE001BDDC0 /* SetTagView.swift */,
 				F734F18E2CD78ACF00108CCC /* SetDateView.swift */,
 				F734F18C2CD76C2600108CCC /* PersonDetailView.swift */,
-				930885522CD8AA6000E052E8 /* SaveGiftView.swift */,
-				932F21202CD7D68F00BF696C /* GiveAndTakeView.swift */,
+				936878932CDD8AEC0063D4F7 /* SaveGiftView */,
+				9368789E2CDD8B750063D4F7 /* GiveAndTakeView */,
 				936878812CD98F2F0063D4F7 /* GiftView.swift */,
 				F7E8AFCA2CDA11F1007CD507 /* PersonListView.swift */,
 				F7386FB32CC0F89600C38E73 /* Component */,
@@ -362,16 +414,25 @@
 				936878922CDCB03E0063D4F7 /* GiftStatusButton.swift in Sources */,
 				F734F18B2CD699DB00108CCC /* Helper+Keyboard.swift in Sources */,
 				F734F18D2CD76C2600108CCC /* PersonDetailView.swift in Sources */,
+				936878A82CDD8BC30063D4F7 /* GiveOrTakeTag.swift in Sources */,
 				93ED0E922CC10185003250A9 /* MockData.swift in Sources */,
 				F7E8AFCB2CDA11F1007CD507 /* PersonListView.swift in Sources */,
+				9368789D2CDD8B490063D4F7 /* GiftMemoSection.swift in Sources */,
+				936878952CDD8B010063D4F7 /* GiftImagePicker.swift in Sources */,
 				F734F1852CD4CD1300108CCC /* BDayAndGiftCombination.swift in Sources */,
+				936878A22CDD8B950063D4F7 /* GiftTimeLineSection.swift in Sources */,
 				9E7F90822CC89894008F0F23 /* LunarToSolarConversionView.swift in Sources */,
+				936878972CDD8B1F0063D4F7 /* GiftStatusSelectionSection.swift in Sources */,
 				9ED52C082CD8ED7400FC5D8B /* UpComingBdayCardView.swift in Sources */,
+				9368789B2CDD8B3B0063D4F7 /* GiftPriceSection.swift in Sources */,
 				F7386FBC2CC0F91F00C38E73 /* Helper+Fonts.swift in Sources */,
 				F734F1832CD4CCBD00108CCC /* BdayTag.swift in Sources */,
+				936878A62CDD8BB50063D4F7 /* CustomCheckBox.swift in Sources */,
+				936878AC2CDD8E280063D4F7 /* Extension+Image.swift in Sources */,
 				F7386FBE2CC1009D00C38E73 /* CalendarView.swift in Sources */,
 				F734F1872CD4FF3800108CCC /* GiftStatus.swift in Sources */,
 				F7386FB62CC0F8F900C38E73 /* Bday.swift in Sources */,
+				936878A42CDD8BA70063D4F7 /* GiftCardView.swift in Sources */,
 				F7386FA32CC0F83700C38E73 /* UpComingBdayView.swift in Sources */,
 				9368788E2CDC5B040063D4F7 /* Extension+Date.swift in Sources */,
 				F767F2A82CD9C7CE001BDDC0 /* SetTagView.swift in Sources */,
@@ -379,11 +440,14 @@
 				936878902CDCA6330063D4F7 /* Extension+View.swift in Sources */,
 				932F21212CD7D68F00BF696C /* GiveAndTakeView.swift in Sources */,
 				936878822CD98F2F0063D4F7 /* GiftView.swift in Sources */,
+				936878992CDD8B2E0063D4F7 /* GiftNameSection.swift in Sources */,
 				9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */,
 				F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */,
 				F734F1812CD4CC5B00108CCC /* BdayGift.swift in Sources */,
 				9368788B2CDC5A5B0063D4F7 /* CardListView.swift in Sources */,
+				936878AA2CDD8BD00063D4F7 /* GiftCardForEachView.swift in Sources */,
 				9EF7D56D2CC146D4003A3B79 /* LocalNotificationManager.swift in Sources */,
+				936878A02CDD8B880063D4F7 /* GiftDeleteSection.swift in Sources */,
 				F7386FC02CC100AC00C38E73 /* SaveBdayView.swift in Sources */,
 				930885532CD8AA6000E052E8 /* SaveGiftView.swift in Sources */,
 				F7386FBA2CC0F90C00C38E73 /* LabeledTextField.swift in Sources */,
