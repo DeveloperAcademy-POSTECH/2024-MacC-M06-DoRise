@@ -7,11 +7,13 @@
 import SwiftUI
 
 struct ShowingPresentForGiveAndTakeView: View {
+    
+    var bday: Bday?
 
     var body: some View {
         //MARK: 주고받은 선물 리스트
         NavigationLink {
-            GiveAndTakeView()
+            GiveAndTakeView(name: bday!.name)
         } label: {
             HStack {
                 Text("주고받은 선물 리스트")
