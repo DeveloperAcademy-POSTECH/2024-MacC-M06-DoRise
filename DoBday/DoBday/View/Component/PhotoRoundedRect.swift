@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct PhotoPickerRoundedRect: View {
+struct PhotoRoundedRect: View {
     var imageData: Data?
     var alternativeImage: String
     var width: CGFloat
@@ -36,5 +36,5 @@ struct PhotoPickerRoundedRect: View {
 }
 
 #Preview {
-    PhotoPickerRoundedRect(alternativeImage: "starrynight", width: 64, height: 64)
+    PhotoRoundedRect(alternativeImage: "starrynight", width: 64, height: 64)
 }

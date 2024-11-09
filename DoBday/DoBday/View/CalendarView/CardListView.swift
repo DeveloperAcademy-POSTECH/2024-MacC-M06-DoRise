@@ -26,7 +26,7 @@ struct CardListView: View {
                     } label: {
                         HStack {
                             
-                            PhotoPickerCircle(profileImage: bday.profileImage, alternativeImage: "basicprofile")
+                            PhotoCircle(profileImage: bday.profileImage, alternativeImage: "basicprofile")
                             
                             VStack(alignment: .leading) {
                                 Text(bday.name)

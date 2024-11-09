@@ -43,7 +43,7 @@ struct GiftCardView: View {
                 
                 Spacer()
                 
-                PhotoPickerRoundedRect(imageData: sampleGift.giftImage, alternativeImage: "starrynight", width: 64, height: 64)
+                PhotoRoundedRect(imageData: sampleGift.giftImage, alternativeImage: "starrynight", width: 64, height: 64)
                 
                 // 오른쪽 화살표 아이콘
                 Image(systemName: "chevron.right")

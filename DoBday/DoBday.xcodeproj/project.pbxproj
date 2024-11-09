@@ -30,8 +30,8 @@
 		936878AC2CDD8E280063D4F7 /* Extension+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878AB2CDD8E280063D4F7 /* Extension+Image.swift */; };
 		936878AE2CDDB22B0063D4F7 /* GiveAndTakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878AD2CDDB22B0063D4F7 /* GiveAndTakeView.swift */; };
 		936878B02CDDB24F0063D4F7 /* SaveGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878AF2CDDB24F0063D4F7 /* SaveGiftView.swift */; };
-		936878B22CDE09330063D4F7 /* PhotoPickerRoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878B12CDE09330063D4F7 /* PhotoPickerRoundedRect.swift */; };
-		93ACFFC42CDEEBE300FCF402 /* PhotoPickerCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACFFC32CDEEBE300FCF402 /* PhotoPickerCircle.swift */; };
+		936878B22CDE09330063D4F7 /* PhotoRoundedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936878B12CDE09330063D4F7 /* PhotoRoundedRect.swift */; };
+		93ACFFC42CDEEBE300FCF402 /* PhotoCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ACFFC32CDEEBE300FCF402 /* PhotoCircle.swift */; };
 		93ED0E922CC10185003250A9 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ED0E912CC10185003250A9 /* MockData.swift */; };
 		9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */; };
 		9E66AF5A2CC13B08001323D9 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E66AF572CC13B08001323D9 /* Pretendard-SemiBold.otf */; };
@@ -114,8 +114,8 @@
 		936878AB2CDD8E280063D4F7 /* Extension+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Image.swift"; sourceTree = "<group>"; };
 		936878AD2CDDB22B0063D4F7 /* GiveAndTakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiveAndTakeView.swift; sourceTree = "<group>"; };
 		936878AF2CDDB24F0063D4F7 /* SaveGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveGiftView.swift; sourceTree = "<group>"; };
-		936878B12CDE09330063D4F7 /* PhotoPickerRoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerRoundedRect.swift; sourceTree = "<group>"; };
-		93ACFFC32CDEEBE300FCF402 /* PhotoPickerCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerCircle.swift; sourceTree = "<group>"; };
+		936878B12CDE09330063D4F7 /* PhotoRoundedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRoundedRect.swift; sourceTree = "<group>"; };
+		93ACFFC32CDEEBE300FCF402 /* PhotoCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCircle.swift; sourceTree = "<group>"; };
 		93ED0E912CC10185003250A9 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		9E3DA4CA2CC12CB300909C85 /* Helper+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+Color.swift"; sourceTree = "<group>"; };
 		9E66AF4F2CC13A93001323D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -359,8 +359,8 @@
 			children = (
 				F7386FB92CC0F90C00C38E73 /* LabeledTextField.swift */,
 				936878912CDCB03E0063D4F7 /* GiftStatusButton.swift */,
-				936878B12CDE09330063D4F7 /* PhotoPickerRoundedRect.swift */,
-				93ACFFC32CDEEBE300FCF402 /* PhotoPickerCircle.swift */,
+				936878B12CDE09330063D4F7 /* PhotoRoundedRect.swift */,
+				93ACFFC32CDEEBE300FCF402 /* PhotoCircle.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -516,7 +516,7 @@
 				936878922CDCB03E0063D4F7 /* GiftStatusButton.swift in Sources */,
 				F734F18B2CD699DB00108CCC /* Helper+Keyboard.swift in Sources */,
 				F7AEA0BB2CDCC83300D57503 /* ShowingPresentForGiveAndTakeView.swift in Sources */,
-				936878B22CDE09330063D4F7 /* PhotoPickerRoundedRect.swift in Sources */,
+				936878B22CDE09330063D4F7 /* PhotoRoundedRect.swift in Sources */,
 				F734F18D2CD76C2600108CCC /* PersonDetailView.swift in Sources */,
 				936878A82CDD8BC30063D4F7 /* GiveOrTakeTag.swift in Sources */,
 				F7AEA0C12CDCFEC600D57503 /* ChooseTagsInSaveBdayView.swift in Sources */,
@@ -555,7 +555,7 @@
 				936878822CD98F2F0063D4F7 /* GiftView.swift in Sources */,
 				936878992CDD8B2E0063D4F7 /* GiftNameSection.swift in Sources */,
 				F7AEA0C72CDCFF4C00D57503 /* ButtonForCheckingTheDate.swift in Sources */,
-				93ACFFC42CDEEBE300FCF402 /* PhotoPickerCircle.swift in Sources */,
+				93ACFFC42CDEEBE300FCF402 /* PhotoCircle.swift in Sources */,
 				F7AEA0D12CDCFFBD00D57503 /* HeaderForSaveBdayView.swift in Sources */,
 				9E3DA4CB2CC12CB300909C85 /* Helper+Color.swift in Sources */,
 				F7AEA0B92CDCC81D00D57503 /* ShowingTasteCollageView.swift in Sources */,

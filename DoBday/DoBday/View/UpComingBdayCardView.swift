@@ -10,7 +10,7 @@ struct UpComingBdayCardView: View {
             HStack(spacing: 20) {
                 ZStack {
                     
-                    PhotoPickerRoundedRect(imageData: bday.profileImage, alternativeImage: "basicprofile", width: 120, height: 160)
+                    PhotoRoundedRect(imageData: bday.profileImage, alternativeImage: "basicprofile", width: 120, height: 160)
                     
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(Color(hex: "FFFFFF"), lineWidth: 5)

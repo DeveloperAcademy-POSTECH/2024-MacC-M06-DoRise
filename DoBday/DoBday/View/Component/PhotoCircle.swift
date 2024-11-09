@@ -7,7 +7,7 @@
 import SwiftUI
 import PhotosUI
 
-struct PhotoPickerCircle: View {
+struct PhotoCircle: View {
     var profileImage: Data?
     var alternativeImage: String
     
