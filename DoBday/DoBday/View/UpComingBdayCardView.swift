@@ -34,14 +34,17 @@ struct CardContentView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
+            // 이름
             Text(bday.name)
                 .font(.bday_t2Emphasized)
                 .foregroundColor(.black)
-
+            
+            // 12.09(월)
             Text("\(formattedBirthdate())" + "(" + dayOfWeek() + ")")
                 .font(.bday_t3Regular)
                 .foregroundColor(.gray)
             
+            // 태그
             if !bday.relationshipTag.filter({ !$0.isEmpty }).isEmpty {
                 HStack {
                     ForEach(bday.relationshipTag.filter { !$0.isEmpty }, id: \.self) { tag in
@@ -58,14 +61,17 @@ struct CardContentView: View {
             
             
             HStack{
+                
                 Spacer()
+                
+                // D-30
                 Text(dDayText())
                     .font(.bday_t1Emphasized)
                     .foregroundColor(.black)
                 
             }.padding(.trailing,-30)
             
-        }.padding(.leading,10) // : VStack
+        }.padding(.leading,10) 
     }
 }
 
