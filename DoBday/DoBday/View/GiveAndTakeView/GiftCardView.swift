@@ -21,6 +21,7 @@ struct GiftCardView: View {
                         .fill(Color.white)
                 )
                 .frame(width: 300, height: 100)
+            
             HStack{
                 VStack(alignment: .leading, spacing: 2) {
                     // 선물의 태그 (내가 준 선물인지 받은 선물인지)
@@ -42,22 +43,7 @@ struct GiftCardView: View {
                 
                 Spacer()
                 
-                // 선물 이미지 (이미지가 없으면 기본 이미지 표시)
-                if let imageData = sampleGift.giftImage, let uiImage = UIImage(data: imageData) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 64, height: 64)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .padding(8)
-                } else {
-                    Image("starrynight")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 64, height: 64)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .padding(8)
-                }
+                PhotoRoundedRect(imageData: sampleGift.giftImage, alternativeImage: "starrynight", width: 64, height: 64)
                 
                 // 오른쪽 화살표 아이콘
                 Image(systemName: "chevron.right")

@@ -9,18 +9,15 @@ import SwiftUI
 // MARK: - CardListView
 struct CardListView: View {
     @Environment(\.modelContext) var context
-    
     @State private var showingAlert = false
     @State var selectedBday: Bday?
     
     var bdays: [Bday]
     @Binding var clickedBdays: [Bday]
     
-    // TODO: 새로운 tag 모델로 갈아끼우면 삭제할 것
-    let relationshipDictionary: [String : Color] = ["#가족": Color.init(hex: "FFA1A1"), "#친구": Color.init(hex: "FFEBA1"), "#지인": Color.init(hex: "C9F69C"), "#비지니스": Color.init(hex: "A1ACFF")]
     
     var body: some View {
-
+        
         VStack(alignment: .leading) {
             List {
                 ForEach(clickedBdays, id: \.id) { bday in
@@ -28,32 +25,13 @@ struct CardListView: View {
                         PersonDetailView(bday: bday)
                     } label: {
                         HStack {
-                            if let profileImage = bday.profileImage, let uiImage = UIImage(data: profileImage) {
-                                Image(uiImage: uiImage)
-                                    .resizable()
-                                    .frame(width: 80, height: 80)
-                                    .clipShape(Circle())
-                                    .padding(.trailing, 10)
-                            } else {
-                                Image("basicprofile")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 80, height: 80)
-                                    .clipShape(Circle())
-                                    .padding(.trailing, 10)
-                            }
                             
-                                VStack(alignment: .leading) {
+                            PhotoCircle(profileImage: bday.profileImage, alternativeImage: "basicprofile")
+                            
+                            VStack(alignment: .leading) {
                                 Text(bday.name)
                                     .padding(.horizontal, 8)
-//                                Text(bday.relationshipTag)
-//                                    .padding(.horizontal, 8)
-//                                    .padding(.vertical, 4)
-//                                    .background(
-//                                        // TODO: 새로운 relationshipTag 모델로 갈아끼워야 함
-//                                        relationshipDictionary[bday.relationshipTag]?.opacity(0.5) ?? .gray.opacity(0.2)
-//                                    )
-//                                    .clipShape(.capsule)
+                                
                             }
                             .foregroundStyle(.primary)
                         }

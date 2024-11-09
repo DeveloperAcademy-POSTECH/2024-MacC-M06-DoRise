@@ -34,7 +34,7 @@ struct PersonDetailView: View {
 
             ShowingTasteCollageView(name: $name)
 
-            ShowingPresentForGiveAndTakeView()
+            ShowingPresentForGiveAndTakeView(name: $name)
 
         }
         .padding(.init(top: 0, leading: 20, bottom: 0, trailing: 20))
