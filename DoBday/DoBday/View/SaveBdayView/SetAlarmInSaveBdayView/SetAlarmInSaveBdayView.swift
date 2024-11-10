@@ -25,6 +25,5 @@ struct SetAlarmInSaveBdayView: View {
         }.padding(.init(top: 0, leading: 45, bottom: 2, trailing: 45))
 
         ChooseAlarmFrequencyView(notiFrequency: $notiFrequency)
-
     }
 }

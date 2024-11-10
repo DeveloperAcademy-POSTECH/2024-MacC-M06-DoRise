@@ -15,7 +15,6 @@ struct SetDateView: View {
 
     var body: some View {
         VStack {
-
             HStack(alignment: .bottom) {
                 Text("생일 날짜")
                     .font(.system(size: 30, weight: .bold))

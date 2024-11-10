@@ -20,6 +20,5 @@ struct TextFieldForTagView: View {
                 .textFieldStyle(.plain)
                 .padding(.init(top: 0, leading: 25, bottom: 0, trailing: 25))
         }.padding(.init(top: 0, leading: 25, bottom: 20, trailing: 25))
-
     }
 }

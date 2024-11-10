@@ -37,7 +37,6 @@ struct GiftDeleteSection: View {
         }
         .padding(.horizontal)
         .padding(.top, 8)
-        
     }
 }
 

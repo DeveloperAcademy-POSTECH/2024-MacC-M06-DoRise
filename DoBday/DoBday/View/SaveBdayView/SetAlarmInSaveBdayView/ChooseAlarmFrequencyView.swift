@@ -9,6 +9,7 @@ import SwiftUI
 struct ChooseAlarmFrequencyView: View {
 
     @Binding var notiFrequency: [String]
+    
     let notiArray: [String] = ["당일", "1일 전", "3일 전", "7일 전"]
 
     var body: some View {
@@ -35,6 +36,5 @@ struct ChooseAlarmFrequencyView: View {
                 }
             }
         }.padding(.init(top: 0, leading: 38, bottom: 0, trailing: 38))
-
     }
 }

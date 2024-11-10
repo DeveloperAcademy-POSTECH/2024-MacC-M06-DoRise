@@ -19,5 +19,4 @@ struct GiftStatusSelectionSection: View {
         .padding(.bottom)
 
     }
-    
 }

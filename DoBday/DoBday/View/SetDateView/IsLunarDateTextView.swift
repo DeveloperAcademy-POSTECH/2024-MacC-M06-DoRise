@@ -14,7 +14,6 @@ struct IsLunarDateTextView: View {
         VStack {
             if let lunarDate = KoreanLunarSolarConverter.instance.solarToLunar(date: dateOfBday), let _ =
                 KoreanLunarSolarConverter.instance.convertLunarToSolarForCurrentYear(lunarDate: lunarDate)
-
             {
                 HStack {
                     Text("양력과 음력은 약 30일 정도 차이가 나요")

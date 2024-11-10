@@ -101,8 +101,8 @@ class NotificationManager {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
-    
-    func CancelNotification() {
+    // TODO: 이 함수는 안쓰는 함수 아닌지?
+    func cancelNotification() {
         notiCenter.removeAllPendingNotificationRequests()
         notiCenter.removeAllDeliveredNotifications()
         resetBadgeCount()

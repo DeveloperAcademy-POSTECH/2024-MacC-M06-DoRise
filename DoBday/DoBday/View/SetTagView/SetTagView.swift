@@ -18,14 +18,12 @@ struct SetTagView: View {
 
     var body: some View {
         VStack {
-
             HStack(alignment: .bottom) {
                 Text("태그 생성")
                     .font(.system(size: 30, weight: .bold))
 
                 Spacer()
             }.padding(.init(top: 5, leading: 0, bottom: 20, trailing: 0))
-
 
             TextFieldForTagView(tagName: $tagName)
             ChoosingColorOfTagView(tagColor: $tagColor)
@@ -37,14 +35,6 @@ struct SetTagView: View {
         .padding(.init(top: 40, leading: 20, bottom: 0, trailing: 20))
     }
 }
-
-
-
-
-
-
-
-
 
 //#Preview {
 //    SetTagView()

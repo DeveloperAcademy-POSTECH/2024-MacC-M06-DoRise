@@ -16,13 +16,11 @@
      @Query var bdayGifts: [BdayGift]
      @State private var selectedGifts: Set<UUID> = [] // 선택된 선물의 UUID를 저장하는 Set임.
 
-
      var body: some View {
          // 선택 및 삭제 버튼 영역.
          VStack {
-
              GiftDeleteSection(bdayGifts: bdayGifts, selectedGifts: $selectedGifts)
-
+             
              Divider()
                  .padding(.horizontal)
          }
@@ -38,11 +36,9 @@
                          .padding(.leading, 32)
 
                      GiftCardForEachView(bdayGifts: bdayGifts, selectedGifts: $selectedGifts)
-
                  }
                  Spacer()
              }
-
          }
          .padding()
          .navigationTitle("\(name)와의 선물기록")

@@ -24,7 +24,6 @@ struct ButtonOfShowingSheetForSettingDateView: View {
                         .foregroundColor(.white)
                 }
             }
-
         }
     }
 }

@@ -29,6 +29,5 @@ struct ShowingBdayTagOfSaveBdayView: View {
 
             }
         }.padding(.init(top: 0, leading: 38, bottom: 0, trailing: 38))
-
     }
 }

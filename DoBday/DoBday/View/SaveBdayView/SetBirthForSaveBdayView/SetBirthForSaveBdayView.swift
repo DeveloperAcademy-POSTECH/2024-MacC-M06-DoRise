@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct SetBirthForSaveBdayView: View {
+    
     @Binding var isLunar: Bool
     @Binding var dateOfBday: Date
     @Binding var isshowingSheetForSettingDate: Bool
@@ -29,6 +30,5 @@ struct SetBirthForSaveBdayView: View {
             Spacer()
 
         }.padding(.init(top: 0, leading: 38, bottom: 0, trailing: 38))
-
     }
 }

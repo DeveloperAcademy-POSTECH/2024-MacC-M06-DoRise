@@ -21,7 +21,6 @@ struct HeaderForSaveBdayView: View {
     @Binding var relationshipTag: [String]
     @Binding var profilrImage: Data?
 
-
     var body: some View {
         HStack {
             Spacer()
@@ -33,7 +32,6 @@ struct HeaderForSaveBdayView: View {
                     .font(.system(size: 24, weight: .semibold))
             }
         }.padding(.init(top: 0, leading: 22, bottom: 0, trailing: 24))
-
     }
 }
 

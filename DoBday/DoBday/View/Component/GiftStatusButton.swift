@@ -25,7 +25,6 @@ struct GiftStatusButton: View {
             .onTapGesture {
                 currentStatus = status
             }
-
     }
 }
 

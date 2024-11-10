@@ -17,7 +17,6 @@ struct DatePickerOfSetDateView: View {
                 .labelsHidden()
                 .environment(\.locale, Locale.init(identifier: "ko"))
                 .padding(0)
-
         }
     }
 }

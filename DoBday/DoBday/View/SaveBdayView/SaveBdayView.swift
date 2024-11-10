@@ -53,7 +53,6 @@ struct SaveBdayView: View {
         return formatter
     }()
 
-
     var body: some View {
         VStack {
             HeaderForSaveBdayView(name: $name, dateOfBday: $dateOfBday, isLunar: $isLunar, notiFrequency: $notiFrequency, imageData: $imageData, relationshipTag: $relationshipTag, profilrImage: $profileImage)

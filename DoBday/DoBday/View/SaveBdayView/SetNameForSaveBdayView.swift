@@ -27,6 +27,5 @@ struct SetNameForSaveBdayView: View {
                 .padding(.init(top: 0, leading: 20, bottom: 0, trailing: 20))
         }.padding(.init(top: 0, leading: 38, bottom: 0, trailing: 38))
             .onAppear (perform : UIApplication.shared.hideKeyboard)
-
     }
 }

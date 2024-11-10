@@ -63,6 +63,9 @@
 		F7386FBE2CC1009D00C38E73 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBD2CC1009D00C38E73 /* CalendarView.swift */; };
 		F7386FC02CC100AC00C38E73 /* SaveBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */; };
 		F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */; };
+		F74F4FAA2CE08EE3004396EC /* ShowingNearBirthsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F4FA92CE08EE3004396EC /* ShowingNearBirthsListView.swift */; };
+		F74F4FAD2CE08EF9004396EC /* ShowingTheNearestBirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F4FAC2CE08EF9004396EC /* ShowingTheNearestBirthView.swift */; };
+		F74F4FAF2CE08F17004396EC /* HeaderForUpComingBdayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74F4FAE2CE08F17004396EC /* HeaderForUpComingBdayView.swift */; };
 		F767F2A82CD9C7CE001BDDC0 /* SetTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F767F2A72CD9C7CE001BDDC0 /* SetTagView.swift */; };
 		F7AEA0A42CDCBF0700D57503 /* IsLunarDateTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEA0A32CDCBF0700D57503 /* IsLunarDateTextView.swift */; };
 		F7AEA0A72CDCBF4100D57503 /* ButtonOfShowingSheetForSettingDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AEA0A62CDCBF4100D57503 /* ButtonOfShowingSheetForSettingDateView.swift */; };
@@ -146,6 +149,9 @@
 		F7386FBD2CC1009D00C38E73 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		F7386FBF2CC100AC00C38E73 /* SaveBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveBdayView.swift; sourceTree = "<group>"; };
 		F7386FC32CC4F9FA00C38E73 /* Helper+ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Helper+ImagePicker.swift"; sourceTree = "<group>"; };
+		F74F4FA92CE08EE3004396EC /* ShowingNearBirthsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowingNearBirthsListView.swift; sourceTree = "<group>"; };
+		F74F4FAC2CE08EF9004396EC /* ShowingTheNearestBirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowingTheNearestBirthView.swift; sourceTree = "<group>"; };
+		F74F4FAE2CE08F17004396EC /* HeaderForUpComingBdayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderForUpComingBdayView.swift; sourceTree = "<group>"; };
 		F767F2A72CD9C7CE001BDDC0 /* SetTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTagView.swift; sourceTree = "<group>"; };
 		F7AEA0A32CDCBF0700D57503 /* IsLunarDateTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsLunarDateTextView.swift; sourceTree = "<group>"; };
 		F7AEA0A62CDCBF4100D57503 /* ButtonOfShowingSheetForSettingDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonOfShowingSheetForSettingDateView.swift; sourceTree = "<group>"; };
@@ -314,7 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				9EF7D56C2CC146D4003A3B79 /* LocalNotificationManager.swift */,
-				F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */,
+				F74F4FB02CE08F26004396EC /* UpComingBdayView */,
 				9ED52C072CD8ED7400FC5D8B /* UpComingBdayCardView.swift */,
 				896A53522CC6087D004631A9 /* BdayTextView.swift */,
 				936878852CDC591E0063D4F7 /* CalendarView */,
@@ -368,6 +374,36 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		F74F4FA72CE08A39004396EC /* ShowingBdayTagOfSaveBdayView */ = {
+			isa = PBXGroup;
+			children = (
+				F7AEA0C42CDCFF3B00D57503 /* ShowingBdayTagOfSaveBdayView.swift */,
+				F7AEA0C22CDCFF2C00D57503 /* ButtonForMovingToSetTagView.swift */,
+				F7AEA0C02CDCFEC600D57503 /* ChooseTagsInSaveBdayView.swift */,
+			);
+			path = ShowingBdayTagOfSaveBdayView;
+			sourceTree = "<group>";
+		};
+		F74F4FA82CE08A4B004396EC /* SetAlarmInSaveBdayView */ = {
+			isa = PBXGroup;
+			children = (
+				F7AEA0BE2CDCFE8D00D57503 /* SetAlarmInSaveBdayView.swift */,
+				F7AEA0BC2CDCFE7F00D57503 /* ChooseAlarmFrequencyView.swift */,
+			);
+			path = SetAlarmInSaveBdayView;
+			sourceTree = "<group>";
+		};
+		F74F4FB02CE08F26004396EC /* UpComingBdayView */ = {
+			isa = PBXGroup;
+			children = (
+				F7386FA22CC0F83700C38E73 /* UpComingBdayView.swift */,
+				F74F4FAE2CE08F17004396EC /* HeaderForUpComingBdayView.swift */,
+				F74F4FAC2CE08EF9004396EC /* ShowingTheNearestBirthView.swift */,
+				F74F4FA92CE08EE3004396EC /* ShowingNearBirthsListView.swift */,
+			);
+			path = UpComingBdayView;
+			sourceTree = "<group>";
+		};
 		F7AEA0A52CDCBF1700D57503 /* SetDateView */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,16 +445,21 @@
 				F7AEA0D02CDCFFBD00D57503 /* HeaderForSaveBdayView.swift */,
 				F7AEA0CE2CDCFF9200D57503 /* PhotoPickerForSaveBdayView.swift */,
 				F7AEA0CC2CDCFF7C00D57503 /* SetNameForSaveBdayView.swift */,
+				F7AEA0D22CE0897000D57503 /* SetBirthForSaveBdayView */,
+				F74F4FA72CE08A39004396EC /* ShowingBdayTagOfSaveBdayView */,
+				F74F4FA82CE08A4B004396EC /* SetAlarmInSaveBdayView */,
+			);
+			path = SaveBdayView;
+			sourceTree = "<group>";
+		};
+		F7AEA0D22CE0897000D57503 /* SetBirthForSaveBdayView */ = {
+			isa = PBXGroup;
+			children = (
 				F7AEA0CA2CDCFF6C00D57503 /* SetBirthForSaveBdayView.swift */,
 				F7AEA0C82CDCFF5D00D57503 /* ButtonForCheckingIsLunar.swift */,
 				F7AEA0C62CDCFF4C00D57503 /* ButtonForCheckingTheDate.swift */,
-				F7AEA0C42CDCFF3B00D57503 /* ShowingBdayTagOfSaveBdayView.swift */,
-				F7AEA0C22CDCFF2C00D57503 /* ButtonForMovingToSetTagView.swift */,
-				F7AEA0C02CDCFEC600D57503 /* ChooseTagsInSaveBdayView.swift */,
-				F7AEA0BE2CDCFE8D00D57503 /* SetAlarmInSaveBdayView.swift */,
-				F7AEA0BC2CDCFE7F00D57503 /* ChooseAlarmFrequencyView.swift */,
 			);
-			path = SaveBdayView;
+			path = SetBirthForSaveBdayView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,7 +547,9 @@
 			files = (
 				F7AEA0A92CDCBF4D00D57503 /* DatePickerOfSetDateView.swift in Sources */,
 				F7386FC42CC4F9FA00C38E73 /* Helper+ImagePicker.swift in Sources */,
+				F74F4FAF2CE08F17004396EC /* HeaderForUpComingBdayView.swift in Sources */,
 				F734F18F2CD78ACF00108CCC /* SetDateView.swift in Sources */,
+				F74F4FAA2CE08EE3004396EC /* ShowingNearBirthsListView.swift in Sources */,
 				936878922CDCB03E0063D4F7 /* GiftStatusButton.swift in Sources */,
 				F734F18B2CD699DB00108CCC /* Helper+Keyboard.swift in Sources */,
 				F7AEA0BB2CDCC83300D57503 /* ShowingPresentForGiveAndTakeView.swift in Sources */,
@@ -553,6 +596,7 @@
 				F7AEA0B92CDCC81D00D57503 /* ShowingTasteCollageView.swift in Sources */,
 				F7386FA12CC0F83700C38E73 /* DoBdayApp.swift in Sources */,
 				F7AEA0C32CDCFF2C00D57503 /* ButtonForMovingToSetTagView.swift in Sources */,
+				F74F4FAD2CE08EF9004396EC /* ShowingTheNearestBirthView.swift in Sources */,
 				F734F1812CD4CC5B00108CCC /* BdayGift.swift in Sources */,
 				9368788B2CDC5A5B0063D4F7 /* CardListView.swift in Sources */,
 				936878AA2CDD8BD00063D4F7 /* GiftCardForEachView.swift in Sources */,

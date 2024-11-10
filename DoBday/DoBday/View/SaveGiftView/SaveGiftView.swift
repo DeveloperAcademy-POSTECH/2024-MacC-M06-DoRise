@@ -10,7 +10,6 @@ import SwiftData
 import PhotosUI
 
 struct SaveGiftView: View {
-    
     // MARK: - Property
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) var dismiss
@@ -48,16 +47,16 @@ struct SaveGiftView: View {
         ScrollViewReader { proxy in
             ScrollView {
                 VStack {
-                    
+
                     GiftImagePicker(giftImage: $giftImage)
-                    
+
                     GiftStatusSelectionSection(giftStatus: $giftStatus)
-                                        
+
                     VStack(alignment: .leading) {
                         GiftNameSection(giftName: $giftName, isFocused: $isFocused)
-                        
+
                         GiftPriceSection(giftPrice: $giftPrice, isFocused: $isFocused)
-                        
+
                         GiftMemoSection(memo: $memo, isFocused: $isFocused)
                             .id(bottomID)
                     }
@@ -66,7 +65,6 @@ struct SaveGiftView: View {
                             proxy.scrollTo(bottomID, anchor: .bottom)
                         }
                     }
-                    
                 }
                 .padding()
                 .navigationTitle("준 선물/받은 선물")
@@ -79,11 +77,8 @@ struct SaveGiftView: View {
                         } label: {
                             Text("추가")
                         }
-                        
-                        
                     }
                 }
-                
             }
             .onChange(of: isFocused) { oldValue, newValue in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.22) {
@@ -92,11 +87,10 @@ struct SaveGiftView: View {
                     }
                 }
             }
-            
+
             .onTapGesture {
                 hideKeyboard()
             }
-            
         }
     }
 }
@@ -105,11 +99,11 @@ struct SaveGiftView: View {
 
 // MARK: - extension SaveGiftView
 extension SaveGiftView {
-    
+
     /// bdayGift를 수정하거나 저장할 수 있는 함수입니다.
     func addBdayGift() {
         isToBeGiven = (giftStatus == .given)    // giftStatus에 따라 isToBeGiven 값을 설정. giftStatus가 .given이면 isToBeGiven은 True가 됨.
-        
+
         // 기존 생일 선물 수정
         if let bdayGift = bdayGift {
             print("기존 선물 수정 중")
@@ -129,18 +123,16 @@ extension SaveGiftView {
                 giftImage: giftImage,
                 memo: memo,
                 giftURL: giftURL
-                
+
             )
-            
             context.insert(bdayGift)
         }
-        
+
         do {
             try context.save()
         } catch {
             print("Error saving data: \(error.localizedDescription)")
         }
-        
     }
 }
 

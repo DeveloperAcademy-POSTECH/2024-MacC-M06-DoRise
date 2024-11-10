@@ -16,7 +16,7 @@ struct ButtonOfSavingBdayTagView: View {
     var body: some View {
         VStack {
             Button {
-                SaveBdayTag()
+                saveBdayTag()
                 isshowingSheetForCreatingTag.toggle()
 
             } label: {
@@ -34,7 +34,7 @@ struct ButtonOfSavingBdayTagView: View {
 }
 
 extension ButtonOfSavingBdayTagView {
-    func SaveBdayTag() {
+    func saveBdayTag() {
         let newBdayTag = BdayTag(id: UUID(), tagName: tagName, tagColor: tagColor)
         contextForBdayTag.insert(newBdayTag)
     }

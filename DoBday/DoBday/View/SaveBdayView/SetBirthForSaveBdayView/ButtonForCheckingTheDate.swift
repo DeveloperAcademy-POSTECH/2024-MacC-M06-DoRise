@@ -32,6 +32,5 @@ struct ButtonForCheckingTheDate: View {
                     .presentationDetents([.medium])
             }
         }
-
     }
 }
