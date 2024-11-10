@@ -45,19 +45,7 @@ struct CardContentView: View {
                 .foregroundColor(.gray)
             
             // 태그
-            if !bday.relationshipTag.filter({ !$0.isEmpty }).isEmpty {
-                HStack {
-                    ForEach(bday.relationshipTag.filter { !$0.isEmpty }, id: \.self) { tag in
-                        Text(tag)
-                            .font(.bday_c2Emphasized)
-                            .foregroundColor(.black)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 2)
-                            .background(Color.red.opacity(0.3))
-                            .cornerRadius(20)
-                    }
-                }
-            }
+            TagListView(tags: bday.relationshipTag)
             
             
             HStack{
